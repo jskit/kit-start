@@ -1,6 +1,6 @@
 {
   "name": "kit-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "custom element with vue2.x",
   "main": "index.js",
   "scripts": {
