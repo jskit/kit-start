@@ -5,7 +5,8 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 // 路由去中心化设计
-// 处理 export default 不好，特殊处理
+// https://webpack.js.org/guides/dependency-management/#require-context
+// 目前export default .js处理不好，需特殊处理，.vue的处理 OK
 const routes = (r => {
   console.log(r.keys())
   return r.keys().map(key => r(key).default)

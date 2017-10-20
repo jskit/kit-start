@@ -11,7 +11,7 @@ testsContext.keys().forEach(testsContext)
 // you want coverage for.
 
 // const excludeReg =  /^\.\/(?!main(\.js)?|index\.tpl$)/
-// const excludeReg = /^\.\/(?!(main(\.js)?|index(\.tpl)?)$)/
+// const excludeReg = /^\.\/(?!(main(\.js)?|index\.tpl)$)/
 // 这里要使用正则表达式，而不能间接赋值使用变量（排除 main 以及 index.tpl 文件）
 const srcContext = require.context('../../src', true, /^\.\/(?!(main(\.js)?|index\.tpl)$)/)
 srcContext.keys().forEach(srcContext)
