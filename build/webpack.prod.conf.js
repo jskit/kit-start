@@ -98,6 +98,11 @@ var webpackConfig = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../public'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
+      },
+      {
+        from: 'src/assets',
+        to: config.build.assetsSubDirectory,
+        ignore: ['.*']
       }
     ]),
     // service worker caching
