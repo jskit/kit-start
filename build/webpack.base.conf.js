@@ -8,6 +8,7 @@ function resolve (dir) {
 }
 
 module.exports = {
+  // context: path.resolve(__dirname, "app"),
   entry: {
     app: './src/main.js'
   },
