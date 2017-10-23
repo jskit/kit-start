@@ -18,6 +18,16 @@
   - assetsSubDirectory: 'static' => './static',
   - assetsPublicPath: '/' => './',
 - 🔄 调整CopyWebpackPlugin配置，处理非 webpack 模块引入图片不会打包资源的问题
+  - ```js
+    // 新增配置处理引入资源问题
+    new CopyWebpackPlugin([
+      ...
+      {
+        from: 'src/assets',
+        to: config.build.assetsSubDirectory,
+        ignore: ['.*']
+      }
+    ]),```
 - 🔑 新增别名assets，这样就不用考虑各种相对路径了（注意配合~assets 使用）
   - 别名设置 `'assets': path.resolve(__dirname, '../src/assets')`
   - html引用 `<img src="~assets/img/logo.png" alt="">`
