@@ -2,6 +2,8 @@
 
 > A Vue.js project
 
+基于 `kit-pwa` 定制项目最佳实践
+
 ## Build Setup
 
 ``` bash
