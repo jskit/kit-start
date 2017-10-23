@@ -33,7 +33,7 @@ npm test
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-## Structure
+## 结构设计 Structure
 
 ```shell
 ├── dist           # 打包输出
