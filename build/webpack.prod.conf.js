@@ -54,6 +54,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
+    // 如果同时引入了html-loader和html-webpack-plugin，两个插件都设置了minify属性，则会编译生成时报错
     new HtmlWebpackPlugin({
       filename: process.env.NODE_ENV === 'testing'
         ? 'index.html'
@@ -95,15 +96,17 @@ var webpackConfig = merge(baseWebpackConfig, {
     // copy custom static assets
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../public'),
+        from: path.resolve(__dirname, '../static'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       },
-      {
-        from: 'src/assets',
-        to: config.build.assetsSubDirectory,
-        ignore: ['.*']
-      }
+      // webpack中JS手动引入的图片问题(按照约定，assets内全为需要编译的图片，不需要的放在 static 下)
+      // webpack是万物皆模块，但也就是说，不通过require引入的就不会算成模块了(插件中的另算，那是处理过的)。所以，在JS中手动引入图片时会遇到问题就是对应的图片并不会被打包，导致之后找不到路径。
+      //{
+      //  from: 'src/assets',
+      //  to: config.build.assetsSubDirectory,
+      //  ignore: ['.*']
+      //}
     ]),
     // service worker caching
     new SWPrecacheWebpackPlugin({

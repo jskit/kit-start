@@ -45,4 +45,16 @@ header span {
   box-sizing: border-box;
   padding-top: 16px;
 }
+
+.slide-left-enter,
+.slide-right-leave-active{
+  opacity: 0;
+  transform: translate(30px, 0);
+}
+
+.slide-left-leave-active,
+.slide-right-enter{
+  opacity: 0;
+  transform: translate(-30px, 0);
+}
 </style>

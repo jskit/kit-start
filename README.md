@@ -66,7 +66,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 │   └── index.tpl
 │
 ├── test            # 只放配置文件，具体单元测试等文件，放在项目中（src 中）
-├── public          # 无需编译的静态资源
+├── static          # 无需编译的静态资源
 │   ├── img/icons
 │   └── manifest.json
 │
