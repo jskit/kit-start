@@ -46,13 +46,14 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 │   ├── assets      # 需要编译的静态资源
 │   │   └── ...
 │   ├── components  # 项目内公共组件
+│   ├── config      # 项目自定义配置等
 │   ├── router      # 去中心化路由
 │   ├── service     # api 相关模块
 │   │   └── mock        # 模拟数据
 │   ├── setting     # 项目参数设置
 │   ├── store       # vuex
-│   ├── utils        # 工具
-│   ├── views       # 页面 pages
+│   ├── utils       # 工具
+│   ├── views       # 各页面
 │   │   ├── module/
 │   │   │   ├── xxx.spec.js
 │   │   │   ├── route.js
