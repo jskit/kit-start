@@ -7,11 +7,11 @@ import * as types from './types'
 Vue.use(Vuex)
 
 // store 去中心化
-const reqFiles = require.context('../views', true, /^\.(\/([\s\S])+)?\/store\.js$/)
-const stores = reqFiles.keys().reduce((module, key) => {
+const reqModules = require.context('../views', true, /^\.(\/([\s\S])+)?\/store\.js$/)
+const stores = reqModules.keys().reduce((module, key) => {
   // export default 语法导出不友好，特殊处理
   const name = key //.replace('.', '').replace('/', '')
-  module[name] = reqFiles(key).default
+  module[name] = reqModules(key).default
   return module
 }, {})
 
