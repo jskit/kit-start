@@ -13,6 +13,7 @@ export default {
 <style>
 body {
   margin: 0;
+  font-size: 16px;
 }
 
 #app {
