@@ -9,6 +9,15 @@
 - ⚠️ warning 注意/提示
 - 🔥 del 移除
 
+## 1.5.0 2017-10-27
+
+- 🔄 升级 package.json
+  - 🔑 新增 postcss-position
+  - 🔑 新增 postcss-size
+  - 🔑 新增 babel-plugin-syntax-dynamic-import 动态解析 import()，实现路由懒加载
+  - 🔑 新增 babel-plugin-transform-vue-jsx 支持 vue 直接 render JSX 语法
+
+
 ## 1.4.0 2017-10-23
 
 - 🔑 新增去中心化路由实现
