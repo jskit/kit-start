@@ -8,7 +8,7 @@ function resolve (dir) {
 }
 
 module.exports = {
-  context: path.resolve(__dirname, "../"),
+  // context: path.resolve(__dirname, "../"),
   entry: {
     app: './src/main.js'
   },
@@ -20,9 +20,10 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json', '.css', '.md'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
+      '@root': resolve('./'),
       '@': resolve('src'),
       'assets': path.resolve(__dirname, '../src/assets'),
     }
@@ -33,6 +34,7 @@ module.exports = {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
+        exclude: /(libs|node_modules)/,
         include: [resolve('src'), resolve('test')],
         options: {
           formatter: require('eslint-friendly-formatter')
@@ -46,10 +48,41 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        exclude: /node_modules/,
         include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.md/,
+        loader: 'vue-markdown-loader',
+        options: {
+          preventExtract: true,
+          use: [
+            [require('markdown-it-container'), 'demo']
+          ], preprocess(MarkdownIt, source) {
+            const styleRegexp = /<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/i;
+            const scriptRegexp = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/i;
+            MarkdownIt.renderer.rules.table_open = () =>
+              '<table class="kit-doc-table">';
+            return source.replace(styleRegexp, '').replace(scriptRegexp, '');
+          }
+        }
+      },
+      // images from img/flags goes to flags-sprite.svg
+      // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理
+      {
+        test: /\.svg$/i,
+        loader: 'svg-sprite-loader',
+        // include: svgDirs,
+        // include: path.resolve('./img/system'),
+        options: {
+          runtimeCompat: true,
+          // 不要提取成一个外部独立文件使用，这样与按需加载理念冲突
+          // extract: true,
+          // spriteFilename: 'svg-sprite.[hash:6].svg'
+        },
+      },
+      {
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
