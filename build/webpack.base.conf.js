@@ -106,5 +106,6 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: config.plugins || [],
 }
