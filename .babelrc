@@ -16,6 +16,7 @@
     // babel-plugin-module-resolver 是一个Babel模块解析插件, 在.babelrc中可以配置模块的导入搜索路径
     // babel对于 export default {} 支持不好
     // 需要插件 babel-plugin-add-module-exports：
+    // "add-module-exports",
     "syntax-dynamic-import", // 动态解析 import()，实现路由懒加载
     // stage-0,state-1，stage-2以及stage-3的区别
     // http://www.cnblogs.com/chris-oil/p/5717544.html

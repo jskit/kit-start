@@ -31,7 +31,7 @@
   "homepage": "https://github.com/jskit/kit-start#readme",
   "dependencies": {
     "kit-fetch": "0.0.2",
-    "kit-ui": "^0.3.3",
+    "kit-ui": "^0.3.4",
     "vue": "^2.5.2",
     "vue-lazyload": "^1.1.4",
     "vue-router": "^3.0.1",
