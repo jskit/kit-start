@@ -7,8 +7,7 @@
 </template>
 
 <script>
-import { Icon } from 'kit-ui'
-// console.log(Icon)
+import KitUI, { Icon } from 'kit-ui'
 export default {
   components: {
     [Icon.name]: Icon,
