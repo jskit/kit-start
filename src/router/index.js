@@ -7,6 +7,13 @@ Vue.use(Router)
 // 路由去中心化
 // https://webpack.js.org/guides/dependency-management/#require-context
 // 目前export default .js导出引用不友好，部分场景需特殊处理
+// const reqModules = require.context('../views', true, /\.js$/)
+// const routes = reqModules.keys().map(key => {
+//   if(key === './index.js') {
+//     return reqModules(key).default
+//   }
+// }, {})
+
 const reqModules = require.context('../views', true, /^\.(\/([\s\S])+)?\/route\.js$/)
 const routes = reqModules.keys().map(key => {
   return reqModules(key).default

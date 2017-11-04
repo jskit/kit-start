@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 // store 去中心化
 const reqModules = require.context('../views', true, /^\.(\/([\s\S])+)?\/store\.js$/)
-const stores = reqModules.keys().reduce((module, key) => {
+const modules = reqModules.keys().reduce((module, key) => {
   // export default 语法导出不友好，特殊处理
   const name = key //.replace('.', '').replace('/', '')
   module[name] = reqModules(key).default
@@ -25,6 +25,6 @@ export default new Vuex.Store({
   actions,
   getters,
   modules: {
-    ...stores,
+    ...modules,
   },
 })
