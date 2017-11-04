@@ -1,5 +1,5 @@
-import { stringify } from 'qs';
-import _request from '../utils/request';
+import { stringify } from 'qs'
+import _request from '../utils/request'
 
 const __DEV__ = false
 const proxyUrl = __DEV__ ? '/proxy' : ''
@@ -19,15 +19,15 @@ function request(url, params) {
  */
 
 export function queryProjectNotice() {
-  return request('/project/notice');
+  return request('/project/notice')
 }
 
 export function queryActivities() {
-  return request('/activities');
+  return request('/activities')
 }
 
 export function queryRule(params) {
-  return request(`/rule?${stringify(params)}`);
+  return request(`/rule?${stringify(params)}`)
 }
 
 export function removeRule(params) {
@@ -37,7 +37,7 @@ export function removeRule(params) {
       ...params,
       method: 'delete',
     },
-  });
+  })
 }
 
 export function addRule(params) {
@@ -47,57 +47,57 @@ export function addRule(params) {
       ...params,
       method: 'post',
     },
-  });
+  })
 }
 
 export function fakeSubmitForm(params) {
   return request('/forms', {
     method: 'POST',
     body: params,
-  });
+  })
 }
 
 export function fakeChartData() {
-  return request('/fake_chart_data');
+  return request('/fake_chart_data')
 }
 
 export function queryTags() {
-  return request('/tags');
+  return request('/tags')
 }
 
 export function queryBasicProfile() {
-  return request('/profile/basic');
+  return request('/profile/basic')
 }
 
 export function queryAdvancedProfile() {
-  return request('/profile/advanced');
+  return request('/profile/advanced')
 }
 
 export function fakeQueryList(params) {
-  return request(`/fake_list?${stringify(params)}`);
+  return request(`/fake_list?${stringify(params)}`)
 }
 
 export function fakeAccountLogin(params) {
   return request('/login/account', {
     method: 'POST',
     body: params,
-  });
+  })
 }
 
 export function fakeMobileLogin(params) {
   return request('/login/mobile', {
     method: 'POST',
     body: params,
-  });
+  })
 }
 
 export function fakeRegister(params) {
   return request('/register', {
     method: 'POST',
     body: params,
-  });
+  })
 }
 
 export function queryNotices() {
-  return request('/notices');
+  return request('/notices')
 }
