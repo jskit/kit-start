@@ -12,7 +12,7 @@ var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 var loadMinified = require('./load-minified')
 
-var env = process.env.NODE_ENV === 'testing'
+var env = config.env['__TEST__']
   ? require('../config/test.env')
   : config.build.env
 
@@ -30,10 +30,6 @@ var webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
-    // http://vuejs.github.io/vue-loader/en/workflow/production.html
-    new webpack.DefinePlugin({
-      'process.env': env
-    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
@@ -56,7 +52,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // see https://github.com/ampedandwired/html-webpack-plugin
     // 如果同时引入了html-loader和html-webpack-plugin，两个插件都设置了minify属性，则会编译生成时报错
     new HtmlWebpackPlugin({
-      filename: process.env.NODE_ENV === 'testing'
+      filename: config.env['__TEST__']
         ? 'index.html'
         : config.build.index,
       template: config.template,

@@ -10,7 +10,7 @@ var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
-var webpackConfig = process.env.NODE_ENV === 'testing'
+var webpackConfig = config.env['__TEST__']
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf')
 
@@ -76,7 +76,7 @@ console.log('> Starting dev server...')
 devMiddleware.waitUntilValid(() => {
   console.log('> Listening at ' + uri + '\n')
   // when env is testing, don't need open it
-  if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
+  if (autoOpenBrowser && !config.env['__TEST__']) {
     opn(uri)
   }
   _resolve()
