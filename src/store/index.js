@@ -17,7 +17,7 @@ const modules = reqModules.keys().reduce((module, key) => {
 
 const state = {}
 
-const debug = process.env.NODE_ENV !== 'production'
+const debug = !__PROD__
 
 export default new Vuex.Store({
   strict: debug,

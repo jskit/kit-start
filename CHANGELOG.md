@@ -15,6 +15,11 @@
   - 新增 `progress-bar-webpack-plugin` 处理进度
 - 🔑 新增编译失败或成功的通知提示
   - 新增 `webpack-build-notifier` 提示编译成功或失败
+- 🔑 新增注入变量，实现更简洁的环境判断
+  - `__DEV__`  开发环境
+  - `__PROD__` 生成环境
+  - `__TEST__` 测试环境
+  - `__DEBUG__` debug 模式
 
 ## 1.5.x 2017-10-27
 
