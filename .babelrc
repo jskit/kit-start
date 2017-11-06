@@ -16,8 +16,12 @@
     // 需要插件 babel-plugin-add-module-exports：
     // "add-module-exports",
     "syntax-dynamic-import", // 动态解析 import()，实现路由懒加载
-    // stage-0,state-1，stage-2以及stage-3的区别
+    // "syntax-flow", // 支持解析 flow
+    // "syntax-jsx",  // 支持解析 jsx
+    // stage-0, state-1, stage-2以及stage-3的区别
     // http://www.cnblogs.com/chris-oil/p/5717544.html
+    // "transform-class-properties",
+    // "transform-decorators-legacy",  // vue-class-component
     "transform-object-rest-spread", // 支持对象解构赋值
     "transform-vue-jsx",  // 支持 vue 直接 render JSX 语法
     // transform-runtime 只会对es6的语法进行转换，而不会对新api进行转换。
