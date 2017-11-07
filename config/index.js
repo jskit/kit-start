@@ -43,6 +43,12 @@ module.exports = {
     new webpack.DefinePlugin({
       ...envConst,
     }),
+
+    // 全局加载引用，不必每次 import
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery'
+    // })
   ],
   build: {
     env: require('./prod.env'),

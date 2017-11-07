@@ -1,14 +1,16 @@
 import { stringify } from 'qs'
 import _request from '../utils/request'
+import { apiHost } from '../config/env'
 
 const __DEV__ = false
 const proxyUrl = __DEV__ ? '/proxy' : ''
-const apiBaseUrl = '//m.api.haoshiqi.net'
+const apiBaseUrl = `https://${apiHost['prod']}`
 const apiUrl = __DEV__ ? proxyUrl : apiBaseUrl + proxyUrl
 
 function request(url, params) {
   return _request(`${apiUrl}/api${url}`, params)
 }
+
 
 /**
  * API 命名规则

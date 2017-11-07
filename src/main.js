@@ -3,8 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
+import vueLazyload from 'vue-lazyload'
+import configLazyload from './config/lazyload'
 import './utils/rem'
+
+Vue.use(vueLazyload, {
+  ...configLazyload,
+})
 
 Vue.config.productionTip = false
 
