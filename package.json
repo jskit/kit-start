@@ -3,6 +3,7 @@
   "version": "1.6.5",
   "description": "custom element with vue2.x",
   "main": "index.js",
+  "config" : { "port" : "8080" },
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
