@@ -1,0 +1,2 @@
+webpackJsonp([7],{22:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var u=n(78),l=n.n(u),r=n(79),a=n(21),s=a(l.a,r.a,!1,null,null,null);t.default=s.exports},78:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={name:"tpl-default",components:{}}},79:function(e,t,n){"use strict";var u=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"tpl-default"},[n("router-view")],1)},l=[],r={render:u,staticRenderFns:l};t.a=r}});
+//# sourceMappingURL=7.b08ae59140bde8da768b.js.map
