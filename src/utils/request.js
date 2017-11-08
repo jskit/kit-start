@@ -39,7 +39,7 @@ export default async function request(url, options = {}) {
     }
     newOptions.body = JSON.stringify(newOptions.body)
   }
-
+  console.log(newOptions)
   return await fetch(url, newOptions)
     .then(checkStatus)
     .then(response => response.json())

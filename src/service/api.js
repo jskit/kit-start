@@ -1,14 +1,13 @@
 import { stringify } from 'qs'
 import _request from '../utils/request'
-import { apiHost } from '../config/env'
+import env from '../config/env'
 
-const __DEV__ = false
 const proxyUrl = __DEV__ ? '/proxy' : ''
-const apiBaseUrl = `https://${apiHost['prod']}`
+const apiBaseUrl = `${env.apiBaseUrl}`
 const apiUrl = __DEV__ ? proxyUrl : apiBaseUrl + proxyUrl
 
 function request(url, params) {
-  return _request(`${apiUrl}/api${url}`, params)
+  return _request(`${apiUrl}${url}`, params)
 }
 
 
@@ -20,8 +19,8 @@ function request(url, params) {
  * - 便捷易用大于规则，程序是给人看的
  */
 
-export function queryProjectNotice() {
-  return request('/project/notice')
+export function getPointIndex(params) {
+  return request(`/point/index?${stringify(params)}`)
 }
 
 export function queryActivities() {

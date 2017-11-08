@@ -33,7 +33,7 @@ const envConst = {
  * 运行模式 mode: client,server
  * 运行时类型 target: web,node,weex,hybrid
  */
-
+var cookie
 module.exports = {
   template: 'src/index.tpl',
   logo: resolve('/static/img/logo.png'),
@@ -43,7 +43,7 @@ module.exports = {
     new webpack.DefinePlugin({
       ...envConst,
     }),
-
+    // babili-webpack-plugin
     // 全局加载引用，不必每次 import
     // new webpack.ProvidePlugin({
     //   $: 'jquery',
@@ -75,7 +75,36 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    // https://vuejs-templates.github.io/webpack/proxy.html
+    // https://github.com/chimurai/http-proxy-middleware
+    proxyTable: {
+      // 如果把 cookie 设置为HttpOnly，则可能无法通过代理传递 cookie
+      // proxy all requests starting with /api to jsonplaceholder
+      '/proxy': {
+        target: 'https://m.api.haoshiqi.net',
+        changeOrigin: true,
+        // true/false, if you want to verify the SSL Certs
+        // secure: false,
+        pathRewrite: {
+          '^/proxy': '',
+        },
+        logLevel: 'debug',
+        onProxyReq: function relayRequestHeaders(proxyReq, req) {
+          // console.log(proxyReq.headers)
+          if (cookie) {
+            proxyReq.setHeader('cookie', cookie)
+          }
+          // proxyReq.setHeader('Access-Control-Allow-Credentials', 'true')
+        },
+        onProxyRes: function relayResponseHeaders(proxyRes, req, res) {
+          // console.log(proxyRes.headers)
+          var proxyCookie = proxyRes.headers['set-cookie']
+          if (proxyCookie) {
+            cookie = proxyCookie
+          }
+        },
+      },
+    },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
