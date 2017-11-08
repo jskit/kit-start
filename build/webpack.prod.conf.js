@@ -11,8 +11,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 var loadMinified = require('./load-minified')
+var isTesting = config.env['__TEST__']
 
-var env = config.env['__TEST__']
+var env = isTesting
   ? require('../config/test.env')
   : config.build.env
 
@@ -52,7 +53,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // see https://github.com/ampedandwired/html-webpack-plugin
     // 如果同时引入了html-loader和html-webpack-plugin，两个插件都设置了minify属性，则会编译生成时报错
     new HtmlWebpackPlugin({
-      filename: config.env['__TEST__']
+      filename: isTesting
         ? 'index.html'
         : config.build.index,
       template: config.template,
