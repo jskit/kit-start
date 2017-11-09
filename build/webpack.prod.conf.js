@@ -7,9 +7,11 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+// var UglifyEsPlugin = require('uglify-es-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+
 var loadMinified = require('./load-minified')
 var isTesting = config.env['__TEST__']
 
@@ -31,12 +33,16 @@ var webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
+    // UglifyJsPlugin 处理 node_modules 里es6内容会报错
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       },
       sourceMap: true
     }),
+    // new UglifyEsPlugin(),
+    // 使用 babel-minify 替代 UglifyJs 处理不支持 ES6的问题
+    // new require('babel-minify')(),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
