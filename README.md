@@ -54,7 +54,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 │   ├── store       # vuex
 │   ├── utils       # 工具
 │   ├── views       # 各页面
-│   │   ├── module/
+│   │   ├── module/  # 业务模块
 │   │   │   ├── xxx.spec.js
 │   │   │   ├── route.js
 │   │   │   ├── store.js
