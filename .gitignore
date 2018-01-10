@@ -57,9 +57,18 @@ typings/
 # dotenv environment variables file
 .env
 
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
 temp/
 dist/
 
+/test/unit/coverage
 test/e2e/reports/
+selenium-debug.log
 yarn.lock
 package-lock.json

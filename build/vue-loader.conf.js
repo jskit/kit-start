@@ -1,6 +1,9 @@
-var utils = require('./utils')
-var config = require('../config')
-var isProduction = config.env['__PROD__']
+'use strict'
+
+const utils = require('./utils')
+const config = require('../config')
+
+const isProduction = config.env['__PROD__']
 
 module.exports = {
   loaders: utils.cssLoaders({

@@ -1,6 +1,8 @@
+'use strict'
+
 // see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
 // import { argv } from 'yargs'
 
 function resolve(dir) {
@@ -36,7 +38,7 @@ const envConst = {
  * 运行模式 mode: client,server
  * 运行时类型 target: web,node,weex,hybrid
  */
-var cookie
+let cookie
 module.exports = {
   template: 'src/index.tpl',
   logo: resolve('/static/img/logo.png'),

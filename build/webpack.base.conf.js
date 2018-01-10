@@ -1,14 +1,18 @@
-var path = require('path')
-var chalk = require('chalk')
-var ProgressBarPlugin = require('progress-bar-webpack-plugin')
-var WebpackNotifierPlugin = require('webpack-build-notifier')
-var utils = require('./utils')
-var config = require('../config')
-var vueLoaderConfig = require('./vue-loader.conf')
+'use strict'
+
+const path = require('path')
+const chalk = require('chalk')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const WebpackNotifierPlugin = require('webpack-build-notifier')
+const utils = require('./utils')
+const config = require('../config')
+const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
+
+const isProduction = config.env['__PROD__']
 
 module.exports = {
   // context: path.resolve(__dirname, "../"),
@@ -18,7 +22,7 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: config.env['__PROD__']
+    publicPath: isProduction
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
@@ -58,7 +62,6 @@ module.exports = {
         include: [
           resolve('src'),
           resolve('test'),
-          resolve('packages'),
         ],
       },
       {

@@ -1,25 +1,27 @@
-var fs = require('fs')
-var path = require('path')
-var utils = require('./utils')
-var webpack = require('webpack')
-var config = require('../config')
-var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.conf')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-// var UglifyEsPlugin = require('uglify-es-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-var loadMinified = require('./load-minified')
+'use strict'
 
-var isTesting = config.env['__TEST__']
+const fs = require('fs')
+const path = require('path')
+const utils = require('./utils')
+const webpack = require('webpack')
+const config = require('../config')
+const merge = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.base.conf')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const loadMinified = require('./load-minified')
 
-var env = isTesting
+const isTesting = config.env['__TEST__']
+
+const env = isTesting
   ? require('../config/test.env')
   : config.build.env
 
-var webpackConfig = merge(baseWebpackConfig, {
+const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
@@ -34,11 +36,15 @@ var webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     // UglifyJsPlugin 处理 node_modules 里es6内容会报错
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
+    // 注入变量 base 中统一处理 webpack.DefinePlugin
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: false
+        }
       },
-      sourceMap: true
+      sourceMap: config.build.productionSourceMap,
+      parallel: true
     }),
     // new UglifyEsPlugin(),
     // 使用 babel-minify 替代 UglifyJs 处理不支持 ES6的问题
@@ -123,7 +129,7 @@ var webpackConfig = merge(baseWebpackConfig, {
 })
 
 if (config.build.productionGzip) {
-  var CompressionWebpackPlugin = require('compression-webpack-plugin')
+  const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
@@ -141,7 +147,7 @@ if (config.build.productionGzip) {
 }
 
 if (config.build.bundleAnalyzerReport) {
-  var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
