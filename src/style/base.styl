@@ -2,19 +2,95 @@
 @import './var';
 @import './animate';
 
+// noremalize.css 之上的一些重置样式
+
+// http://stackoverflow.com/a/13611748/3040605
+// 设置数字的字体
+@font-face {
+  font-family: "Helvetica Neue For Number";
+  src: local("Helvetica Neue");
+  unicode-range: U+30-39;
+}
+
+// Reset the box-sizing
+// html {
+* {
+  box-sizing: border-box;
+
+  // remove tap highlight color for mobile safari
+  -webkit-tap-highlight-color: transparent;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+// HTML & Body reset
+#app,
+#root,
+html,
+body, {
+  width: 100%;
+  height: 100%;
+}
+
 .clearfix {
   clearfix();
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: transparent;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  // border-radius: 4px;
+  background-color: transparent;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: rgba(193, 193, 193, 0.5);
 }
 
 body {
   margin: 0;
   color: #333;
   font-size: 16px;
-  overflow-x: auto;
+  width: 100%;
+  overflow-x: hidden;
   background-color: #f8f8f8;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "PingFang SC", "Helvetica Neue", 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: -apple-system-font, "PingFang SC", "Helvetica Neue", 'Avenir', Helvetica, Arial, sans-serif;
+}
+
+body.kit-app-body {
+  overflow: hidden;
+  min-width: initial;
+}
+
+.page-tpl {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 p {
@@ -44,8 +120,5 @@ img {
 
 a {
   text-decoration: none;
-}
-
-body {
-  background-color: #ececec;
+  color: inherit;
 }

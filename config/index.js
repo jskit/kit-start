@@ -17,6 +17,9 @@ const injectConst = {}
 for (const key in constMaps) {
   injectConst[key] = constMaps[key].indexOf(env) > -1
 }
+
+// 这里还有些好点的东西，使用下
+// https://github.com/kenberkeley/vue2-scaffold
 const envConst = {
   // http://vuejs.github.io/vue-loader/en/workflow/production.html
   'process.env': {
@@ -89,20 +92,28 @@ module.exports = {
           '^/proxy': '',
         },
         logLevel: 'debug',
-        onProxyReq: function relayRequestHeaders(proxyReq, req) {
-          // console.log(proxyReq.headers)
-          if (cookie) {
-            proxyReq.setHeader('cookie', cookie)
-          }
-          // proxyReq.setHeader('Access-Control-Allow-Credentials', 'true')
+        proxyReqOptDecorator: function(proxyReqOpts, srcReq) {
+          // you can update headers
+          // proxyReqOpts.headers['Content-Type'] = 'text/html';
+          // you can change the method
+          // proxyReqOpts.method = 'GET';
+          // proxyReqOpts.headers['Access-Control-Allow-Origin'] = 'true';
+          return proxyReqOpts;
         },
-        onProxyRes: function relayResponseHeaders(proxyRes, req, res) {
-          // console.log(proxyRes.headers)
-          var proxyCookie = proxyRes.headers['set-cookie']
-          if (proxyCookie) {
-            cookie = proxyCookie
-          }
-        },
+        // onProxyReq: function relayRequestHeaders(proxyReq, req) {
+        //   // console.log(proxyReq.headers)
+        //   if (cookie) {
+        //     proxyReq.setHeader('cookie', cookie)
+        //   }
+        //   // proxyReq.setHeader('Access-Control-Allow-Credentials', 'true')
+        // },
+        // onProxyRes: function relayResponseHeaders(proxyRes, req, res) {
+        //   // console.log(proxyRes.headers)
+        //   var proxyCookie = proxyRes.headers['set-cookie']
+        //   if (proxyCookie) {
+        //     cookie = proxyCookie
+        //   }
+        // },
       },
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

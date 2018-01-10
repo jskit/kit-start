@@ -1,3 +1,3 @@
 <template>
-  <div>zt</div>
+  <div>zt index</div>
 </template>

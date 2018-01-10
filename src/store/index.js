@@ -10,7 +10,7 @@ Vue.use(Vuex)
 const reqModules = require.context('../views', true, /^\.(\/([\s\S])+)?\/store\.js$/)
 const modules = reqModules.keys().reduce((module, key) => {
   // export default 语法导出不友好，特殊处理
-  const name = key //.replace('.', '').replace('/', '')
+  const name = key // .replace('.', '').replace('/', '')
   module[name] = reqModules(key).default
   return module
 }, {})
@@ -21,6 +21,7 @@ const debug = !__PROD__
 
 export default new Vuex.Store({
   strict: debug,
+  types,
   state,
   actions,
   getters,

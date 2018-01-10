@@ -11,8 +11,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-
 var loadMinified = require('./load-minified')
+
 var isTesting = config.env['__TEST__']
 
 var env = isTesting

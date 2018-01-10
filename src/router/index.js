@@ -4,39 +4,39 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+let routes = []
 // 路由去中心化
 // https://webpack.js.org/guides/dependency-management/#require-context
 // 目前export default .js导出引用不友好，部分场景需特殊处理
-// const reqModules = require.context('../views', true, /\.js$/)
-// const routes = reqModules.keys().map(key => {
-//   if(key === './index.js') {
-//     return reqModules(key).default
-//   }
-// }, {})
-
+// 子路由推荐使用数组格式(支持多模板)
 const reqModules = require.context('../views', true, /^\.(\/([\s\S])+)?\/route\.js$/)
-const routes = reqModules.keys().map(key => {
-  return reqModules(key).default
-}, {})
-
-// 处理特殊路由
-routes.push({
-  path: '*',
-  redirect: '/',
-  // redirect: {
-  //   name: 'index',
-  // },
+// console.log(reqModules.keys())
+reqModules.keys().map((key) => {
+  const route = reqModules(key).default || reqModules(key)
+  routes = routes.concat(route)
+  return route
 })
+// console.log(routes)
 
 const router = new Router({
   mode: 'hash',
   base: '',
   scrollBehavior: () => ({ y: 0 }),
-  routes,
+  routes: [
+    ...routes,
+    // 处理特殊路由
+    {
+      path: '*',
+      redirect: '/',
+      // redirect: {
+      //   name: 'index',
+      // },
+    },
+  ],
 })
 
-// const loginRouteName = 'login'
-const loginPath = '/login'
+const loginRouteName = 'login'
+// const loginPath = '/login'
 router.beforeEach((to, from, next) => {
   const {
     meta = {},
@@ -47,15 +47,19 @@ router.beforeEach((to, from, next) => {
     desc = '',
   } = meta
 
+  // 解决拦截 router-link 跳转问题
+  if (meta.status === -1) {
+    return next(false)
+  }
+
   // const { logged = false } = store.state
   const logged = false
 
-  if (needAuth && loggedIn && to.path !== loginRouteName) {
+  if (needAuth && logged && to.path !== loginRouteName) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
     return next({
-      // name: loginRouteName,
-      path: loginPath,
+      name: loginRouteName,
       query: { redirect: to.fullPath },
     })
   }

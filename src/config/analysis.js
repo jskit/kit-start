@@ -12,6 +12,6 @@ var _hmt = _hmt || []
 })()
 
 export default {
-  'googleAnalyticsId': 'UA-XXXXX-X',
-  'baiduAnalyticsId': 'UA-XXXXX-X',
+  googleAnalyticsId: 'UA-XXXXX-X',
+  baiduAnalyticsId: 'UA-XXXXX-X',
 }

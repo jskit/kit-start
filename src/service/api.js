@@ -1,13 +1,15 @@
 import { stringify } from 'qs'
 import _request from '../utils/request'
 import env from '../config/env'
+// import { version } from '../package.json'
 
 const proxyUrl = __DEV__ ? '/proxy' : ''
-const apiBaseUrl = `${env.apiBaseUrl}`
-const apiUrl = __DEV__ ? proxyUrl : apiBaseUrl + proxyUrl
+const apiBaseUrl = __DEV__ ? proxyUrl : `${env.apiBaseUrl}${proxyUrl}`
+const regHttp = /^https?/i
 
-function request(url, params) {
-  return _request(`${apiUrl}${url}`, params)
+function request(url, options) {
+  const originUrl = regHttp.test(url) ? url : `${apiBaseUrl}${url}`
+  return _request(originUrl, options)
 }
 
 
@@ -19,86 +21,98 @@ function request(url, params) {
  * - 便捷易用大于规则，程序是给人看的
  */
 
-export function getPointIndex(params) {
-  return request(`/point/index?${stringify(params)}`)
+const modelApis = {
+  getAlipay: '/campaign/lotteryWithLogonInfo.json',
+  getPointIndex: '/point/index',
+  getPointList: '/point/skulist',
+  getPointDetail: '/point/iteminfo',
+  getPointDetaiMore: '/product/productdetail',
+  getRList: '/point/recommenditems',
+  // 专题
+  getTopicInfo: '/point/topicinfo',
+  getTopicList: '/point/topicbuskulist',
+  // 个人中心
+  getProfile: '/user/usercenter',
+  // 订单相关
+  orderInit: 'POST /tradecenter/pointorderpreview',
+  orderSubmit: 'POST /tradecenter/pointordersubmit',
+  orderCancel: 'POST /tradecenter/ordercancel',
+  orderList: '/tradecenter/orderlist',
+  orderDetail: '/tradecenter/orderinfo',
+  orderSuccess: '/tradecenter/ordersuccess',
+  // 登录注销
+  login: 'POST /user/login',
+  logout: 'POST /user/logout',
+  // 地址管理
+  addressList: '/user/addresslist',
+  addAddress: 'POST /user/addaddress',
+  updateAddress: 'POST /user/updateaddress',
+  setDefaultAddress: 'POST /user/setdefaultaddress',
+  deleteAddress: 'POST /user/deleteaddress',
+  provinceList: '/nation/provincelist',
+  cityList: '/nation/citylist',
+  districtList: '/nation/districtlist',
+  // 查看物流
+  getDelivery: '/order/deliverymessage',
 }
 
-export function queryActivities() {
-  return request('/activities')
+const commonParams = {
+  uuid: '', // 用户唯一标志
+  udid: '', // 设备唯一标志
+  device: '', // 设备
+  net: '', // 网络
+  uid: '',
+  token: '',
+  timestamp: '', // 时间
+  channel: '', // 渠道
+  spm: '',
+  // v: version, // 系统版本
+  terminal: 'wap', // 终端
+  swidth: '', // 屏幕宽度
+  sheight: '', // 屏幕高度
+  location: '', // 地理位置
 }
 
-export function queryRule(params) {
-  return request(`/rule?${stringify(params)}`)
+// console.log(Object.keys(modelApis))
+
+const models = Object.keys(modelApis).reduce((api, key) => {
+  const val = modelApis[key]
+  const [url, methodType = 'GET'] = val.split(/\s+/).reverse()
+  const method = methodType.toUpperCase()
+  // let originUrl = regHttp.test(url) ? url : `${env.apiBaseUrl}${url}`;
+  switch (method) {
+    case 'POST':
+      // originUrl = `${originUrl}`;
+      api[key] = function postRequest(params) {
+        return request(url, {
+          method,
+          data: Object.assign({}, getCommonParams(), params),
+        })
+      }
+      break
+    case 'GET':
+    default:
+      api[key] = function getRequest(params) {
+        params = Object.assign({}, getCommonParams(), params)
+        return request(`${url}?${stringify(params)}`)
+      }
+      break
+  }
+  return api
+}, {})
+
+export function setCommonParams(params) {
+  return Object.assign(commonParams, params)
 }
 
-export function removeRule(params) {
-  return request('/rule', {
-    method: 'POST',
-    body: {
-      ...params,
-      method: 'delete',
-    },
-  })
+export function getCommonParams() {
+  return { }
+  // return { ...commonParams }
 }
 
-export function addRule(params) {
-  return request('/rule', {
-    method: 'POST',
-    body: {
-      ...params,
-      method: 'post',
-    },
-  })
-}
+models.getCommonParams = getCommonParams
+models.setCommonParams = setCommonParams
 
-export function fakeSubmitForm(params) {
-  return request('/forms', {
-    method: 'POST',
-    body: params,
-  })
-}
+// console.log(models)
 
-export function fakeChartData() {
-  return request('/fake_chart_data')
-}
-
-export function queryTags() {
-  return request('/tags')
-}
-
-export function queryBasicProfile() {
-  return request('/profile/basic')
-}
-
-export function queryAdvancedProfile() {
-  return request('/profile/advanced')
-}
-
-export function fakeQueryList(params) {
-  return request(`/fake_list?${stringify(params)}`)
-}
-
-export function fakeAccountLogin(params) {
-  return request('/login/account', {
-    method: 'POST',
-    body: params,
-  })
-}
-
-export function fakeMobileLogin(params) {
-  return request('/login/mobile', {
-    method: 'POST',
-    body: params,
-  })
-}
-
-export function fakeRegister(params) {
-  return request('/register', {
-    method: 'POST',
-    body: params,
-  })
-}
-
-export function queryNotices() {
-  return request('/notices')
-}
+export default models
