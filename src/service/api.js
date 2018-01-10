@@ -1,18 +1,3 @@
-import { stringify } from 'qs'
-import _request from '../utils/request'
-import env from '../config/env'
-// import { version } from '../package.json'
-
-const proxyUrl = __DEV__ ? '/proxy' : ''
-const apiBaseUrl = __DEV__ ? proxyUrl : `${env.apiBaseUrl}${proxyUrl}`
-const regHttp = /^https?/i
-
-function request(url, options) {
-  const originUrl = regHttp.test(url) ? url : `${apiBaseUrl}${url}`
-  return _request(originUrl, options)
-}
-
-
 /**
  * API 命名规则
  * - 使用 camelCase 命名格式（小驼峰命名）
@@ -21,39 +6,12 @@ function request(url, options) {
  * - 便捷易用大于规则，程序是给人看的
  */
 
+// api 列表
 const modelApis = {
-  getAlipay: '/campaign/lotteryWithLogonInfo.json',
-  getPointIndex: '/point/index',
-  getPointList: '/point/skulist',
-  getPointDetail: '/point/iteminfo',
-  getPointDetaiMore: '/product/productdetail',
-  getRList: '/point/recommenditems',
-  // 专题
-  getTopicInfo: '/point/topicinfo',
-  getTopicList: '/point/topicbuskulist',
-  // 个人中心
-  getProfile: '/user/usercenter',
-  // 订单相关
-  orderInit: 'POST /tradecenter/pointorderpreview',
-  orderSubmit: 'POST /tradecenter/pointordersubmit',
-  orderCancel: 'POST /tradecenter/ordercancel',
-  orderList: '/tradecenter/orderlist',
-  orderDetail: '/tradecenter/orderinfo',
-  orderSuccess: '/tradecenter/ordersuccess',
   // 登录注销
   login: 'POST /user/login',
   logout: 'POST /user/logout',
-  // 地址管理
-  addressList: '/user/addresslist',
-  addAddress: 'POST /user/addaddress',
-  updateAddress: 'POST /user/updateaddress',
-  setDefaultAddress: 'POST /user/setdefaultaddress',
-  deleteAddress: 'POST /user/deleteaddress',
-  provinceList: '/nation/provincelist',
-  cityList: '/nation/citylist',
-  districtList: '/nation/districtlist',
-  // 查看物流
-  getDelivery: '/order/deliverymessage',
+  getPointIndex: '/point/index',
 }
 
 const commonParams = {
@@ -73,46 +31,7 @@ const commonParams = {
   location: '', // 地理位置
 }
 
-// console.log(Object.keys(modelApis))
-
-const models = Object.keys(modelApis).reduce((api, key) => {
-  const val = modelApis[key]
-  const [url, methodType = 'GET'] = val.split(/\s+/).reverse()
-  const method = methodType.toUpperCase()
-  // let originUrl = regHttp.test(url) ? url : `${env.apiBaseUrl}${url}`;
-  switch (method) {
-    case 'POST':
-      // originUrl = `${originUrl}`;
-      api[key] = function postRequest(params) {
-        return request(url, {
-          method,
-          data: Object.assign({}, getCommonParams(), params),
-        })
-      }
-      break
-    case 'GET':
-    default:
-      api[key] = function getRequest(params) {
-        params = Object.assign({}, getCommonParams(), params)
-        return request(`${url}?${stringify(params)}`)
-      }
-      break
-  }
-  return api
-}, {})
-
-export function setCommonParams(params) {
-  return Object.assign(commonParams, params)
+export default {
+  commonParams,
+  modelApis,
 }
-
-export function getCommonParams() {
-  return { }
-  // return { ...commonParams }
-}
-
-models.getCommonParams = getCommonParams
-models.setCommonParams = setCommonParams
-
-// console.log(models)
-
-export default models
