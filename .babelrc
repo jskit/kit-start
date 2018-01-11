@@ -4,12 +4,13 @@
     // 为了避免 import x from 'foo' 被 babel 转换为 require，我们需要在 .babelrc 的 presets 配置中标明 "modules": false：
     ["env", {
       "modules": false,
+      "node": "current",
       "targets": {
-        "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+        "safari": 9,
+        "chrome": "56",
+        "browsers": ["> 1%", "last 5 versions", "not ie <= 8"]
       }
-    }],
-    "es2015",
-    "stage-2"
+    }]
   ],
   "comments": false,
   "plugins": [

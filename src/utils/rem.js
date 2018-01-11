@@ -1,4 +1,4 @@
-/* eslint func-names: 0 */
+/* eslint func-names: 0 wrap-iife: 0 */
 (function (doc, win) {
   const docEl = doc.documentElement
   const resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize'

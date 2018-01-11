@@ -8,7 +8,9 @@ module.exports = {
   },
   "extends": [
     "airbnb-base",
-    "vue"
+    // "vue"
+    // "eslint-config-vue": "^2.0.2",
+    // "plugin:vue-libs/recommended",
   ],
   // required to lint *.vue files
   "plugins": [
