@@ -35,8 +35,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
-    // UglifyJsPlugin 处理 node_modules 里es6内容会报错
     // 注入变量 base 中统一处理 webpack.DefinePlugin
+    // UglifyJsPlugin 处理 node_modules 里es6内容会报错
     new UglifyJsPlugin({
       uglifyOptions: {
         compress: {

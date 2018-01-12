@@ -33,10 +33,27 @@ module.exports = {
     "__TEST__": false,
     "__WEEX__": true
   },
+  // check if imports actually resolve
+  'settings': {
+    'import/resolver': {
+      'webpack': {
+        'config': 'build/webpack.base.conf.js'
+      }
+    }
+  },
   // 根据需要修改 rules，详见 http://eslint.org/docs/rules/
   // 推荐的编码风格 https://github.com/airbnb/javascript
   // add your custom rules here
   "rules": {
+    // don't require .vue extension when importing
+    'import/extensions': ['error', 'always', {
+      'js': 'never',
+      'vue': 'never'
+    }],
+    // allow optionalDependencies
+    'import/no-extraneous-dependencies': ['error', {
+      'optionalDependencies': ['test/unit/index.js']
+    }],
     "arrow-body-style": 0,
     "class-methods-use-this": 0,
     "comma-dangle": ["error", "always-multiline"],
@@ -74,5 +91,7 @@ module.exports = {
       "named": "ignore",
       "asyncArrow": "ignore"
     }],
+    // allow debugger during development
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
   }
 }
