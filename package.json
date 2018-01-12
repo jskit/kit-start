@@ -1,6 +1,6 @@
 {
   "name": "kit-start",
-  "version": "1.6.9",
+  "version": "1.6.10",
   "description": "custom element with vue2.x",
   "main": "index.js",
   "config": {
