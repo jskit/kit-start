@@ -68,7 +68,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: isTesting
         ? 'index.html'
         : config.build.index,
-      template: config.template,
+      template: config.template, // 'src/index.tpl'
       inject: true,
       minify: {
         removeComments: true,
@@ -119,7 +119,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     ]),
     // service worker caching
     new SWPrecacheWebpackPlugin({
-      cacheId: 'my-vue-app',
+      cacheId: 'kit-start',
       filename: 'service-worker.js',
       staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,

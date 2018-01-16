@@ -1,10 +1,10 @@
 // http://eslint.org/docs/user-guide/configuring
 
 module.exports = {
-  root: true,
-  parser: 'babel-eslint',
-  parserOptions: {
-    sourceType: 'module'
+  "root": true,
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
   },
   "extends": [
     "airbnb-base",
@@ -16,11 +16,12 @@ module.exports = {
   "plugins": [
     "vue-libs",
     "import",
-    "html"
+    "html",
   ],
   "env": {
     "browser": true,
-    "mocha": true
+    "mocha": true,
+    "node": true,
   },
   "globals": {
     "window": false,
