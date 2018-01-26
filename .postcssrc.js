@@ -6,8 +6,8 @@ module.exports = (ctx) => ({
   // map: ctx.env === 'development' ? 'inline' : false,
   "plugins": {
     // to edit target browsers: use "browserlist" field in package.json
-    "autoprefixer": {},
-    "postcss-cssnext": {},
+    // "autoprefixer": {},
+    "postcss-cssnext": {}, // 已包含 autoprefixer
     "postcss-position": {},
     "postcss-size": {},
     "postcss-pxtorem": {

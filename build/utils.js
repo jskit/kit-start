@@ -83,11 +83,7 @@ exports.cHappypack = function (id, loaders) {
     id: id,
     debug: false,
     verbose: false,
-    cache: true,
     threads: 4,
-    cacheContext: {
-      env: process.env.NODE_ENV
-    },
     loaders: loaders
   })
 }

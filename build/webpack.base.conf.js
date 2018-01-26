@@ -9,6 +9,7 @@ const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plug
 const {
   resolve,
   assetsPath,
+  cHappypack,
 } = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
@@ -37,36 +38,80 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve(config.path.src),
-      'assets': resolve(config.path.src, '/assets'),
+      '@lib': resolve(config.path.assets, 'js/lib.js'),
+      'assets': resolve(config.path.assets),
     }
   },
+  plugins: [
+    //进度条插件
+    new ProgressBarPlugin({
+      summary: false,
+      format: chalk.green.bold('[:bar] :percent ') + chalk.yellow('(:elapsed seconds) :msg'),
+      customSummary (buildTime) {
+        process.stdout.write(chalk.green.bold(" ---------buildTime:" + buildTime + "---------"));
+      },
+    }),
+
+    // https://github.com/RoccoC/webpack-build-notifier
+    new WebpackNotifierPlugin({
+      title: 'app',
+      logo: config.logo, // || resolve(config.path.assets, 'img/logo.png'),
+      successSound: 'Submarine',
+      failureSound: 'Glass',
+      suppressSuccess: true
+    }),
+    // 注入全局变量，用于条件判断
+    new webpack.DefinePlugin({
+      ...config.envConst,
+    }),
+    cHappypack('ESLint', [{
+      loader: 'eslint-loader',
+      query: {
+        formatter: require('eslint-friendly-formatter')
+      }
+    }]),
+    cHappypack('Js', ['babel-loader']),
+    // babili-webpack-plugin
+    // 全局加载引用，不必每次 import
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery'
+    // })
+  ],
   module: {
     rules: [
       {
         test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
+        // loader: 'eslint-loader',
+        use: ['happypack/loader?id=ESLint'],
         enforce: 'pre',
         exclude: /(libs|node_modules)/,
         include: [
           resolve(config.path.src),
           resolve(config.path.test),
         ],
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig
+        // options: {
+        //   formatter: require('eslint-friendly-formatter')
+        // }
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        // loader: 'babel-loader',
+        use: ['happypack/loader?id=Js'],
         exclude: /node_modules/,
         include: [
           resolve(config.path.src),
           resolve(config.path.test),
+        ],
+      },
+      {
+        test: /\.vue$/,
+        use: {
+          loader: 'vue-loader',
+          query: vueLoaderConfig,
+        },
+        include: [
+          resolve(config.path.src),
         ],
       },
       {
@@ -105,11 +150,28 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: assetsPath('img/[name].[hash:7].[ext]')
-        }
+        // include: [
+        //   resolve(config.path.assets),
+        // ],
+        use: [
+          {
+            loader: 'url-loader',
+            query: {
+              limit: 10000,
+              name: assetsPath('img/[name].[hash:7].[ext]')
+            },
+          },
+          // {
+          //   loader: 'image-webpack-loader',
+          //   query: {
+          //     progressive: true,
+          //     pngquant: {
+          //       quality: '65-90',
+          //       speed: 4
+          //     }
+          //   },
+          // },
+        ],
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
@@ -121,41 +183,30 @@ module.exports = {
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: assetsPath('fonts/[name].[hash:7].[ext]')
+        use: {
+          loader: 'url-loader',
+          query: {
+            limit: 10000,
+            // publicPath: `../../`, // 修复引用文字字体路劲错误
+            name: assetsPath('fonts/[name].[hash:7].[ext]')
+          }
         }
-      }
+      },
     ]
   },
-  plugins: [
-    //进度条插件
-    new ProgressBarPlugin({
-      summary: false,
-      format: chalk.green.bold('[:bar] :percent ') + chalk.yellow('(:elapsed seconds) :msg'),
-      customSummary (buildTime) {
-        process.stdout.write(chalk.green.bold(" ---------buildTime:" + buildTime + "---------"));
-      },
-    }),
-
-    // https://github.com/RoccoC/webpack-build-notifier
-    new WebpackNotifierPlugin({
-      title: 'app',
-      logo: config.logo || resolve(config.path.src, '/assets/img/logo.png'),
-      successSound: 'Submarine',
-      failureSound: 'Glass',
-      suppressSuccess: true
-    }),
-    // 注入全局变量，用于条件判断
-    new webpack.DefinePlugin({
-      ...config.envConst,
-    }),
-    // babili-webpack-plugin
-    // 全局加载引用，不必每次 import
-    // new webpack.ProvidePlugin({
-    //   $: 'jquery',
-    //   jQuery: 'jquery'
-    // })
-  ],
 }
+
+// 不是测试环境，则添加Dll依赖
+// if (process.env.BABEL_ENV !== 'test') {
+//   module.exports.plugins.push(
+//     new webpack.DllReferencePlugin({
+//       context: '/',
+//       manifest: require(resolve(config.path.distdll, `vendors.json`))
+//     }),
+//     new HtmlWebpackIncludeAssetsPlugin({
+//       assets: [`${config.path.distdll.replace(`${config.path.dist}/`, '')}/vendors.js`],
+//       append: false,
+//       hash: true
+//     })
+//   )
+// }
