@@ -1,7 +1,9 @@
 'use strict'
 
 const path = require('path')
+const glob = require('glob')
 const config = require('../config')
+const HappyPack = require('happypack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const isProduction = config.env['__PROD__']
@@ -61,6 +63,7 @@ exports.cssLoaders = function (options) {
 }
 
 // Generate loaders for standalone style files (outside of .vue)
+// 生成css-loader的装载机
 exports.styleLoaders = function (options) {
   const output = []
   const loaders = exports.cssLoaders(options)
@@ -72,4 +75,35 @@ exports.styleLoaders = function (options) {
     })
   }
   return output
+}
+
+// Happypack生成器
+exports.cHappypack = function (id, loaders) {
+  return new HappyPack({
+    id: id,
+    debug: false,
+    verbose: false,
+    cache: true,
+    threads: 4,
+    cacheContext: {
+      env: process.env.NODE_ENV
+    },
+    loaders: loaders
+  })
+}
+
+// 绝对路径生成器
+exports.resolve = function resolve(localPath, dir = '') {
+  return path.join(process.cwd(), localPath, dir)
+}
+
+// 分离多页
+exports.getEntries = (globPath) => {
+  const entries = {}
+  glob.sync(globPath).forEach((entry) => {
+    // 过滤router.js
+    const basename = path.basename(entry, path.extname(entry), 'router.js')
+    entries[basename] = entry
+  })
+  return entries
 }

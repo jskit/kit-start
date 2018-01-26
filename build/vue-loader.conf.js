@@ -10,6 +10,7 @@ module.exports = {
     sourceMap: isProduction
       ? config.build.productionSourceMap
       : config.dev.cssSourceMap,
+    // 提取样式
     extract: isProduction
   }),
   transformToRequire: {

@@ -1,6 +1,7 @@
 # kit-start
 
-> A Vue.js project
+> A Vue.js project start
+> - 适用于单页与多页应用.
 
 基于 `kit-pwa` 定制项目最佳实践
 
@@ -12,26 +13,29 @@ npm install
 # 推荐使用 yarn 安装
 yarn
 
-# serve with hot reload at localhost:8080
-npm run dev
+# open server
+$ npm start
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
+# Compile and launch
+$ npm run deploy
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Script Explain
+
+|`npm run <script>`|解释|
+|------------------|-----------|
+|`start`|第一次运行启用。生成DLL文件，服务启动在3000端口。|
+|`dev`|与`npm start`类似相同,只有当DLL文件存在时可用,加快开发速度。|
+|`build`|同`dev`在DLL文件存在时，加快打包速度。|
+|`deploy`|发布：清空目录>生成生产环境的Dll>eslint检测>单元测试>打包|
+|`dll:dev`|生成开发环境的DLL文件。|
+|`dll:build`|生成生产环境的DLL文件。|
+|`test`|开启Karma测试并生成覆盖率报告。|
+|`report`|打包资源分析|
+|`clean`|清除打包的文件|
+|`cnpm`|安装淘宝镜像|
 
 ## 结构设计 Structure
 

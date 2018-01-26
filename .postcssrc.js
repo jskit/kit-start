@@ -1,13 +1,17 @@
 // https://github.com/michael-ciniawsky/postcss-load-config
 var colourPalette = require('colour-palette')
 
-module.exports = {
+module.exports = (ctx) => ({
+  // parser: false,
+  // map: ctx.env === 'development' ? 'inline' : false,
   "plugins": {
     // to edit target browsers: use "browserlist" field in package.json
     "autoprefixer": {},
+    "postcss-cssnext": {},
     "postcss-position": {},
     "postcss-size": {},
     "postcss-pxtorem": {
+      // px单位大写将忽略转化rem
       rootValue: 100,
       unitPrecision: 5,
       propWhiteList: [],
@@ -35,4 +39,4 @@ module.exports = {
       }
     },
   }
-}
+})

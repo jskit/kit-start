@@ -2,22 +2,28 @@
 
 const path = require('path')
 const chalk = require('chalk')
+const webpack = require('webpack')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const WebpackNotifierPlugin = require('webpack-build-notifier')
-const utils = require('./utils')
+const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
+const {
+  resolve,
+  assetsPath,
+} = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
-function resolve(dir) {
-  return path.join(__dirname, '..', dir)
-}
+// function resolve(dir) {
+//   return path.join(__dirname, '..', dir)
+// }
 
 const isProduction = config.env['__PROD__']
 
 module.exports = {
   // context: path.resolve(__dirname, "../"),
   entry: {
-    app: './src/main.js',
+    // 如需多页面，需要处理 entry
+    app: resolve(config.path.src, '/main.js'), // './src/main.js',
   },
   output: {
     path: config.build.assetsRoot,
@@ -30,9 +36,8 @@ module.exports = {
     extensions: ['.js', '.vue', '.json', '.css', '.md'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@root': resolve('./'),
-      '@': resolve('src'),
-      'assets': path.resolve(__dirname, '../src/assets'),
+      '@': resolve(config.path.src),
+      'assets': resolve(config.path.src, '/assets'),
     }
   },
   module: {
@@ -43,8 +48,8 @@ module.exports = {
         enforce: 'pre',
         exclude: /(libs|node_modules)/,
         include: [
-          resolve('src'),
-          resolve('test'),
+          resolve(config.path.src),
+          resolve(config.path.test),
         ],
         options: {
           formatter: require('eslint-friendly-formatter')
@@ -60,8 +65,8 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         include: [
-          resolve('src'),
-          resolve('test'),
+          resolve(config.path.src),
+          resolve(config.path.test),
         ],
       },
       {
@@ -103,7 +108,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          name: assetsPath('img/[name].[hash:7].[ext]')
         }
       },
       {
@@ -111,7 +116,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('media/[name].[hash:7].[ext]')
+          name: assetsPath('media/[name].[hash:7].[ext]')
         }
       },
       {
@@ -119,7 +124,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          name: assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
     ]
@@ -137,11 +142,20 @@ module.exports = {
     // https://github.com/RoccoC/webpack-build-notifier
     new WebpackNotifierPlugin({
       title: 'app',
-      logo: config.logo || resolve('/static/img/logo.png'),
+      logo: config.logo || resolve(config.path.src, '/assets/img/logo.png'),
       successSound: 'Submarine',
       failureSound: 'Glass',
       suppressSuccess: true
     }),
-    ...config.plugins,
+    // 注入全局变量，用于条件判断
+    new webpack.DefinePlugin({
+      ...config.envConst,
+    }),
+    // babili-webpack-plugin
+    // 全局加载引用，不必每次 import
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery'
+    // })
   ],
 }

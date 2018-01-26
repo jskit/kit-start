@@ -64,9 +64,12 @@ typings/
 *.njsproj
 *.sln
 
+.DS_Store
+.happypack
+
 temp/
 dist/
 
-/test/unit/coverage
-test/e2e/reports/
+test/unit/coverage
+test/e2e/reports
 selenium-debug.log
