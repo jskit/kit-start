@@ -4,12 +4,13 @@ const utils = require('./utils')
 const config = require('../config')
 
 const isProduction = config.env['__PROD__']
+const sourceMapEnabled = isProduction
+  ? config.build.productionSourceMap
+  : config.dev.cssSourceMap
 
 module.exports = {
   loaders: utils.cssLoaders({
-    sourceMap: isProduction
-      ? config.build.productionSourceMap
-      : config.dev.cssSourceMap,
+    sourceMap: sourceMapEnabled,
     // 提取样式
     extract: isProduction
   }),

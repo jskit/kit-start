@@ -1,8 +1,9 @@
 'use strict'
 
+// Template version: 1.2.6
 // see http://vuejs-templates.github.io/webpack for documentation.
+
 const path = require('path')
-const webpack = require('webpack')
 // import { argv } from 'yargs'
 
 function resolve(dir) {
@@ -59,6 +60,8 @@ let cookie
 module.exports = {
   path: paths,
   template: `${paths.src}/index.tpl`,
+  // 不应该使用 static 下的内容，不做 md5处理，以后就面临 cdn 缓存的问题
+  favicon: resolve(`/static/img/logo.png`),
   logo: resolve(`/static/img/logo.png`),
   env: envConst,
   vendors: [ // 添加依赖
@@ -74,9 +77,14 @@ module.exports = {
     assetsRoot: path.resolve(process.cwd(), paths.dist),
     // 指向静态资源
     assetsSubDirectory: './static',
+
+    // you can set by youself according to actual condition
     assetsPublicPath: './',
-    // 是否生成用于生产构建的源映射
-    productionSourceMap: true,
+    // Source Maps 是否生成用于生产构建的源映射
+    productionSourceMap: false,
+    // https://webpack.js.org/configuration/devtool/#production
+    devtool: '#source-map',
+
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
@@ -84,6 +92,7 @@ module.exports = {
     // npm install --save-dev compression-webpack-plugin
     productionGzip: false,
     productionGzipExtensions: ['js', 'css'],
+
     // Run the build command with an extra argument to
     // View the bundle analyzer report after build finishes:
     // `npm run build --report` 查看捆绑分析器报表
@@ -92,10 +101,13 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 8080,
+    // Various Dev Server settings
+    host: 'localhost', // can be overwritten by process.env.HOST
+    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+
     // https://vuejs-templates.github.io/webpack/proxy.html
     // https://github.com/chimurai/http-proxy-middleware
     proxyTable: {
@@ -134,11 +146,20 @@ module.exports = {
         // },
       },
     },
+    // https://webpack.js.org/configuration/devtool/#development
+    // cheap-module-eval-source-map is faster for development
+    devtool: '#eval-source-map', // '#cheap-module-eval-source-map'
+
+    // If you have problems debugging vue-files in devtools,
+    // set this to false - it *may* help
+    // https://vue-loader.vuejs.org/en/options.html#cachebusting
+    cacheBusting: true,
+
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
-    cssSourceMap: false
+    cssSourceMap: false,
   },
 }

@@ -22,6 +22,7 @@ module.exports = {
     "browser": true,
     "mocha": true,
     "node": true,
+    "es6": true,
   },
   "globals": {
     "window": false,
@@ -80,9 +81,25 @@ module.exports = {
     "no-param-reassign": 0,
     "no-plusplus": 0,
     "no-restricted-syntax": 0,
+    "no-shadow": ["error", {
+      "allow": [
+        "res",
+        "err",
+        "cb",
+        "resolve",
+        "reject",
+        "done"
+      ]
+    }],
     "no-trailing-spaces": 0,
     "no-use-before-define": 0,
     "no-useless-escape": 0,
+    "no-unused-vars": ["error", {
+      "vars": "all",
+      "args": "none",
+      "caughtErrors": "none",
+      "ignoreRestSiblings": false,
+    }],
     "prefer-template": 0,
     "prefer-arrow-callback": 0,
     "require-yield": 1,

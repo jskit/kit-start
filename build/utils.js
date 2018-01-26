@@ -25,10 +25,18 @@ exports.cssLoaders = function (options) {
       sourceMap: options.sourceMap
     }
   }
+  
+  const postcssLoader = {
+    loader: 'postcss-loader',
+    options: {
+      sourceMap: options.sourceMap
+    }
+  }
 
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
     const loaders = [cssLoader]
+    
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
@@ -67,6 +75,7 @@ exports.cssLoaders = function (options) {
 exports.styleLoaders = function (options) {
   const output = []
   const loaders = exports.cssLoaders(options)
+
   for (const extension in loaders) {
     const loader = loaders[extension]
     output.push({
@@ -74,11 +83,12 @@ exports.styleLoaders = function (options) {
       use: loader
     })
   }
+
   return output
 }
 
 // Happypack生成器
-exports.cHappypack = function (id, loaders) {
+exports.cHappypack = (id, loaders) => {
   return new HappyPack({
     id: id,
     debug: false,
@@ -89,7 +99,7 @@ exports.cHappypack = function (id, loaders) {
 }
 
 // 绝对路径生成器
-exports.resolve = function resolve(localPath, dir = '') {
+exports.resolve = (localPath, dir = '') => {
   return path.join(process.cwd(), localPath, dir)
 }
 
@@ -103,3 +113,21 @@ exports.getEntries = (globPath) => {
   })
   return entries
 }
+
+// exports.createNotifierCallback = () => {
+//   const notifier = require('node-notifier')
+
+//   return (severity, errors) => {
+//     if (severity !== 'error') return
+
+//     const error = errors[0]
+//     const filename = error.file && error.file.split('!').pop()
+
+//     notifier.notify({
+//       title: packageConfig.name,
+//       message: severity + ': ' + error.name,
+//       subtitle: filename || '',
+//       icon: path.join(__dirname, 'logo.png')
+//     })
+//   }
+// }

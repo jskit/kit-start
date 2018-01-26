@@ -20,7 +20,8 @@ module.exports = merge(baseWebpackConfig, {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap }),
   },
   // cheap-module-eval-source-map is faster for development
-  devtool: '#cheap-module-eval-source-map',
+  devtool: config.dev.devtool,
+  
   plugins: [
     // 注入变量 base 中统一处理 webpack.DefinePlugin
     // new webpack.DefinePlugin({
@@ -28,15 +29,18 @@ module.exports = merge(baseWebpackConfig, {
     // }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: config.template,
       inject: true,
+      favicon: config.favicon,
+      title: 'jskit',
       serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname,
         './service-worker-dev.js'), 'utf-8')}</script>`
     }),
-    new FriendlyErrorsPlugin()
+    new FriendlyErrorsPlugin(),
   ]
 })
