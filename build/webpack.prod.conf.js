@@ -46,6 +46,13 @@ const webpackConfig = merge(baseWebpackConfig, {
       sourceMap: config.build.productionSourceMap,
       parallel: true
     }),
+    // 也可以使用这个
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   },
+    //   sourceMap: config.build.productionSourceMap,
+    // }),
     // new UglifyEsPlugin(),
     // 使用 babel-minify 替代 UglifyJs 处理不支持 ES6的问题
     // new require('babel-minify')(),
@@ -91,7 +98,7 @@ const webpackConfig = merge(baseWebpackConfig, {
           module.resource &&
           /\.js$/.test(module.resource) &&
           module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
+            utils.resolve('node_modules')
           ) === 0
         )
       }
@@ -99,13 +106,14 @@ const webpackConfig = merge(baseWebpackConfig, {
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
+      // 迁移到 base dll 相关配置
       name: 'manifest',
       chunks: ['vendor']
     }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../static'),
+        from: utils.resolve(config.path.static),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       },
@@ -121,9 +129,9 @@ const webpackConfig = merge(baseWebpackConfig, {
     new SWPrecacheWebpackPlugin({
       cacheId: 'kit-start',
       filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      staticFileGlobs: [`${config.path.dist}/**/*.{js,html,css}`],
       minify: true,
-      stripPrefix: 'dist/'
+      stripPrefix: `${dist}/`,
     })
   ]
 })
@@ -150,5 +158,32 @@ if (config.build.bundleAnalyzerReport) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
+
+// 生成视图
+// const pages = utils.getEntries(utils.resolve(config.path.views,'**/*.html'))
+
+// for (let page in pages) {
+//   const conf = {
+//     filename: page + '.html',
+//     template: pages[page],
+//     inject: true,
+//     excludeChunks: Object.keys(pages).filter(item => {
+//       return (item !== page)
+//     }),
+//     minify: {
+//       removeComments: true,
+//       collapseWhitespace: true,
+//       removeRedundantAttributes: true,
+//       useShortDoctype: true,
+//       removeEmptyAttributes: true,
+//       removeStyleLinkTypeAttributes: true,
+//       keepClosingSlash: true,
+//       minifyJS: true,
+//       minifyCSS: true,
+//       minifyURLs: true
+//     }
+//   }
+//   webpackConfig.plugins.push(new HtmlWebpackPlugin(conf))
+// }
 
 module.exports = webpackConfig
