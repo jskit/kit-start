@@ -67,7 +67,8 @@ module.exports = {
     cHappypack('ESLint', [{
       loader: 'eslint-loader',
       query: {
-        formatter: require('eslint-friendly-formatter')
+        formatter: require('eslint-friendly-formatter'),
+        emitWarning: !config.dev.showEslintErrorsInOverlay,
       }
     }]),
     cHappypack('Js', ['babel-loader']),
@@ -85,7 +86,7 @@ module.exports = {
         // loader: 'eslint-loader',
         use: ['happypack/loader?id=ESLint'],
         enforce: 'pre',
-        exclude: /(libs|node_modules)/,
+        // exclude: /(libs|node_modules)/,
         include: [
           resolve(config.path.src),
           resolve(config.path.test),
@@ -98,7 +99,7 @@ module.exports = {
         test: /\.js$/,
         // loader: 'babel-loader',
         use: ['happypack/loader?id=Js'],
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         include: [
           resolve(config.path.src),
           resolve(config.path.test),
@@ -135,13 +136,14 @@ module.exports = {
       {
         test: /\.svg$/i,
         loader: 'svg-sprite-loader',
+        include: [resolve('src/icons')],
         // include: svgDirs,
         // include: [
         //   resolve('src/assets/svg'),
         //   resolve('src/assets/svg'),
         // ],
         options: {
-          // symbolId: 'icon-[name]',
+          symbolId: 'icon-[name]',
           runtimeCompat: true,
           // 不要提取成一个外部独立文件使用，这样与按需加载理念冲突
           // extract: true,
@@ -149,7 +151,8 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|jpe?g|gif)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        exclude: [resolve('src/icons')],
         // include: [
         //   resolve(config.path.assets),
         // ],
@@ -193,6 +196,18 @@ module.exports = {
         }
       },
     ]
+  },
+  node: {
+    // prevent webpack from injecting useless setImmediate polyfill because Vue
+    // source contains it (although only uses it if it's native).
+    setImmediate: false,
+    // prevent webpack from injecting mocks to Node native modules
+    // that does not make sense for the client
+    dgram: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty'
   },
 }
 

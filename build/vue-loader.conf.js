@@ -14,8 +14,10 @@ module.exports = {
     // 提取样式
     extract: isProduction
   }),
+  cssSourceMap: sourceMapEnabled,
+  cacheBusting: config.dev.cacheBusting,
   transformToRequire: {
-    video: 'src',
+    video: 'src', // ['src', 'poster'],
     source: 'src',
     img: 'src',
     image: 'xlink:href'
