@@ -1,4 +1,4 @@
-import { getUrlParams } from './utils';
+import { getUrlParams } from './utils'
 
 const titles = [
   'Alipay',
@@ -9,7 +9,7 @@ const titles = [
   'React',
   'Vue',
   'Webpack',
-];
+]
 const avatars = [
   'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png', // Alipay
   'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png', // Angular
@@ -19,20 +19,20 @@ const avatars = [
   'https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png', // React
   'https://gw.alipayobjects.com/zos/rmsportal/ComBAopevLwENQdKWiIn.png', // Vue
   'https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png', // Webpack
-];
+]
 const covers = [
   'https://gw.alipayobjects.com/zos/rmsportal/HrxcVbrKnCJOZvtzSqjN.png',
   'https://gw.alipayobjects.com/zos/rmsportal/alaPpKWajEbIYEUvvVNf.png',
   'https://gw.alipayobjects.com/zos/rmsportal/RLwlKSYGSXGHuWSojyvp.png',
   'https://gw.alipayobjects.com/zos/rmsportal/gLaIAoVWTtLbBWZNYEMg.png',
-];
+]
 const desc = [
   '那是一种内在的东西， 他们到达不了，也无法触及的',
   '希望是一个好东西，也许是最好的，好东西是不会消亡的',
   '生命就像一盒巧克力，结果往往出人意料',
   '城镇中有那么多的酒馆，她却偏偏走进了我的酒馆',
   '那时候我只会想自己想要什么，从不想自己拥有什么',
-];
+]
 
 const user = [
   '付小小',
@@ -45,10 +45,10 @@ const user = [
   '乐哥',
   '谭小仪',
   '仲尼',
-];
+]
 
 export function fakeList(count) {
-  const list = [];
+  const list = []
   for (let i = 0; i < count; i += 1) {
     list.push({
       id: `fake-list-${i}`,
@@ -84,28 +84,28 @@ export function fakeList(count) {
           name: '董娜娜',
         },
       ],
-    });
+    })
   }
 
-  return list;
+  return list
 }
 
 export function getFakeList(req, res, u) {
-  let url = u;
+  let url = u
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
     url = req.url; // eslint-disable-line
   }
 
-  const params = getUrlParams(url);
+  const params = getUrlParams(url)
 
-  const count = (params.count * 1) || 20;
+  const count = (params.count * 1) || 20
 
-  const result = fakeList(count);
+  const result = fakeList(count)
 
   if (res && res.json) {
-    res.json(result);
+    res.json(result)
   } else {
-    return result;
+    return result
   }
 }
 
@@ -170,7 +170,7 @@ export const getNotice = [
     href: '',
     memberLink: '',
   },
-];
+]
 
 export const getActivities = [
   {
@@ -271,11 +271,11 @@ export const getActivities = [
     },
     template: '在 @{group} 新建项目 @{project}',
   },
-];
+]
 
 
 export default {
   getNotice,
   getActivities,
   getFakeList,
-};
+}

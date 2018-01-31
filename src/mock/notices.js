@@ -80,6 +80,6 @@ export default {
       extra: '进行中',
       status: 'processing',
       type: '待办',
-    }]);
+    }])
   },
-};
+}

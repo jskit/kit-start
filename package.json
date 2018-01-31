@@ -15,7 +15,7 @@
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
+    "lint": "eslint --ext .js,.vue src static"
   },
   "repository": {
     "type": "git",
@@ -102,6 +102,7 @@
     "kit-fetch": "0.0.2",
     "markdown-it-container": "^2.0.0",
     "mocha": "^4.0.1",
+    "moment": "^2.20.1",
     "nightwatch": "^0.9.19",
     "opn": "^5.2.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",

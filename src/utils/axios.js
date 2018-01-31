@@ -13,9 +13,10 @@ axios#patch(url[, data[, config]])
 
 */
 
+/* eslint-disable */
 import axios from 'axios'
 
-var instance = axios.create({
+const instance = axios.create({
   baseURL: `${env.apiBaseUrl}`,
   timeout: 1500,
   withCredentials: true,
@@ -57,5 +58,5 @@ ajax.interceptors.response.use((response) => {
 
 
 // 后期可以 移除请求拦截器
-var myInterceptor = axios.interceptors.request.use(function () {/*...*/})
+const myInterceptor = axios.interceptors.request.use(function () { /* ... */ })
 axios.interceptors.request.eject(myInterceptor)

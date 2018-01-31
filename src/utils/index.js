@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { cloneDeep } from 'lodash'
+// import { cloneDeep } from 'lodash'
 // import { kebabCase, camelCase, snakeCase } from 'lodash'
 
 export function fixedZero(val) {
@@ -51,7 +51,7 @@ export function getTimeDistance(type) {
   }
 }
 
-function getPlainNode(nodeList, parentPath = '') {
+export function getPlainNode(nodeList, parentPath = '') {
   const arr = []
   nodeList.forEach((node) => {
     const item = node

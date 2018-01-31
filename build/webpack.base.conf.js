@@ -68,6 +68,7 @@ module.exports = {
       loader: 'eslint-loader',
       query: {
         formatter: require('eslint-friendly-formatter'),
+        // 不符合Eslint规则时只警告(默认运行出错)
         emitWarning: !config.dev.showEslintErrorsInOverlay,
       }
     }]),

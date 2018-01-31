@@ -1,4 +1,4 @@
-import shop from '@/service/api'
+import api from '@/service'
 import * as types from '../types'
 
 // export const types = {
@@ -17,7 +17,7 @@ const getters = {
 // actions
 const actions = {
   getAllProducts ({ commit }) {
-    shop.getProducts(products => {
+    api.getProducts((products) => {
       commit(types.RECEIVE_PRODUCTS, { products })
     })
   },

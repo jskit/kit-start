@@ -9,18 +9,23 @@ const ipad = ua.match(/(iPad).*OS\s([\d_]+)/)
 const ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/)
 const iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/)
 
-device.ios = device.android = device.iphone = device.ipad = device.androidChrome = false
+device.ios = false
+device.android = false
+device.iphone = false
+device.ipad = false
+device.androidChrome = false
 
 // const getEls = function (el) {
 //   return document.querySelectorAll(el)
 // }
-const getEl = function (el) {
+const getEl = (el) => {
   return document.querySelector(el)
 }
 
 // Android
 if (android) {
   device.os = 'android'
+  /* eslint prefer-destructuring: 0 */
   device.osVersion = android[2]
   device.android = true
   device.androidChrome = ua.toLowerCase().indexOf('chrome') >= 0
@@ -53,9 +58,9 @@ if (device.ios && device.osVersion && ua.indexOf('Version/') >= 0) {
 device.webView = (iphone || ipad || ipod) && ua.match(/.*AppleWebKit(?!.*Safari)/i)
 
 // Minimal UI
-var domMeta = getEl('meta[name="viewport"]')
+const domMeta = getEl('meta[name="viewport"]')
 if (device.os && device.os === 'ios') {
-  var osVersionArr = device.osVersion.split('.')
+  const osVersionArr = device.osVersion.split('.')
   device.minimalUi = !device.webView &&
       (ipod || iphone) &&
       (osVersionArr[0] * 1 === 7 ? osVersionArr[1] * 1 >= 1 : osVersionArr[0] * 1 > 7) &&
@@ -64,17 +69,19 @@ if (device.os && device.os === 'ios') {
 
 // Check for status bar and fullscreen app mode
 /* global screen */
-var windowWidth = window.innerWidth // $(window).width()
-var windowHeight = window.innerHeight
+const windowWidth = window.innerWidth // $(window).width()
+const windowHeight = window.innerHeight
+const { screen } = window
 device.statusBar = false
-if (device.webView && (windowWidth * windowHeight === screen.width * screen.height)) {
+if (device.webView &&
+  (windowWidth * windowHeight === screen.width * screen.height)) {
   device.statusBar = true
 } else {
   device.statusBar = false
 }
 
 // Classes
-var classNames = []
+const classNames = []
 
 // Pixel Ratio
 device.pixelRatio = window.devicePixelRatio || 1
@@ -85,17 +92,19 @@ if (device.pixelRatio >= 2) {
 
 // OS classes
 if (device.os) {
-  classNames.push(device.os,
-                  device.os + '-' + device.osVersion.split('.')[0],
-                  device.os + '-' + device.osVersion.replace(/\./g, '-'))
+  classNames.push(
+    device.os,
+    device.os + '-' + device.osVersion.split('.')[0],
+    device.os + '-' + device.osVersion.replace(/\./g, '-')
+  )
   if (device.os === 'ios') {
-    var major = parseInt(device.osVersion.split('.')[0], 10)
-    for (var i = major - 1; i >= 6; i--) {
+    const major = parseInt(device.osVersion.split('.')[0], 10)
+    for (let i = major - 1; i >= 6; i--) {
       classNames.push('ios-gt-' + i)
     }
   }
 }
-var domHtml = getEl('html')
+const domHtml = getEl('html')
 // Status bar classes
 if (device.statusBar) {
   classNames.push('with-statusbar-overlay')
@@ -105,7 +114,7 @@ if (device.statusBar) {
 
 // Add html classes
 if (classNames.length > 0) {
-  for (var j = classNames.length - 1; j > -1; j--) {
+  for (let j = classNames.length - 1; j > -1; j--) {
     domHtml.classList.add(classNames[j])
   }
 }

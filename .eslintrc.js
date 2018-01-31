@@ -36,10 +36,12 @@ module.exports = {
     "__WEEX__": true
   },
   // check if imports actually resolve
+  // 需要安装 eslint-import-resolver-webpack
   'settings': {
     'import/resolver': {
       'webpack': {
-        'config': 'build/webpack.base.conf.js'
+        'config': 'build/webpack.base.conf.js',
+        // 'config-index': 1   // # take the config at index 1
       }
     }
   },
@@ -86,6 +88,7 @@ module.exports = {
         "res",
         "err",
         "cb",
+        "state",
         "resolve",
         "reject",
         "done"
