@@ -80,7 +80,10 @@ module.exports = {
     "no-console": 0,
     "no-else-return": 0,
     "no-mixed-operators": 0,
-    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
+    "no-multiple-empty-lines": ["error", {
+      "max": 2,
+      "maxEOF": 1,
+    }],
     "no-nested-ternary": 0,
     "no-param-reassign": 0,
     "no-plusplus": 0,
@@ -107,6 +110,10 @@ module.exports = {
     }],
     "prefer-template": 0,
     "prefer-arrow-callback": 0,
+    "quotes": ["error", "single", {
+      "avoidEscape": true,
+      "allowTemplateLiterals": true,
+    }],
     "require-yield": 1,
     "semi": ["error", "never"],
     "space-before-function-paren": ["error", {
