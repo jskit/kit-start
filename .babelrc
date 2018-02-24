@@ -1,4 +1,5 @@
 {
+  "comments": false,
   "presets": [
     "es2015",
     "stage-2", // 使用 babel-node 运行 es6 必须
@@ -9,18 +10,17 @@
         "safari": 9,
         "chrome": "56",
         "browsers": ["> 1%", "last 2 versions", "not ie <= 8"],
-	"node": "current"
+        "node": "current"
       }
     }]
   ],
-  "comments": false,
   "plugins": [
     // 安装 babel-plugin-import 插件
     // ["import", { "libraryName": "kit-ui", "style": true }],
     // babel-plugin-module-resolver 是一个Babel模块解析插件, 在.babelrc中可以配置模块的导入搜索路径
     // babel对于 export default {} 支持不好
     // 需要插件 babel-plugin-add-module-exports：
-    // "add-module-exports",
+    "add-module-exports",
     "syntax-dynamic-import", // 动态解析 import()，实现路由懒加载
     // "syntax-flow", // 支持解析 flow
     // "syntax-jsx",  // 支持解析 jsx
