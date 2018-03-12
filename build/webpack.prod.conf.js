@@ -17,9 +17,9 @@ const loadMinified = require('./load-minified')
 
 const isTesting = config.env['__TEST__']
 
-console.log('index')
-console.log(config.build.index)
-console.log(config.build.assetsRoot)
+// console.log('index')
+// console.log(config.build.index)
+// console.log(config.build.assetsRoot)
 
 const env = isTesting
   ? require('../config/test.env')
