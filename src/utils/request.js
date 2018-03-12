@@ -2,7 +2,7 @@
 
 // require('es6-promise').polyfill()
 // import Promise from 'bluebird'
-import fetch from 'kit-fetch'
+// import fetch from 'kit-fetch'
 import { stringify } from 'qs'
 // Toast
 
