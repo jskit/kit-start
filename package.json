@@ -128,6 +128,7 @@
     "uglify-es": "^3.3.9",
     "uglifyjs-webpack-plugin": "^1.2.2",
     "url-loader": "^0.6.2",
+    "vant": "^0.12.14",
     "vue-loader": "^14.1.1",
     "vue-markdown-loader": "^2.3.0",
     "vue-style-loader": "^4.0.2",

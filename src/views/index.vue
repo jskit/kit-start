@@ -8,6 +8,7 @@
 
 <script>
 // import { Icon } from 'kit-ui'
+import api from '@/service/api'
 
 export default {
   components: {
@@ -15,7 +16,11 @@ export default {
   },
 
   created() {
-
+    api.getIndex({}, (res) => {
+      console.log(res)
+    }, (err) => {
+      console.log(err)
+    })
   },
 }
 </script>

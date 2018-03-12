@@ -34,6 +34,8 @@ const envConst = {
   ...injectConst,
 }
 
+console.log('injectConst: ', envConst);
+
 
 function pathConfig(src = 'src', dist = 'dist', test = 'test'){
   return {

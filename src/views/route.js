@@ -12,8 +12,17 @@ export default [{
   children: [
     {
       path: '/',
-      name: 'index',
-      alias: 'index',
+      name: 'demo',
+      // alias: 'demo',
+      meta: {
+        title: 'Demo',
+      },
+      component: lazyLoad('demo'),
+    },
+    {
+      path: '/index',
+      name: '/index',
+      // alias: 'index',
       meta: {
         title: '首页',
       },

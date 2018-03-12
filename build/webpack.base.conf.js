@@ -14,6 +14,16 @@ const {
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
+// https://github.com/zouhir/jarvis
+// const Jarvis = require("webpack-jarvis");
+
+// /* the rest of your webpack configs */
+// plugins: [
+//   new Jarvis({
+//     port: 1337 // optional: set a port
+//   })
+// ];
+
 // function resolve(dir) {
 //   return path.join(__dirname, '..', dir)
 // }
@@ -62,7 +72,7 @@ module.exports = {
     }),
     // 注入全局变量，用于条件判断
     new webpack.DefinePlugin({
-      ...config.envConst,
+      ...config.env,
     }),
     cHappypack('ESLint', [{
       loader: 'eslint-loader',

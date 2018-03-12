@@ -23,8 +23,8 @@ export default [{
   children: [
     {
       path: '/',
-      alias: '/index',
-      name: 'demo',
+      // alias: '/index',
+      name: 'components',
       meta: {
         title: '模块页面',
       },
@@ -32,7 +32,6 @@ export default [{
     },
     {
       path: '*',
-      name: 'isComming',
       meta: {
         title: 'isComming',
       },

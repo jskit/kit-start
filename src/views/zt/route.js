@@ -32,7 +32,6 @@ export default [{
     },
     {
       path: '*',
-      name: 'isComming',
       meta: {
         title: 'isComming',
       },
