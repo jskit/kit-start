@@ -71,9 +71,11 @@ module.exports = {
     env: require('./prod.env'),
     // 入口
     // index: path.resolve(__dirname, '../dist/index.html'),
-    index: path.resolve(process.cwd(), paths.dist, '/index.html'),
+    // output: kit-start/dist/index.html
+    index: path.resolve(process.cwd(), paths.dist, 'index.html'),
     // 服务根目录
     // assetsRoot: path.resolve(__dirname, '../dist'),
+    // output: kit-start/dist
     assetsRoot: path.resolve(process.cwd(), paths.dist),
     // 指向静态资源
     assetsSubDirectory: './static',
@@ -109,7 +111,7 @@ module.exports = {
     errorOverlay: true,
     notifyOnErrors: false,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-    
+
     // If true, eslint errors and warnings will also be shown in the error overlay
     // in the browser.
     showEslintErrorsInOverlay: false,
