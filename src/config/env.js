@@ -1,30 +1,51 @@
 // ENV
 
-const apiEnv = 'beta'
+// 自动判断环境
+// const apiEnv = 'dev'
 
 export const ENV = {
   prod: {
-    host: 'm.haoshiqi.net',
+    name: 'prod',
     baseUrl: 'https://m.haoshiqi.net',
     apiBaseUrl: 'https://m.api.haoshiqi.net',
   },
   dev: {
+    name: 'dev',
     baseUrl: 'http://m.dev.haoshiqi.net',
     apiBaseUrl: 'http://m.devapi.haoshiqi.net',
   },
   beta: {
+    name: 'beta',
     baseUrl: 'https://m.beta.haoshiqi.net',
     apiBaseUrl: 'https://m.betaapi.haoshiqi.net',
   },
   test: {
-    baseUrl: 'https://127.0.0.1',
-    apiBaseUrl: 'https://m.betaapi.haoshiqi.net',
+    name: 'test',
+    routerMode: 'hash',
+    baseUrl: location.origin, // 当前地址ip 可以取当前 location.origin
+    apiBaseUrl: 'http://m.devapi.haoshiqi.net',
+  },
+  local: {
+    name: 'local',
+    routerMode: 'hash',
+    baseUrl: location.origin, // localhost
+    apiBaseUrl: 'http://m.devapi.haoshiqi.net',
   },
 }
 
+/*
+# nginx
+
+location / {
+  try_files $uri $uri/ /index.html;
+}
+*/
 const baseEnv = {
+  name: 'prod',
   port: 8001,
   debug: false,
+  host: 'https://m.haoshiqi.net',
+  apiHost: 'https://m.api.haoshiqi.net',
   routerMode: 'history',
   googleAnalyticsId: 'UA-XXXXX-X',
   baiduAnalyticsId: 'UA-XXXXX-X',
@@ -36,34 +57,40 @@ const baseEnv = {
 const regDev = /^(m\.dev\.haoshiqi\.net)/i
 const regBeta = /^(m\.beta\.haoshiqi\.net)/i
 const regProd = /^(m\.haoshiqi\.net)/i
-const regLocal = /^(localhost|10\.|127\.|192\.)/i
+const regLocal = /^(localhost|127\.)/i
+const regLocalIp = /^(10\.|192\.)/i
+// const { protocol, host = ENV.prod.host, origin = ENV.prod.baseUrl } = window.location
 
 export function createEnv(opts = {}) {
   const { env = 'prod' } = opts
   const { host = ENV[env].host, origin = ENV[env].baseUrl } = window.location
-  const prodEnv = Object.assign({}, baseEnv, ENV.prod)
+  const prodEnv = { ...baseEnv, ...ENV.prod }
   if (host.match(regProd)) {
     return prodEnv
   }
   if (host.match(regDev)) {
-    return Object.assign(prodEnv, ENV.dev, ENV[env])
+    return Object.assign(prodEnv, ENV.dev, ENV['dev'])
   }
   if (host.match(regBeta)) {
-    return Object.assign(prodEnv, ENV.beta, ENV[env])
+    return Object.assign(prodEnv, ENV.beta, ENV['beta'])
   }
-  if (host.match(regLocal)) {
-    return Object.assign(prodEnv, {
-      baseUrl: `${origin}/#`,
-      apiBaseUrl: `${origin}`,
-      routerMode: 'hash',
+
+  const isLocal = host.match(regLocal)
+  const isLocalIp = host.match(regLocalIp)
+  if (isLocal || isLocalIp) {
+    return Object.assign(prodEnv, ENV.local, {
+      // baseUrl: `${origin}/#`,
+      // apiBaseUrl: `${origin}`,
       debug: true,
-    }, opts)
+    })
   }
   // __TEST__
   return Object.assign(prodEnv, ENV.test)
 }
 
-// 默认会有个 api 配置，之后会读取 store
-export default createEnv({
-  env: apiEnv,
+const currentEnv = createEnv({
+  // env: apiEnv,
 })
+
+// 默认会有个 api 配置，之后会读取 store
+export default currentEnv

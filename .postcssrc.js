@@ -8,7 +8,9 @@ module.exports = (ctx) => ({
     // to edit target browsers: use "browserlist" field in package.json
     // "autoprefixer": {},
     "postcss-cssnext": {}, // 已包含 autoprefixer
-    "postcss-position": {},
+    // position: absolute 0 * 0 0
+    // "postcss-short-position": {},
+    "postcss-normalize-positions": {}, // background-position: bottom right
     "postcss-size": {},
     "postcss-pxtorem": {
       // px单位大写将忽略转化rem
@@ -18,6 +20,7 @@ module.exports = (ctx) => ({
       selectorBlackList: [/^html$/],
       replace: true,
       mediaQuery: false,
+      // minPixelValue: 2,
       minPixelValue: 0
     },
     /* eslint key-spacing: 0 */

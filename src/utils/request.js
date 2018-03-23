@@ -2,18 +2,23 @@
 
 // require('es6-promise').polyfill()
 // import Promise from 'bluebird'
-// import fetch from 'kit-fetch'
+import fetch from 'dva/fetch'
 import { stringify } from 'qs'
+import mini from './mini'
 // Toast
 
-const mini = {
-  hideLoading() {},
-  showToast() {},
-}
+// const mini = {
+//   hideLoading() {},
+//   showToast() {},
+// }
 
 function noop() {
   console.error('异常流程，不应该进入这里')
 }
+
+
+// Request header field Content-Type is not allowed by Access-Control-Allow-Headers in preflight response.
+//
 
 // 跨域设置默认好像已经设定
 const defaultOptions = {
@@ -22,17 +27,19 @@ const defaultOptions = {
   url: '',         // 请求地址，URL of the request
   headers: {
     // Accept: 'application/json',
+    // Request header field content-type is not allowed by Access-Control-Allow-Headers in preflight response.
     // 'content-type': 'application/json' // 默认值
-    'Content-Type': 'application/x-www-form-urlencoded',
+    // 'Content-Type': 'application/x-www-form-urlencoded',
   },
   dataType: 'json',
   // data: '',
   mode: 'cors',           // 请求的模式，主要用于跨域设置，cors, no-cors, same-origin
   timeout: 30000,
-  credentials: 'include', // 是否发送Cookie omit, same-origin
+  // The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'. Origin 'http://127.0.0.1:8090' is therefore not allowed access.
+  credentials: 'include', // 是否发送Cookie，默认是`omit`忽略, same-origin
   // redirect // 收到重定向请求之后的操作，follow, error, manual
   // integrity // 完整性校验
-  // cache: 'default', // 缓存模式(default, reload, no-cache)
+  cache: 'default', // 缓存模式(default, reload, no-cache)
 }
 
 // response
@@ -78,13 +85,13 @@ function checkStatus(res = {}) {
 }
 
 export default function request(url, options = {}, success = noop, fail = noop) {
-  console.log(success)
   const newOptions = Object.assign({ }, defaultOptions, options)
   const method = (newOptions.method || 'GET').toUpperCase()
   newOptions.method = method
   if (method === 'GET') {
     newOptions.headers = {
-      'Content-Type': 'application/json; charset=utf-8',
+      // 我们的get请求 不需要这个
+      // 'Content-Type': 'application/json; charset=utf-8',
     }
     // newOptions.data = JSON.stringify(newOptions.data)
   } else if (method === 'POST') {
@@ -94,7 +101,10 @@ export default function request(url, options = {}, success = noop, fail = noop) 
       'Content-Type': 'application/x-www-form-urlencoded',
       ...newOptions.headers,
     }
-    newOptions.body = `${stringify(newOptions.data)}`
+    Object.defineProperty(newOptions, 'body', {
+      value: `${stringify(newOptions.data)}`,
+    })
+    // newOptions.body = `${stringify(newOptions.data)}`
     // newOptions.data = `${stringify(newOptions.data)}`
   }
 
@@ -239,43 +249,3 @@ export default function request(url, options = {}, success = noop, fail = noop) 
   // // })
 }
 
-
-
-/*! fetch 的封装
-https://github.github.io/fetch/
-
-Request
-@param {String} String | Object - The URL to request,
-        either a String or a Object that return by url.parse
-@param {Object} data 数据
-@param {Object} options 选项
-  - method {String} - Request method, defaults: 'GET'. [GET, POST, DELETE or PUT]
-  - body (String, body types) - HTTP request body(可由 data 转换过来)
-  - headers (Object, Headers) - Default: {}
-  - data {String | Buffer | Readable} - 发送到服务器的数据；
-        如果是get请求，它会自动被作为参数拼接到url上。非String对象将通过 $.param 得到序列化字符串。
-  - contentType {String} 发送信息至服务器时内容编码类型。通过设置 false 跳过设置默认值。
-      默认：URLSearchParams 'application/x-www-form-urlencoded;charset=utf-8'
-      可选：String 'text/plain;charset=utf-8'
-           FormData 'multipart/form-data'
-           Blob inherited from the blob.type property
-      需特殊处理 json
-      headers = {
-        Accept: 'application/json',
-        'Content-Type': 'application/json; charset=utf-8',
-        ...
-      }
-  - dataType 预期服务器返回的数据类型('json', 'jsonp', 'xml', 'html', or 'text') 默认 none
-  - timeout {Number} - 设置请求超时时间（毫秒）默认3000，0表示不超时。
-  - store {Boolean | Object} 是否使用 store，以及使用时间限制
-  - transformRequest {Function} 请求前处理函数
-  - transformResponse {Function} 返回数据前处理函数
-  - fetchError {Function} 请求错误处理函数
-
-Response
-  status (number) - HTTP response code in the 100–599 range
-  statusText (String) - Status text as reported by the server, e.g. "Unauthorized"
-  ok (boolean) - True if status is HTTP 2xx
-  headers (Headers)
-  url (String)
-*/

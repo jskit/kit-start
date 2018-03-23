@@ -1,0 +1,467 @@
+{
+  "errno": 0,
+  "errmsg": "success",
+  "data": {
+    "list": [{
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 1200,
+        "height": 400,
+        "type": "banner",
+        "list": [{
+            "image": {
+              "url": "http://img.haoshiqi.net/file/banner-33.jpg",
+              "w": 1200,
+              "h": 400
+            },
+            "link": "http://m.dev.haoshiqi.net/#zt_template?topic_code=1bc0b50f6292d1e7d9e17a0a286b5d7a&channel_id=1.0",
+            "id": 3
+          },
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma7d6e5339a20ea333fbf505a8d78b4ec1.jpg",
+              "w": 222,
+              "h": 54
+            },
+            "link": "http://m.dev.haoshiqi.net/#zt_template?topic_code=da202d0fe12cb414e64d1b8e5e13f947",
+            "id": 150
+          },
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/mad8ea076edb5fe86793e635452b48f4bd.jpg",
+              "w": 1560,
+              "h": 1080
+            },
+            "link": "http://m.dev.haoshiqi.net/t.html#zt_template?topic_code=482a1f67a7bc41b88774129b9c4b85f3",
+            "id": 147
+          },
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma7c97400fa1cb677cb4f632e8cefbf3e2.jpg",
+              "w": 750,
+              "h": 176
+            },
+            "link": "haoshiqi://com.doweidu/lotteryactivitylist",
+            "id": 148
+          },
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/mae1380b7de96ef8408e8ed788b93189e3.jpg",
+              "w": 750,
+              "h": 176
+            },
+            "link": "haoshiqi://com.doweidu/sku?skuId=12656&from=INDEX",
+            "id": 149
+          },
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma629d6f24661ff1481e0f145a29e0489b.jpg",
+              "w": 5616,
+              "h": 3744
+            },
+            "link": "haoshiqi://com.doweidu/category?categoryName=饼干糕点",
+            "id": 143
+          },
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/mad1c369513afcfd405f15d6258679cea7.jpg",
+              "w": 799,
+              "h": 600
+            },
+            "link": "http://m.dev.haoshiqi.net/#zt_template?topic_code=da202d0fe12cb414e64d1b8e5e13f947",
+            "id": 137
+          },
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma7d6e5339a20ea333fbf505a8d78b4ec1.jpg",
+              "w": 222,
+              "h": 54
+            },
+            "link": "http://m.dev.haoshiqi.net/#zt_template?topic_code=da202d0fe12cb414e64d1b8e5e13f947",
+            "id": 154
+          },
+          {
+            "image": {
+              "url": "http://img.haoshiqi.net/file/banner-33.jpg",
+              "w": 1200,
+              "h": 400
+            },
+            "link": "haoshiqi://com.doweidu/merchant?merchantId=101&from=INDEX",
+            "id": 155
+          },
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma50a2f146e3ac182cae78c52d1ead9702.jpg",
+              "w": 799,
+              "h": 600
+            },
+            "link": "http://10.0.255.147:8000/#zt_template?topic_code=482a1f67a7bc41b88774129b9c4b85f3",
+            "id": 157
+          }
+        ],
+        "comment": "顶部导航"
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 0,
+        "height": 0,
+        "type": "sub_button",
+        "bg": {
+          "url": "http://img2.haoshiqi.net/maf00d5aa0e7a808202840397dc7d2dac7.jpg",
+          "w": 600,
+          "h": 300
+        },
+        "comment": "小按钮导航",
+        "column": 5,
+        "list": [{
+            "id": 88,
+            "source_type": 1,
+            "type": 1,
+            "loc": 0,
+            "icon": "http://img.haoshiqi.net/img/recommendreward.png",
+            "label": "推荐有奖",
+            "jump_type": 3,
+            "jump_url": "haoshiqi://com.doweidu/activityshare?activityId=1",
+            "client_type": 0,
+            "has_tag": 0,
+            "tag_icon": "",
+            "priority": 5,
+            "enabled": 1,
+            "expired_time": 2147483647,
+            "updated_at": 0,
+            "version": "",
+            "sub_data": {
+              "w": 108,
+              "h": 108
+            }
+          },
+          {
+            "id": 91,
+            "source_type": 1,
+            "type": 1,
+            "loc": 0,
+            "icon": "http://img.haoshiqi.net/img/jinkoushipin.png",
+            "label": "抽奖团",
+            "jump_type": 3,
+            "jump_url": "haoshiqi://com.doweidu/lotteryactivitylist",
+            "client_type": 0,
+            "has_tag": 0,
+            "tag_icon": "",
+            "priority": 4,
+            "enabled": 1,
+            "expired_time": 2147483647,
+            "updated_at": 1513931479,
+            "version": "1.0",
+            "sub_data": {
+              "w": 72,
+              "h": 72
+            }
+          },
+          {
+            "id": 89,
+            "source_type": 1,
+            "type": 1,
+            "loc": 0,
+            "icon": "http://img.haoshiqi.net/img/xiuxianlingshi.png",
+            "label": "休闲零食",
+            "jump_type": 3,
+            "jump_url": "haoshiqi://com.doweidu/category?categoryName=休闲零食&categoryId=1",
+            "client_type": 0,
+            "has_tag": 0,
+            "tag_icon": "",
+            "priority": 3,
+            "enabled": 1,
+            "expired_time": 2147483647,
+            "updated_at": 0,
+            "version": "",
+            "sub_data": {
+              "w": 108,
+              "h": 108
+            }
+          },
+          {
+            "id": 90,
+            "source_type": 1,
+            "type": 1,
+            "loc": 0,
+            "icon": "http://img.haoshiqi.net/img/yinliaochongtiao.png",
+            "label": "助力免单",
+            "jump_type": 3,
+            "jump_url": "haoshiqi://hybrid?compid=haoshiqi&comppage=zl_list",
+            "client_type": 0,
+            "has_tag": 0,
+            "tag_icon": "",
+            "priority": 2,
+            "enabled": 1,
+            "expired_time": 2147483647,
+            "updated_at": 1508827027,
+            "version": "1.0",
+            "sub_data": {
+              "w": 72,
+              "h": 72
+            }
+          },
+          {
+            "id": 92,
+            "source_type": 1,
+            "type": 1,
+            "loc": 0,
+            "icon": "http://img.haoshiqi.net/img/sushitiaowei.png",
+            "label": "店铺详情",
+            "jump_type": 3,
+            "jump_url": "haoshiqi://com.doweidu/merchant?merchantId=172",
+            "client_type": 0,
+            "has_tag": 0,
+            "tag_icon": "",
+            "priority": 1,
+            "enabled": 1,
+            "expired_time": 2147483647,
+            "updated_at": 1500963717,
+            "version": "1.0",
+            "sub_data": {
+              "w": 108,
+              "h": 108
+            }
+          }
+        ]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 220,
+        "height": 200,
+        "type": "ads",
+        "comment": "水平滑动广告",
+        "list": [{
+          "id": 6,
+          "image": {
+            "url": "http://img2.haoshiqi.net/ma5bc288c0bff45ab3fc7bef6360608186.jpg",
+            "w": 220,
+            "h": 200
+          },
+          "link": "http://opadmin.dev.haoshiqi.net/content/advertisemanage/index#/advertise/management/edit?ids=6&channel=1"
+        }]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 2,
+        "height": 1,
+        "type": "ads_tofu",
+        "comment": "豆腐块广告",
+        "list": [
+          [{
+              "id": 173,
+              "image": {
+                "url": "http://img2.haoshiqi.net/mac3617df31eec9908654292ac45d2d3b8.jpg",
+                "w": null,
+                "h": null
+              },
+              "link": ""
+            },
+            {
+              "id": 22,
+              "image": {
+                "url": "http://img.haoshiqi.net/merchantadmin/image20160812/ma929d330b235342f44e5de3d6f98409b6",
+                "w": 316,
+                "h": 196
+              },
+              "link": "http://m.haoshiqi.net/#today_top10?topic_code=fbccf5f5f370bdd467ae954bd6e4be3e"
+            },
+            {
+              "id": 21,
+              "image": {
+                "url": "http://img.haoshiqi.net/merchantadmin/image20160816/mab7781f54a56f43ee645206ace9ef5ccf",
+                "w": 316,
+                "h": 400
+              },
+              "link": "http://m.haoshiqi.net/#topic_list?topic_code=jinrixinpin"
+            }
+          ],
+          []
+        ]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 750,
+        "height": 190,
+        "type": "ads",
+        "comment": "水平滑动广告",
+        "list": [{
+            "id": 7,
+            "image": {
+              "url": "http://img2.haoshiqi.net/mace4b6b18033e7fc072bc907c02113d7c.jpg",
+              "w": 750,
+              "h": 190
+            },
+            "link": "http://opadmin.dev.haoshiqi.net/content/advertisemanage/index#/advertise/management/edit?ids=8&channel=1"
+          },
+          {
+            "id": 8,
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma0be57e489d316a5584256abc8d6c8eef.jpg",
+              "w": 750,
+              "h": 160
+            },
+            "link": "http://opadmin.dev.haoshiqi.net/content/advertisemanage/index#/advertise/management/edit?ids=8&channel=1"
+          },
+          {
+            "id": 11,
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma6ece66a37ed20c2928c268f4ab075c32.jpg",
+              "w": 750,
+              "h": 160
+            },
+            "link": "http://opadmin.dev.haoshiqi.net/content/advertisemanage/index#/advertise/management/edit?ids=11&channel=1"
+          }
+        ]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 0,
+        "height": 0,
+        "type": "ads_activity",
+        "comment": "竖排带倒计时的广告",
+        "list": [{
+            "id": 240,
+            "jump_url": "http://opadmin.dev.haoshiqi.net/content/flowpromotionboxedit",
+            "jump_type": 2,
+            "label": "我是达人",
+            "image": {
+              "url": "http://img2.haoshiqi.net/mac6447e98bb016a71f4344cb340d754be.jpg?imageView2/0/w/750/q/50",
+              "w": 750,
+              "h": 360
+            },
+            "expired_time": 1525017600,
+            "time_text": "时间不多了",
+            "price": 0
+          },
+          {
+            "id": 239,
+            "jump_url": "",
+            "jump_type": 1,
+            "label": "标题还是有的呀标题还是有的呀",
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma4b6ce05a718e1aaa0b51204b04a8d8f3.jpg?imageView2/0/w/750/q/50",
+              "w": 1280,
+              "h": 600
+            },
+            "expired_time": 0,
+            "time_text": "",
+            "price": 0
+          }
+        ]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 750,
+        "height": 190,
+        "type": "ads",
+        "comment": "水平滑动广告",
+        "list": [{
+            "id": 12,
+            "image": {
+              "url": "http://img2.haoshiqi.net/maef044484ff1eecd1f5c9ea6279b52745.jpg",
+              "w": 750,
+              "h": 190
+            },
+            "link": "http://opadmin.dev.haoshiqi.net/content/advertisemanage/index#/advertise/management/edit?ids=8&channel=1"
+          },
+          {
+            "id": 15,
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma135edbb49ad4ac75ddeade1ee5e3afff.jpg",
+              "w": 750,
+              "h": 160
+            },
+            "link": "http://opadmin.dev.haoshiqi.net/content/advertisemanage/index#/advertise/management/edit?ids=8&channel=1"
+          },
+          {
+            "id": 14,
+            "image": {
+              "url": "http://img2.haoshiqi.net/maba35e76cc2f56d2f51f1ae78645f376e.jpg",
+              "w": 750,
+              "h": 160
+            },
+            "link": "http://opadmin.dev.haoshiqi.net/content/advertisemanage/index#/advertise/management/edit?ids=8&channel=1"
+          }
+        ]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 750,
+        "height": 190,
+        "type": "title_bar",
+        "list": [{
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma8f58d361d49193229df6e8d2e5d4f4ef.jpg",
+              "w": 750,
+              "h": 190
+            }
+          },
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma4f6a68377e198aca972fdca070022e42.jpg",
+              "w": 750,
+              "h": 88
+            }
+          }
+        ],
+        "comment": "标题栏广告"
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 400,
+        "height": 400,
+        "type": "ads",
+        "comment": "水平滑动广告",
+        "list": [{
+            "id": 13,
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma10f9768389374da341d5774af08a8696.jpg",
+              "w": 400,
+              "h": 400
+            },
+            "link": ""
+          },
+          {
+            "id": 17,
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma49201866bd62c5dab3b5b5aa1a3b48f8.jpg",
+              "w": 750,
+              "h": 160
+            },
+            "link": "http://opadmin.dev.haoshiqi.net/content/advertisemanage/index#/advertise/management/edit?ids=8&channel=1"
+          },
+          {
+            "id": 18,
+            "image": {
+              "url": "http://img2.haoshiqi.net/maf5ed3b8ef4e4e31f59a517c392ac96f4.jpg",
+              "w": 750,
+              "h": 160
+            },
+            "link": "http://opadmin.dev.haoshiqi.net/content/advertisemanage/index#/advertise/management/edit?ids=8&channel=1"
+          },
+          {
+            "id": 16,
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma170b07c5dbba034a340606c27c02aabc.jpg",
+              "w": 750,
+              "h": 190
+            },
+            "link": "http://opadmin.dev.haoshiqi.net/content/advertisemanage/index#/advertise/management/edit?ids=8&channel=1"
+          }
+        ]
+      }
+    ]
+  },
+  "timestamp": 1521597278,
+  "serverlogid": "6c8f4d32e4b5cb1f215dfe1c13cdfcce"
+}
+

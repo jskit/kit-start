@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import env from '../config/env'
 import Router from 'vue-router'
 // import store from '../store'
 
@@ -18,8 +19,10 @@ reqModules.keys().map((key) => {
 })
 // console.log(routes)
 
+
 const router = new Router({
-  mode: 'hash',
+  mode: env.routerMode,
+  debug: env.debug,
   base: '',
   scrollBehavior: () => ({ y: 0 }),
   routes: [

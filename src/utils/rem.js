@@ -4,7 +4,7 @@
   const resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize'
   const recalc = function () {
     const { clientWidth } = docEl
-    if (!clientWidth) return
+    if (!clientWidth || clientWidth > 600 || clientWidth < 310) return
     // 以 iphone6/7 为基准
     docEl.style.fontSize = 100 * (clientWidth / 375) + 'px'
   }

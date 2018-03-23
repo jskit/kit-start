@@ -6,6 +6,79 @@ export function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val
 }
 
+export function throttle(func, wait, options) {
+  /* eslint no-multi-assign: 0 */
+  let context
+  let args
+  let result
+  let timeout = null
+  let previous = 0
+
+  if (!options) options = {}
+  const later = () => {
+    previous = options.leading === false ? 0 : Date.now()
+    timeout = null
+    result = func.apply(context, args)
+    if (!timeout) context = args = null
+  }
+
+  return (...rest) => {
+    const now = Date.now()
+    if (!previous && options.leading === false) previous = now
+    const remaining = wait - (now - previous)
+    context = this
+    args = rest
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout)
+        timeout = null
+      }
+      previous = now
+      result = func.apply(context, args)
+      if (!timeout) context = args = null
+    } else if (!timeout && options.trailing !== false) {
+      timeout = setTimeout(later, remaining)
+    }
+    return result
+  }
+}
+
+export function debounce(func, wait, immediate) {
+  let timeout
+  let args
+  let context
+  let timestamp
+  let result
+
+  const later = () => {
+    const last = Date.now() - timestamp
+
+    if (last < wait && last >= 0) {
+      timeout = setTimeout(later, wait - last)
+    } else {
+      timeout = null
+      if (!immediate) {
+        result = func.apply(context, args)
+        if (!timeout) context = args = null
+      }
+    }
+  }
+
+  return (...rest) => {
+    context = this
+    args = rest
+    timestamp = Date.now()
+    const callNow = immediate && !timeout
+    if (!timeout) timeout = setTimeout(later, wait)
+    if (callNow) {
+      result = func.apply(context, args)
+      context = args = null
+    }
+
+    return result
+  }
+}
+
 export function getTimeDistance(type) {
   const now = new Date()
   const oneDay = 1000 * 60 * 60 * 24
@@ -41,7 +114,8 @@ export function getTimeDistance(type) {
     const nextYear = nextDate.year()
     const nextMonth = nextDate.month()
 
-    return [moment(`${year}-${fixedZero(month + 1)}-01 00:00:00`), moment(moment(`${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`).valueOf() - 1000)]
+    return [moment(`${year}-${fixedZero(month + 1)}-01 00:00:00`),
+      moment(moment(`${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`).valueOf() - 1000)]
   }
 
   if (type === 'year') {

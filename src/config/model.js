@@ -9,7 +9,7 @@
 // api 列表
 const modelApis = {
   // 初始化配置
-  test: '/test',
+  test: 'https://easy-mock.com/mock/5aa79bf26701e17a67bde1d7/',
   getConfig: '/common/initconfig',
   // 积分兑换
   getPointIndex: '/point/index',
@@ -37,6 +37,7 @@ const modelApis = {
 
   // 首页
   getIndex: '/common/index',
+  getIndexNew: '/common/index_v1',
 
   // 主流程
   orderInit: 'POST /order/orderinit',
@@ -81,6 +82,8 @@ const modelApis = {
   getQiniuToken: '/common/qiniutoken',
 }
 
+const version = '3.3.0'
+
 const commonParams = {
   uuid: '', // 用户唯一标志
   udid: '', // 设备唯一标志
@@ -89,13 +92,14 @@ const commonParams = {
   uid: '',
   token: '',
   timestamp: '', // 时间
-  channel: '', // 渠道
-  spm: '',
-  // v: version, // 系统版本
+  channel: 'h5', // 渠道
+  spm: 'h5',
+  v: version, // 系统版本
   terminal: 'wap', // 终端
   swidth: '', // 屏幕宽度
   sheight: '', // 屏幕高度
   location: '', // 地理位置
+  zoneId: 857, // 必须
 }
 
 export default {

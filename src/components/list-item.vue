@@ -1,0 +1,145 @@
+<template>
+  <div
+    class="item"
+    data-type="detail"
+    :data-id="data.id"
+    @click="goNext($event)"
+    >
+    <div class="media" v-if="data.image">
+      <div class="image">
+        <img class="img" v-lazy="data.image" preload="1" />
+        <img class="icon" v-if="data.icon" v-lazy="data.icon" />
+      </div>
+      <div class="cd-times" v-if="data.countdown">{{ data.countdown }}</div>
+    </div>
+    <div class="info flex-ver">
+      <div class="intro">
+        <h4 class="title max-line-2"><span class="tag"></span>{{ data.title }}</h4>
+      </div>
+      <div class="extend">
+        <!-- <span class="tags" v-if="data.tags && data.tags[0].text">{{data.tags[0].text}}</span> -->
+        <vue-price :data="data.price" :size="16" style="color: rgb(237, 0, 0)"></vue-price>
+        <del class="del-price">¥{{ data.marketPrice | formatDel }}</del>
+      </div>
+      <slot></slot>
+    </div>
+  </div>
+</template>
+
+<script>
+import price from './price'
+
+export default {
+  name: 'vue-list-item',
+
+  components: {
+    [price.name]: price,
+  },
+
+  props: {
+    data: Object,
+  },
+
+  methods: {
+    goNext(e) {
+      const { id } = e.currentTarget.dataset
+      debugger
+      this.forward('detail', { id })
+    },
+  },
+
+}
+</script>
+
+<style lang="stylus" scoped>
+@import '../style/var';
+
+.item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  // 此处使用border-bottom实现，渲染时部分边线不显示
+  border: 1px solid $rgb226;
+  border-top: none;
+  border-left: none;
+  overflow: hidden;
+  background-color: #fff;
+  width: 50%;
+  font-size: 12px;
+
+  // 如果设置 border-right: none, 则出现渲染时部分边线不显示问题
+  &:nth-of-type(2n) {
+    border-right: 1px solid #fff;
+  }
+
+  .flex-ver {
+    justify-content: space-between;
+  }
+
+  .media {
+    position: relative;
+    overflow hidden
+    width: 100%;
+    padding-top: 85.3333%;
+  }
+  .image {
+    position absolute 20px 20px 0;
+    display flex
+    justify-content center
+    align-items flex-end
+    overflow hidden
+
+    .img {
+      height 100%
+      width auto
+    }
+  }
+
+  .cd-times {
+    position absolute
+    right 0
+    bottom 16px
+    width 100%
+    height 24px
+    line-height 24px
+    text-align center
+    color #fff
+    background rgba(53, 53, 53, 0.6)
+  }
+
+  .info {
+    width: 100%;
+    // margin-top -8px
+    padding: 8px 16px 4px;
+    flex-shrink: 1;
+    flex-grow: 1;
+    min-height: 60px
+  }
+
+  .title {
+    margin-bottom: 8px;
+    font-weight: 400
+    line-height: 20px
+    font-size: 14px
+  }
+
+  .tags {
+    height: 18px;
+    background: $rgb237
+    color: #fff;
+    padding: 0px 4px;
+    border-radius 2px
+    margin-right: 4px;
+    white-space: nowrap;
+    display inline-flex
+  }
+
+  .tip {
+    line-height 1
+    color: $rgb237
+  }
+}
+
+</style>

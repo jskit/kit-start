@@ -11,10 +11,13 @@ export default {
 </script>
 
 <style lang="stylus">
-@import './style/index';
+// @import './style/var';
 
 body {
-  font-size: 16px;
+  font-size 16px
+  min-width 320px
+  max-width 600px
+  margin 0 auto
   // background-color: #ececec;
 }
 

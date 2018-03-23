@@ -1,12 +1,25 @@
 import { stringify } from 'qs'
 import _request from '../utils/request'
-import env from '../config/env'
+import mini from '../utils/mini'
+import env from './env'
 import { modelApis, commonParams } from './model'
 // import { version } from '../package.json'
 
-const proxyUrl = __DEV__ ? '/proxy' : ''
-const apiBaseUrl = __DEV__ ? proxyUrl : `${env.apiBaseUrl}${proxyUrl}`
+const debug = true
+
+let apiBaseUrl
+apiBaseUrl = `${env.apiBaseUrl}`
+if (__DEV__ && debug) {
+  const proxyUrl = '' // '/proxy'
+  apiBaseUrl = `${env.apiBaseUrl}${proxyUrl}`
+
+  const testApi = {
+    getIndexNew: 'mock/index1',
+  }
+  Object.assign(modelApis, testApi)
+}
 const regHttp = /^https?/i
+const regMock = /^mock?/i
 
 function request(url, options, success, fail) {
   const originUrl = regHttp.test(url) ? url : `${apiBaseUrl}${url}`
@@ -21,6 +34,14 @@ const apiList = Object.keys(modelApis).reduce((api, key) => {
   const method = methodType.toUpperCase()
   // let originUrl = regHttp.test(url) ? url : `${env.apiBaseUrl}${url}`;
   // NOTE: headers 在此处设置？
+  if (__DEV__ && regMock.test(url)) {
+    api[key] = function postRequest(params, success, fail) {
+      const res = require(`../${url}.json`)
+      mini.hideLoading()
+      res.errno === 0 ? success(res) : fail(res)
+    }
+    return api
+  }
   switch (method) {
     case 'POST':
       // originUrl = `${originUrl}`;
@@ -29,7 +50,7 @@ const apiList = Object.keys(modelApis).reduce((api, key) => {
           headers: {
             // Accept: 'application/json',
             // 我们的 post 请求，使用的这个，不是 application/json
-            'Content-Type': 'application/x-www-form-urlencoded',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
           },
           method,
           data: Object.assign({}, getCommonParams(), params),

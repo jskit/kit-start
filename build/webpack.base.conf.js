@@ -31,8 +31,11 @@ const vueLoaderConfig = require('./vue-loader.conf')
 const isProduction = config.env['__PROD__']
 
 module.exports = {
+  // target: 'web'
+  // mode: 'production', // 'development'
   // context: path.resolve(__dirname, "../"),
   entry: {
+    // vendor: ['vue', 'vue-router'],
     // 如需多页面，需要处理 entry
     app: resolve(config.path.src, '/main.js'), // './src/main.js',
   },
@@ -53,6 +56,10 @@ module.exports = {
     }
   },
   plugins: [
+    // new webpack.LoaderOptionsPlugin({
+    //   debug: true
+    // }),
+
     //进度条插件
     new ProgressBarPlugin({
       summary: false,
@@ -147,7 +154,7 @@ module.exports = {
       {
         test: /\.svg$/i,
         loader: 'svg-sprite-loader',
-        include: [resolve('src/icons')],
+        include: [resolve('src/assets/svg')],
         // include: svgDirs,
         // include: [
         //   resolve('src/assets/svg'),
@@ -155,7 +162,7 @@ module.exports = {
         // ],
         options: {
           symbolId: 'icon-[name]',
-          runtimeCompat: true,
+          // runtimeCompat: true,
           // 不要提取成一个外部独立文件使用，这样与按需加载理念冲突
           // extract: true,
           // spriteFilename: 'svg-sprite.[hash:6].svg'
@@ -163,7 +170,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        exclude: [resolve('src/icons')],
+        exclude: [resolve('src/assets/svg')],
         // include: [
         //   resolve(config.path.assets),
         // ],

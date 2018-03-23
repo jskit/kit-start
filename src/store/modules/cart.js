@@ -1,4 +1,4 @@
-import api from '@/service'
+import api from '@/config/api'
 import * as types from '../types'
 
 // export const types = {

@@ -1,12 +1,12 @@
-// import imgError from '@/assets/img/error.png'
 // svg 使用 import 会被svg-sprite-loader加载器处理
-// import imgLoading from '@/assets/img/loading-spin.svg'
+import imgError from '@/assets/img/error.svg'
+import imgLoading from '@/assets/img/loading-spin.svg'
 
 export default {
   lazyComponent: true,
   preLoad: 1.3,
-  // error: imgError,
-  loading: 'static/img/loading-spin.svg',
+  error: imgError,
+  loading: imgLoading,
   attempt: 1,
   // the default is ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend']
   // listenEvents: [ 'scroll' ],

@@ -4,6 +4,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+const qnConfig = require('./qn.config')
 // import { argv } from 'yargs'
 
 function resolve(dir) {
@@ -60,6 +61,7 @@ const paths = pathConfig('src', 'dist')
  */
 let cookie
 module.exports = {
+  qnConfig,
   path: paths,
   template: `${paths.src}/index.tpl`,
   // 不应该使用 static 下的内容，不做 md5处理，以后就面临 cdn 缓存的问题
@@ -83,9 +85,13 @@ module.exports = {
     assetsSubDirectory: './static',
 
     // you can set by youself according to actual condition
-    assetsPublicPath: './',
+    // 这里可以设置 cdn，不使用 cdn，设为 './'
+    // assetsPublicPath: 'https://cdn.xxx.cn/' + project.dir,
+    // assetsPublicPath: './',
+    assetsPublicPath: `${qnConfig.domain}${qnConfig.prefix}`, // 'https://x.com/dir/'
+
     // Source Maps 是否生成用于生产构建的源映射
-    productionSourceMap: false,
+    productionSourceMap: true,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
@@ -128,7 +134,7 @@ module.exports = {
       // 如果把 cookie 设置为HttpOnly，则可能无法通过代理传递 cookie
       // proxy all requests starting with /api to jsonplaceholder
       '/proxy': {
-        target: 'https://m.api.haoshiqi.net',
+        target: 'http://m.devapi.haoshiqi.net',
         changeOrigin: true,
         // true/false, if you want to verify the SSL Certs
         // secure: false,
@@ -162,7 +168,8 @@ module.exports = {
     },
     // https://webpack.js.org/configuration/devtool/#development
     // cheap-module-eval-source-map is faster for development
-    devtool: '#eval-source-map', // '#cheap-module-eval-source-map'
+    // devtool: '#cheap-module-eval-source-map',
+    devtool: '#eval-source-map',
 
     // If you have problems debugging vue-files in devtools,
     // set this to false - it *may* help
@@ -174,6 +181,6 @@ module.exports = {
     // (https://github.com/webpack/css-loader#sourcemaps)
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
-    cssSourceMap: false,
+    cssSourceMap: true,
   },
 }

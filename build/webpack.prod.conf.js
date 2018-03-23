@@ -13,9 +13,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const QiniuPlugin = require('qiniu-webpack-plugin')
+// const QiniuCdnPlugin = require('qiniu-cdn-webpack-plugin')
 const loadMinified = require('./load-minified')
 
 const isTesting = config.env['__TEST__']
+const { qnConfig } = config
 
 const env = isTesting
   ? require('../config/test.env')
@@ -150,6 +153,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       //  ignore: ['.*']
       //}
     ]),
+
     // service worker caching
     new SWPrecacheWebpackPlugin({
       cacheId: 'kit-start',
@@ -157,7 +161,27 @@ const webpackConfig = merge(baseWebpackConfig, {
       staticFileGlobs: [`${config.path.dist}/**/*.{js,html,css}`],
       minify: true,
       stripPrefix: `${config.path.dist}/`,
-    })
+    }),
+
+    // 七牛
+    new QiniuPlugin({
+      prefix: qnConfig.prefix,
+      ACCESS_KEY: qnConfig.ak,
+      SECRET_KEY: qnConfig.sk,
+      bucket: qnConfig.bucket,
+      path: qnConfig.path,
+    }),
+    // new QiniuCdnPlugin({
+    //   accessKey: qnConfig.ak,
+    //   secretKey: qnConfig.sk,
+    //   bucket: qnConfig.bucket,
+    //   zone: 'Zone_z0', // 七牛云存储位置，华东 Zone_z0, 华北 Zone_z1, 华南 Zone_z2, 北美 Zone_na0
+    //   exclude: /\.html/,
+    //   refreshCDN: qnConfig.domain,
+    //   // refreshFilter: /(a\.js)|(b\.js)/,
+    //   clean: false,
+    //   // cleanExclude: /c\.js/
+    // }),
   ]
 })
 

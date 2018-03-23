@@ -12,7 +12,16 @@ export default [{
   children: [
     {
       path: '/',
-      name: 'demo',
+      name: '/index',
+      alias: 'index',
+      meta: {
+        title: '首页',
+      },
+      component: lazyLoad('index'),
+    },
+    {
+      path: '/demo',
+      name: '/demo',
       // alias: 'demo',
       meta: {
         title: 'Demo',
@@ -20,13 +29,13 @@ export default [{
       component: lazyLoad('demo'),
     },
     {
-      path: '/index',
-      name: '/index',
-      // alias: 'index',
+      path: '/profile',
+      name: '/profile',
+      // alias: 'profile',
       meta: {
-        title: '首页',
+        title: '个人中心',
       },
-      component: lazyLoad('index'),
+      component: lazyLoad('profile'),
     },
   ],
 }]

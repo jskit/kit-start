@@ -35,17 +35,54 @@ textarea {
   -webkit-font-smoothing: antialiased;
 }
 
-// HTML & Body reset
-#app,
-#root,
-html,
-body, {
+// placeholder并不支持padding和height值，在Android手机原生浏览器里面如果设置了line-height的值，比如设为line-height:32px
+// 在Android自带浏览器、百度手机浏览器、小米自带浏览器上出现图一的问题（占位符靠顶部）。uc/qq正常
+// 解决办法：把line-height设置为line-height:normal(或者不设置行高问题，只设置padding即可)
+// 参看：
+// http://stackoverflow.com/questions/4919680/html5-placeholder-css-padding
+// http://caibaojian.com/html5-placeholder-discuzz.html
+input {
+  line-height: normal !important;
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-size: inherit;
+}
+
+img {
+  vertical-align: middle;
+}
+
+img.full {
   width: 100%;
   height: 100%;
 }
 
-.clearfix {
-  clearfix();
+dfn,
+i {
+  font-style: normal;
+}
+
+// ul,
+// ol {
+//   margin: 0;
+//   padding: 0;
+//   list-style: none;
+// }
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
@@ -69,6 +106,37 @@ body, {
   background-color: rgba(193, 193, 193, 0.5);
 }
 
+.is-spin {
+  animation: spin 1s linear infinite;
+}
+
+.clearfix {
+  clearfix();
+}
+
+.ellipsis {
+  textOverflow();
+}
+
+.max-line-2 {
+  maxLine(2)
+}
+
+.max-line-3 {
+  maxLine(3)
+}
+
+
+// 自定义
+// HTML & Body reset
+#app,
+#root,
+html,
+body, {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   margin: 0;
   color: #333;
@@ -81,9 +149,25 @@ body {
   font-family: -apple-system-font, "PingFang SC", "Helvetica Neue", 'Avenir', Helvetica, Arial, sans-serif;
 }
 
+.view-scroll {
+  // 滚动不流畅，此属性可以恢复弹性滚动 http://efe.baidu.com/blog/mobile-fixed-layout
+  // 允许独立的滚动区域和触摸回弹
+  // NOTE：可能影响 Safari qq 上 header 没了
+  -webkit-overflow-scrolling: touch;
+}
+
+// FIXED: 修复部分手机浏览器 fixed 抖动问题（安卓 UC，360等，在地址栏存在时，滚动页面，则 fixed 定位元素会抖动），
+// http://www.chenyudong.com/archives/chrome-position-fixed-shake.html
+.fixed {
+  transform: translateZ(0);
+  // NOTE: fixed 布局不能有下面这个属性，会影响 fixed 正常显示
+  // transform: translate3d(0, 0, 0);
+}
+
 body.kit-app-body {
   overflow: hidden;
   min-width: initial;
+  backface-visibility: hidden; //背侧不透视
 }
 
 .page-tpl {
@@ -93,32 +177,53 @@ body.kit-app-body {
   overflow-y: scroll;
 }
 
-p {
-  margin: 0;
+.pr {
+  position relative
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  font-size: inherit;
+.flex,
+.flex-hor {
+  display flex
+}
+.flex-ver {
+  display flex
+  flex-direction column
+}
+.flex-inline {
+  display inline-flex
+}
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
-img {
-  vertical-align: middle;
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-// ul,
-// ol {
-//   margin: 0;
-//   padding: 0;
-//   list-style: none;
-// }
+// flex-direction 定义主轴方向
+// 元素的对齐方式
+// justify-content 伸缩行 主轴（横轴）方向上（控制整体内容）
+// align-content 伸缩行 侧轴方向的对齐方式
+// align-items 当前行侧轴方向的对齐方式（元素主轴方向排布，这排布的这一行元素本身有个对齐方式）
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+.flex-justify-start   { justify-content: flex-start; }
+.flex-justify-center  { justify-content: center; }
+.flex-justify-end     { justify-content: flex-end; }
+.flex-justify-between { justify-content: space-between; }
+.flex-justify-around  { justify-content: space-around; }
+
+// 请注意本属性 align-content 在只有一行的伸缩容器上没有效果。
+.flex-align-start   { align-content: flex-start; }
+.flex-align-center  { align-content: center; }
+.flex-align-end     { align-content: flex-end; }
+.flex-align-between { align-content: space-between; }
+.flex-align-around  { align-content: space-around; }
+.flex-align-stretch { align-content: stretch; }
+
+.flex-items-start   { align-items: flex-start; }
+.flex-items-center  { align-items: center; }
+.flex-items-end     { align-items: flex-end; }
+.flex-items-stretch { align-items: stretch; }
+

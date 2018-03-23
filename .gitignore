@@ -66,6 +66,9 @@ typings/
 
 .DS_Store
 .happypack
+yarn.lock
+package-lock.json
+*private*
 
 .tea
 temp/
@@ -75,5 +78,4 @@ test/unit/coverage
 test/e2e/reports
 selenium-debug.log
 lib/*
-yarn.lock
-package-lock.json
+
