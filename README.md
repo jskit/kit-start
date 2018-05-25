@@ -10,6 +10,7 @@
 ``` bash
 # install dependencies
 npm install
+
 # 推荐使用 yarn 安装
 yarn
 

@@ -8,7 +8,7 @@ const config = require('../config')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { SkeletonPlugin } = require('page-skeleton-webpack-plugin')
+// const { SkeletonPlugin } = require('page-skeleton-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 // add hot-reload related code to entry chunks
