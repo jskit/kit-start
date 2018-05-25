@@ -16,7 +16,9 @@
   window.addEventListener('load', function () {
     if ('serviceWorker' in navigator &&
       (window.location.protocol === 'https:' || isLocalhost)) {
-      navigator.serviceWorker.register('service-worker.js')
+      // serviceWorker的立即注册会block住网络请求，延迟注册
+      setTimeout(function () {
+        navigator.serviceWorker.register('sw.js')
         .then(function (registration) {
           // updatefound is fired if service-worker.js changes.
           registration.onupdatefound = function () {
@@ -50,6 +52,7 @@
         }).catch(function (e) {
           console.error('Error during service worker registration:', e);
         });
+      }, 1000)
     }
   });
 })();

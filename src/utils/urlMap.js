@@ -2,11 +2,19 @@
 // import urlParse from './url-parse/index'
 import qs from 'qs'
 import { camelCase } from './index'
+import jsReport from '@/config/js-report'
 
 // const { qs } = urlParse
 
+const { location } = window
+
 function urlParse(url) {
-  return new URL(url)
+  try {
+    return new URL(url)
+  } catch (err) {
+    jsReport('URL is not a constructor')
+  }
+  return {};
 }
 
 // // 测试URL
@@ -18,21 +26,22 @@ function urlParse(url) {
 // const h5UrlOk = 'http://10.0.255.231:8000/t.html?channel_id=huabei&d_host=alipay&topic_code=74152227bc6c29ac14ce772abab6aeda&zt_active=20180201_ea0207&spm=huabei/hbcjy227&ref=profile%3Fchannel_id%3Dh5#ali_zt'
 
 // h5
-const test11 = 'https://m.haoshiqi.net/#zt_template?topic_code=86cdc05e3067cb7bafed2daf963a22ce' // 专题
-const test12 = 'https://m.beta.haoshiqi.net/#couple_detail?pinactivitiesid=4765&sid=581&channel_id=h5&ref=portal%3F&spm=h5.10.109'
-const test13 = 'http://m.beta.haoshiqi.net/#detail?sid=113'
-const test14 = 'http://m.beta.haoshiqi.net/#merchant?merchantid=101'
+// const test11 = 'https://m.haoshiqi.net/#zt_template?topic_code=86cdc05e3067cb7bafed2daf963a22ce' // 专题
+// const test12 = 'https://m.beta.haoshiqi.net/#couple_detail?pinactivitiesid=4765&sid=581&channel_id=h5&ref=portal%3F&spm=h5.10.109'
+// const test13 = 'http://m.beta.haoshiqi.net/#detail?sid=113'
+// const test14 = 'http://m.beta.haoshiqi.net/#merchant?merchantid=101'
 
-// SCHEME
-const test21 = 'haoshiqi://com.doweidu/sku?skuId=581'
-const test22 = 'haoshiqi://com.doweidu/couplesbuydetail?pinActivityId=4751'
-const test23 = 'haoshiqi://com.doweidu/lotteryactivitylist'
-const test24 = 'haoshiqi://com.doweidu/lotteryactivitydetail?pinActivityId=9041'
-const test26 = 'haoshiqi://com.doweidu/merchant?merchantId=172'
-const test27 = 'haoshiqi://com.doweidu/couplessearch?searchTag=含乳饮品'
-const test28 = 'haoshiqi://com.doweidu/couplescategory?categoryName=含乳饮品'
-const test29 = 'haoshiqi://com.doweidu/activityshare?activityId=1'
-const test210 = 'haoshiqi://com.doweidu/couplessearch?searchTag=含乳饮品'
+// // SCHEME
+// const test21 = 'haoshiqi://com.doweidu/sku?skuId=581'
+// const test22 = 'haoshiqi://com.doweidu/couplesbuydetail?pinActivityId=4751'
+// const test23 = 'haoshiqi://com.doweidu/lotteryactivitylist'
+// const test24 = 'haoshiqi://com.doweidu/lotteryactivitydetail?pinActivityId=9041'
+// const test26 = 'haoshiqi://com.doweidu/merchant?merchantId=172'
+// const test27 = 'haoshiqi://com.doweidu/couplessearch?searchTag=含乳饮品'
+// const test28 = 'haoshiqi://com.doweidu/couplescategory?categoryName=含乳饮品'
+// const test29 = 'haoshiqi://com.doweidu/activityshare?activityId=1'
+// const test210 = 'haoshiqi://com.doweidu/couplessearch?searchTag=含乳饮品'
+// haoshiqi://hybrid?compid=haoshiqi&comppage=zl_list
 
 // urlParse(schemaUrl);
 // urlParse(h5Url);
@@ -45,42 +54,42 @@ const schemaToH5Rules = {
   merchant: {
     target: 'merchant',
     params: {
-      merchantId: 'merchantid'
-    }
+      merchantId: 'merchantid',
+    },
   },
   sku: {
     target: 'detail',
     params: {
-      skuId: 'sid'
-    }
+      skuId: 'sid',
+    },
   },
   couponskulist: {
     target: 'list',
     params: {
-      couponId: 'couponid'
-    }
+      couponId: 'couponid',
+    },
   },
   home: {
-    target: 'portal',
+    target: 'index',
   },
   category: {
     target: 'list',
     params: {
       categoryName: 'categoryname',
-      categoryId: 'categoryid'
-    }
+      categoryId: 'categoryid',
+    },
   },
   search: {
     target: 'list',
     params: {
-      searchTag: 'searchtag'
-    }
+      searchTag: 'searchtag',
+    },
   },
   activityshare: {
     target: 'share',
     params: {
-      activityid: 'activityid'
-    }
+      activityid: 'activityid',
+    },
   },
   coupleskulist: {
     target: 'couple_list',
@@ -88,90 +97,90 @@ const schemaToH5Rules = {
   couplesbuydetail: {
     target: 'couple_detail',
     params: {
-      pinActivityId: 'pinactivitiesid'
-    }
+      pinActivityId: 'pinactivitiesid',
+    },
   },
   couplesinvite: {
     target: 'couple_share',
     params: {
       orderId: 'orderId',
-      url: 'url'
-    }
+      url: 'url',
+    },
   },
   couplessearch: {
     target: 'couple_search_list',
     params: {
-      searchTag: 'search'
-    }
+      searchTag: 'search',
+    },
   },
   couplescategory: {
     target: 'couple_search_list',
     params: {
-      categoryName: 'category'
-    }
+      categoryName: 'category',
+    },
   },
   lotteryactivitylist: {
     target: 'lottery_list',
-    params: {}
+    params: {},
   },
   lotteryactivitydetail: {
     target: 'lottery_detail',
     params: {
       pinActivityId: 'pinactivitiesid',
-    }
+    },
   },
   cart: {
     target: 'shopping_cart',
-    params: {}
+    params: {},
   },
   coupon: {
     target: 'coupon',
-    params: {}
+    params: {},
   },
   refunddetail: {
     target: 'order_refund_detail',
     params: {
-      refundOrderId: 'refundid'
-    }
+      refundOrderId: 'refundid',
+    },
   },
   usercenter: {
     target: 'profile',
-    params: {}
+    params: {},
   },
   selectprovince: {
     target: 'city',
-    params: {}
+    params: {},
   },
   openim: {
     target: 'im',
     params: {
       targetId: 'accountid',
       skuId: 'sid',
-    }
+    },
   },
   inappweb: {
     target: 'iframe_page',
     params: {
-      url: 'iframe_url'
-    }
+      url: 'iframe_url',
+    },
   },
   grouppurchaserule: {
     target: 'couple_rules',
     params: {
       // url: '',
-    }
+    },
   },
   onlineservice: {
     target: 'service',
     params: {
       accountId: 'accountid',
-    }
+    },
   },
   commentlist: {
     target: 'comment_list',
     params: {
       skuId: 'sid',
-    }
+    },
   },
   assistanceorderconfirm: {
     target: 'order_commit',
@@ -181,19 +190,19 @@ const schemaToH5Rules = {
       // activityEventId: 'activityEventId',
       // orderType: 'orderType',
       // amount: 'amount',
-    }
+    },
   },
   orderdetail: {
     target: 'order_detail',
     params: {
       orderId: 'orderid',
-    }
+    },
   },
   groupcouponskulist: {
     target: 'new_product',
     params: {
       couponId: 'couponid',
-    }
+    },
   },
 }
 const h5ToTargetRules = {
@@ -201,15 +210,50 @@ const h5ToTargetRules = {
     target: 'index',
     params: {},
   },
+  city: {
+    target: 'city',
+    params: {},
+  },
+  profile: {
+    target: 'profile',
+    params: {},
+  },
+  ali_portal: {
+    target: 'ali_portal',
+    params: {},
+  },
+  ali_profile: {
+    target: 'ali_profile',
+    params: {},
+  },
   zt_template: {
     target: 'zt',
     params: {},
   },
   couple_detail: {
-    target: 'detail',
+    target: 'couple_detail',
     params: {
       pinactivitiesid: 'id',
-      // sid: 'sid', // 不必要参数
+    },
+  },
+  zl_list: {
+    target: 'zl_list',
+    params: {},
+  },
+  zl_detail: {
+    target: 'zl_detail',
+    params: {},
+  },
+  ali_zt: {
+    target: 'ali_zt',
+    params: {
+
+    },
+  },
+  ali_detail: {
+    target: 'ali_detail',
+    params: {
+      pSkuId: 'id',
     },
   },
 }
@@ -245,8 +289,8 @@ function reverseRules(rule) {
     if (hasOwnProperty.call(rule, key)) {
       const item = rule[key]
       targetRules[item.target] = {
-        na: key,
-        params: {}
+        target: key,
+        params: {},
       }
 
       for (const key2 in item.params) {
@@ -281,7 +325,8 @@ const rules = {
 // const miniSchemaType = /^(https?:)?\/\//i
 const miniUrlType = /&page=pages\//i
 const schemaType = /^haoshiqi:\/\/com.doweidu\//i
-const hybridType = /^haoshiqi:\/\/hybrid\//i
+const schemaAlipay = /^alipays:\/\/platformapi\/startapp/i
+const hybridType = /^haoshiqi:\/\/hybrid\?compid=haoshiqi&comppage=/i
 // const hsqH5Type = /^(https?:)?\/\//i
 const h5Type = /^(https?:)?\/\//i
 const h5New = /^\/[a-z]+/i
@@ -292,11 +337,12 @@ export function getUrlType(url) {
   if (h5Type.test(url)) return 'h5'  // 暂时笼统判断都是hsq Url
   if (miniUrlType.test(url)) return 'mini'
   if (url.indexOf('/') === -1) return 'target'
+  if (schemaAlipay.test(url)) return 'schemaAlipay'
   // if (miniUrlType.test(url)) return 'new'
   return 'other'
 }
 
-function queryMap(params = {}, target = {}) {
+export function queryMap(params = {}, target = {}) {
   for (const key in params) {
     if (target[key]) {
       params[target[key]] = params[key]
@@ -308,32 +354,61 @@ function queryMap(params = {}, target = {}) {
   return params
 }
 
+export function getParams(nextUrl = '', targetUrl) {
+  const url1 = !nextUrl ? {} : hashUrl(nextUrl)
+  const url2 = typeof targetUrl === 'undefined' ? hashUrl(location.href) : {}
+  return { ...url2.query, ...url1.query }
+}
+
+export function hashUrl(url) {
+  if (!url) return {}
+  let localUrl = {}
+  if (url.indexOf('/') === -1) {
+    localUrl = {
+      hash: url,
+    }
+  } else {
+    localUrl = urlParse(url)
+  }
+
+  let {
+    hash = '',
+    pathname = '/',
+    search = '',
+  } = localUrl
+  if (pathname.indexOf('/') === 0) {
+    pathname = pathname.substr(1)
+  }
+  // 兼容 query 前的 hash
+  const tempHash = hash.split('?')
+  hash = tempHash[0].replace('#', '')
+  const tempQuery = tempHash[1] || ''
+  const query = Object.assign({}, qs.parse(tempQuery), qs.parse(search.replace('?', '')))
+  return {
+    pathname,
+    hash,
+    query,
+  }
+}
+
 function getTargetUrl(url = '', targetType = 'target') {
   // url = test11;
   // url = test12;
   // url = test22;
 
-  // 获取小程序url，直接拼好参数
+  // 获取url，直接拼好参数
   const urlType = getUrlType(url)
-  const localUrl = urlParse(url)
+
   const targetRules = rules[camelCase(`${urlType}-to-${targetType}-rules`)]
-  console.log(targetRules)
-  if (!targetRules) {
+  if (!targetRules && urlType !== 'schemaAlipay') {
     console.error(`不存在rules ${targetRules}`)
-    return {}
   }
+  /* eslint prefer-const: 0 */
   let {
     hash = '',
-    pathname = '/',
+    pathname = '',
     query = '',
-  } = localUrl
-  pathname = pathname.substr(1)
-  // 兼容 query 前的 hash
-  const tempHash = hash.split('?')
-  hash = tempHash[0].replace('#', '')
-  const tempQuery = tempHash[1] || ''
-  console.log(query)
-  query = Object.assign({}, qs.parse(tempQuery), qs.parse(query))
+  } = hashUrl(url)
   let path
   let pageMap = {}
   switch (urlType) {
@@ -344,24 +419,27 @@ function getTargetUrl(url = '', targetType = 'target') {
       query = queryMap(query, pageMap.params)
       break
     case 'h5':
-      path = hash || 'portal'
+      path = hash || 'index'
       pageMap = targetRules[path] || {}
       query = queryMap(query, pageMap.params)
       break
     case 'target':
       // 跳转新版页面，但此页面还不存在
       path = hash || 'index'
-      return {
-        query,
-        page: hash || 'index',
-      }
+      pageMap = targetRules[path] || {}
+      query = queryMap(query, pageMap.params)
+      break;
     case 'mini':
     case 'hybrid':
+    case 'schemaAlipay':
       break
     default:
       // do nothing...
   }
-  if (!pageMap.target) console.log(`targetUrl 不存在: ${url}`)
+  if (!pageMap.target) {
+    console.log(`urlMap 不存在: ${url}`)
+    location.href = url
+  }
   return {
     query,
     page: pageMap.target,

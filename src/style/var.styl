@@ -1,7 +1,41 @@
 
 @import './function';
 
-$rgb237 = rgb(237, 0, 0);
+// 尽量使用十六进制颜色，更一致、性能优于rgb
+// http://prd.devnode.cn/设计资源/设计规范/01标准色.png
+
+// important
+// 强调色 价格、按钮背景色、特别强调的文字
+$rgb237 = #ed0000; // rgb(237, 0, 0);
+// 主题色 icon、tab等
+$rgb253 = #fdf187; // rgb(253, 241, 135);
+// 黄色背景按钮文字 logo文字
+$rgb145 = #914e07; // rgb(145, 78, 7);
+
+// 灰度色值
+// 重要 商品标题
+$rgb33  = #212121; // rgb(33, 33, 33);
+// 辅助 描述、商品评论
+$rgb102 = #666666; // rgb(102, 102, 102);
+// 弱化 原价、查看更多
+$rgb153 = #999999; // rgb(153, 153, 153);
+// 边框色 分割线、按钮禁用状态
+$rgb226 = #e2e2e2; // rgb(226, 226, 226);
+// 背景色
+$rgb250 = #fafaf8; // rgb(250, 250, 248);
+
+// 超链接
+$link = rgb(0, 122, 255); // #007aff
+
+// global
+$color-link  = $link;
+$color-body  = $rgb33;
+$color-title = $rgb33;
+$color-text  = $rgb102;
+$color-bg    = $rgb250;
+$color-border = $rgb226
+$color-price = $rgb237;
+
+
+// index
 $rgb234 = rgb(234, 89, 76);
-$rgb153 = rgb(153, 153, 153);
-$rgb226 = rgb(226, 226, 226);

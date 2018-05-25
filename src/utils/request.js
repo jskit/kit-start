@@ -1,8 +1,9 @@
 // 此文件建议跟着项目走，可随时变更修改、扩展定制
 
+// 低版本浏览器需要，如IE
 // require('es6-promise').polyfill()
 // import Promise from 'bluebird'
-import fetch from 'dva/fetch'
+import fetch from 'kit-request/fetch'
 import { stringify } from 'qs'
 import mini from './mini'
 // Toast
@@ -127,13 +128,14 @@ export default function request(url, options = {}, success = noop, fail = noop) 
       // mini.goPage('login')
     } else {
       const message = `${errno}: ${errmsg}`
-      mini.showToast(message)
       console.log('errmsg:', message)
+      mini.showToast(message)
     }
   }
 
   function log(res) {
-    console.log(`请求 ${url} ${res.status}`)
+    // console.log('44444444');
+    console.log(`api: ${method} ${res.status} ${url}`)
     return res
   }
 

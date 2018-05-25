@@ -20,7 +20,8 @@ const webpackConfig = isTesting
   : require('./webpack.dev.conf')
 
 // default port where dev server listens for incoming traffic
-const port = process.env.PORT || config.dev.port
+const host = config.dev.host
+const port = config.dev.port
 // automatically open browser, if not set will be false
 const autoOpenBrowser = !!config.dev.autoOpenBrowser
 // Define HTTP proxies to your custom API backend
@@ -70,8 +71,7 @@ const staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.asset
 // 建立静态文件服务
 app.use(staticPath, express.static('./static'))
 
-const uri = 'http://localhost:' + port
-
+const uri = `http://${host}:${port}/`
 let _resolve
 const readyPromise = new Promise(resolve => {
   _resolve = resolve
@@ -82,7 +82,7 @@ devMiddleware.waitUntilValid(() => {
   console.log('> Listening at ' + uri + '\n')
   // when env is testing, don't need open it
   if (autoOpenBrowser && !isTesting) {
-    opn(`${uri}/new.html`)
+    opn(`${uri}`)
   }
   _resolve()
 })

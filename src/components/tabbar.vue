@@ -1,83 +1,129 @@
 <template>
-  <div class="vue-tabbar" :class="{ 'is-fixed': fixed }">
-    <slot></slot>
-  </div>
+  <vue-tabbar
+    class="tabbar"
+    fixed
+    @tab-click="handleTabClick"
+    :value="value"
+    >
+    <vue-tab-item
+      v-for="(item, index) in tabBar"
+      :key="item.id"
+      :data-index="index"
+      :data-link="item.link"
+      :id="item.id"
+    >
+      <vue-icon slot="icon" :type="item.icon"></vue-icon>
+      {{ item.text }}
+    </vue-tab-item>
+  </vue-tabbar>
 </template>
 
 <script>
-/**
- * tabbar
- * @module components/tabbar
- * @desc 底部 tab，依赖 tab-item
- * @param {boolean} [fixed = false] - 固定底部
- * @param {*} value - 返回 item component 传入的 id
- *
- * @example
- * <vue-tabbar v-model="selected" @click="handleClick">
- *   <vue-tab-item id="订单">
- *     <img slot="icon" src="http://placehold.it/100x100">
- *     <span slot="label">订单</span>
- *   </vue-tab-item>
- * </vue-tabbar>
- *
- * <vue-tabbar v-model="selected" fixed>
- *   <vue-tab-item :id="['传入数组', '也是可以的']">
- *     <img slot="icon" src="http://placehold.it/100x100">
- *     <span slot="label">订单</span>
- *   </vue-tab-item>
- * </vue-tabbar>
- */
+import device from '@/utils/device'
+import icon from '@/ui/icon'
+import tabBar from '@/ui/tabbar'
+import tabItem from '@/ui/tab-item'
+
+const tabBarData = device.alipay ? [
+  {
+    id: 'index', // page
+    icon: 'home',
+    text: '首页',
+    link: 'ali_portal',
+  },
+  {
+    id: 'community',
+    icon: 'community',
+    text: '圈子',
+    link: 'alipays://platformapi/startapp?appId=20000943&path=homepage&groupId=027be25993b141474225295709100000&sourceId=referLink',
+  },
+  {
+    id: 'profile',
+    icon: 'mine',
+    text: '我的订单',
+    link: 'ali_profile',
+  },
+] : [
+  {
+    id: 'index',
+    icon: 'home',
+    text: '超值特卖',
+  },
+  {
+    id: 'new_product',
+    icon: 'todaynew',
+    text: '今日新品',
+  },
+  // {
+  //   id: 'wholesale',
+  //   icon: 'goods',
+  //   text: '批发',
+  // },
+  {
+    id: 'sort_search',
+    icon: 'sort',
+    text: '分类',
+  },
+  {
+    id: 'profile',
+    icon: 'mine',
+    text: '我的',
+  },
+]
+
 export default {
-  name: 'vue-tabbar',
+  name: 'my-tabbar',
+
+  components: {
+    [icon.name]: icon,
+    [tabBar.name]: tabBar,
+    [tabItem.name]: tabItem,
+  },
 
   props: {
-    fixed: Boolean,
-    value: {}
+    value: String,
+  },
+
+  data() {
+    return {
+      tabBar: tabBarData,
+    }
+  },
+
+  created() {
+  },
+
+  mounted() {
   },
 
   methods: {
-    handleClick(tab, event) {
-      console.log(tab, event)
-    }
+    handleTabClick(...rest) {
+      // console.log(rest)
+      const [id, e] = rest
+      if (id === this.value) return
+
+      const { link } = e.currentTarget.dataset
+      switch (id) {
+        case 'index':
+        case 'profile':
+        case 'community':
+          this.$forward(link || id)
+          break
+        case 'new_product':
+        case 'sort_search':
+        case 'wholesale':
+          this.$goH5Url(id)
+          break
+        default:
+          // do nothing
+          console.log('nothing')
+      }
+    },
   },
 }
 </script>
 
 <style lang="stylus" scoped>
-$color-grey = #d9d9d9;
+@import '../style/var';
 
-.vue-tabbar {
-  height 48px
-  // background-image:linear-gradient(180deg, $color-grey, $color-grey 50%, transparent 50%);
-  border-top: 1px solid #e2e2e2;
-  background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: top left;
-  position: relative;
-  background-color: #fff;
-  display: flex;
-  // TODO: 不能用*，什么问题？
-  // position: absolute * 0 0 0;
-  position: absolute 0 0 0 0;
-  top: auto;
-  text-align: center;
-
-  &.is-fixed {
-    position: fixed 0 0 0 0;
-    top: auto;
-    z-index: 1;
-  }
-
-  > .vue-tab-item.is-selected {
-    // background-color: #eaeaea;
-    // color: #26a2ff;
-  }
-
-  .item-icon {
-    color: #dbdbdb;
-  }
-  .is-selected .item-icon {
-    color: #fdf187;
-  }
-}
 </style>

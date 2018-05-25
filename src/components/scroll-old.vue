@@ -46,7 +46,7 @@ export default {
       // console.log(1111)
       // this.loading = true
       this.$emit('scrolltolower')
-    }
+    },
   },
 
   mounted() {

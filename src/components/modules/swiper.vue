@@ -1,18 +1,22 @@
 <template>
   <vue-tpl
-  v-if="$props.data.list.length"
-  :data-type="$props.data.type"
+  v-if="data.list.length"
+  :data-type="data.type"
   :ratio="ratio"
   >
     <section class="swiper-wrapper">
-      <mt-swipe :auto="4000">
+      <mt-swipe :auto="4000" :show-indicators="data.list.length > 1">
         <mt-swipe-item
-        v-for="(item, index) in $props.data.list"
+        v-for="(item, index) in data.list"
         :key="index"
         :data-link="item.link"
-        @click="$goLink($event)"
+        :data-log="`{banner: {index: ${index}}}`"
+        @click.native="$goLink($event)"
         >
-          <img class="image" v-lazy="item.image.url" :preload="item.image.h/item.image.w" />
+          <img
+          class="image"
+          v-lazy="item.image.url"
+          :preload="item.image.h/item.image.w" />
         </mt-swipe-item>
       </mt-swipe>
     </section>
@@ -63,23 +67,28 @@ export default {
 
   computed: {
     ratio() {
-      const { width, height = 0 } = this.$props.data
+      const { width, height = 0 } = this.data
       return width ? height / width : 0
     },
   },
 
   created() {
-    // console.log(this.data)
+
   },
 
   mounted() {
     // console.log(this.data)
   },
 
+  methods: {
+  },
+
 }
 </script>
 
 <style lang="stylus" scope>
+@import '../../style/var';
+
 .swiper-wrapper {
   .mint-swipe {
     size: 100%;

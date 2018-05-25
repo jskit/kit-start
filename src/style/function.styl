@@ -29,7 +29,16 @@ textOverflow() {
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
+  max-width: 100%;
 }
+
+// FIXED: 打包后，-webkit-box-orient: vertical; 丢失问题？
+// 参考 https://github.com/postcss/autoprefixer/issues/776
+// 可以在browserslist 添加一个很老的浏览器，如Safari 6，这个方法太简单暴力
+// 推荐如下解决，但这里没起作用，最终在browserslist添加 Android >= 4 解决
+// /*! autoprefixer: off */
+// -webkit-box-orient: vertical;
+// /* autoprefixer: on */
 
 // Line clamp
 // http://dropshado.ws/post/1015351370/webkit-line-clamp

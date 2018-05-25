@@ -6,7 +6,7 @@ export default {
   lazyComponent: true,
   preLoad: 1.3,
   error: imgError,
-  loading: imgLoading,
+  // loading: imgLoading,
   attempt: 1,
   // the default is ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend']
   // listenEvents: [ 'scroll' ],

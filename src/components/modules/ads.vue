@@ -5,12 +5,12 @@
   :ratio="ratio"
   >
     <section class="vue-ads">
-      <mt-swipe :auto="4000">
+      <mt-swipe :auto="7000" :show-indicators="$props.data.list.length > 1">
         <mt-swipe-item
         v-for="(item, index) in $props.data.list"
         :key="index"
         :data-link="item.link"
-        @click="$goLink($event)"
+        @click.native="$goLink($event)"
         >
           <img class="image" v-lazy="item.image.url" :preload="item.image.h/item.image.w" />
         </mt-swipe-item>
@@ -72,15 +72,18 @@ export default {
     // console.log(this.data)
   },
 
-  mounted() {
-    // console.log(this.data)
+  methods: {
   },
-
 }
 </script>
 
 <style lang="stylus" scope>
+@import '../../style/var';
+
 .vue-ads {
+  .mint-swipe-indicators {
+    bottom: 6px;
+  }
   .mint-swipe {
     size: 100%;
     .image {

@@ -1,8 +1,11 @@
 
 @import './var';
+@import './normalize';
 @import './animate';
 
 // noremalize.css 之上的一些重置样式
+
+// NOTE: 注意在main.js 中引入的话，postcss的应用不是很好 如short-posscss
 
 // http://stackoverflow.com/a/13611748/3040605
 // 设置数字的字体
@@ -126,6 +129,67 @@ a {
   maxLine(3)
 }
 
+.line1px{
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    z-index: 2;
+    display: block;
+    overflow: hidden;
+    // width: 100%;
+    background-color: $color-border;
+    transform-origin: center;
+    transform: scaleY(0.5);
+  }
+
+  &.bottom {
+    &:after {
+      height: 1px;
+      position: absolute auto 0 0 0;
+      transform: scaleY(0.5);
+    }
+  }
+  &.top {
+    &:after {
+      height: 1px;
+      position: absolute 0 0 auto 0;
+      transform: scaleY(0.5);
+    }
+  }
+  &.left {
+    &:after {
+      width: 1px;
+      position: absolute 0 auto 0 0;
+      transform: scaleX(0.5);
+    }
+  }
+  &.right {
+    &:after {
+      width: 1px;
+      position: absolute 0 0 0 auto;
+      transform: scaleX(0.5);
+    }
+  }
+}
+
+// .vline1px{
+//   position: relative;
+//   &:after{
+//     content: '';
+//     position: absolute;
+//     display: inline-block;
+//     top: 50%;
+//     right: 0;
+//     margin-top: fontsize(-8);
+//     height: fontsize(16);
+//     width: 1px;
+//     background: #e2e2e2;
+//     transform: scaleX(0.5);
+//     transform-origin: 100% 0;
+//   }
+// }
+
 
 // 自定义
 // HTML & Body reset
@@ -139,11 +203,11 @@ body, {
 
 body {
   margin: 0;
-  color: #333;
+  color: $color-body;
   font-size: 16px;
   width: 100%;
   overflow-x: hidden;
-  background-color: #f8f8f8;
+  background-color: $color-bg;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: -apple-system-font, "PingFang SC", "Helvetica Neue", 'Avenir', Helvetica, Arial, sans-serif;
@@ -158,7 +222,11 @@ body {
 
 // FIXED: 修复部分手机浏览器 fixed 抖动问题（安卓 UC，360等，在地址栏存在时，滚动页面，则 fixed 定位元素会抖动），
 // http://www.chenyudong.com/archives/chrome-position-fixed-shake.html
-.fixed {
+.fixed,
+.is-fixed {
+  position: fixed 0 0 auto 0;
+  z-index: 10;
+  width: 100;
   transform: translateZ(0);
   // NOTE: fixed 布局不能有下面这个属性，会影响 fixed 正常显示
   // transform: translate3d(0, 0, 0);
@@ -181,19 +249,28 @@ body.kit-app-body {
   position relative
 }
 
-.flex,
-.flex-hor {
-  display flex
-}
-.flex-ver {
-  display flex
-  flex-direction column
-}
+
+// flex：定义布局为盒模型
+// flex-v：盒模型垂直布局
+// flex-1：子元素占据剩余的空间
+// flex-align-center：子元素垂直居中
+// flex-pack-center：子元素水平居中
+// flex-pack-justify：子元素两端对齐
+.flex { display: flex; }
+.flex-v { display: flex; flex-direction: column; }
+.flex-1 { flex: 1; }
 .flex-inline {
-  display inline-flex
+  flex: 1;
+  display: inline-flex;
 }
 .flex-wrap {
   flex-wrap: wrap;
+}
+.flex-shrink {
+  flex-shrink 0
+}
+.flex-grow {
+  flex-shrink 0
 }
 
 .flex-center {
@@ -201,13 +278,21 @@ body.kit-app-body {
   justify-content: center;
   align-items: center;
 }
-
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 // flex-direction 定义主轴方向
 // 元素的对齐方式
 // justify-content 伸缩行 主轴（横轴）方向上（控制整体内容）
 // align-content 伸缩行 侧轴方向的对齐方式
 // align-items 当前行侧轴方向的对齐方式（元素主轴方向排布，这排布的这一行元素本身有个对齐方式）
-
 .flex-justify-start   { justify-content: flex-start; }
 .flex-justify-center  { justify-content: center; }
 .flex-justify-end     { justify-content: flex-end; }

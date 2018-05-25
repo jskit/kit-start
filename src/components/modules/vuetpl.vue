@@ -43,10 +43,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '../../style/var';
+
 .vue-tpl-wrapper {
-  position relative
-  height 0
-  overflow hidden
+  position: relative;
+  height: 0;
+  overflow: hidden;
   // background-size: 100% auto;
   background-size: cover;
   background-position: top center;
@@ -55,8 +57,9 @@ export default {
 
   &>.vue-tpl-inner,
   &>section {
-    position absolute 0 0 0 0;
-    height 100%;
+    position: absolute 0 0 0 0;
+    // height: 100%;
+    overflow: hidden;
   }
 }
 </style>

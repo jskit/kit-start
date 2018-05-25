@@ -14,8 +14,11 @@ import swiper from './swiper'
 import category from './category'
 import ads from './ads'
 import adsTofu from './ads-tofu'
+import cTofu from './c-tofu'
+import cLabels from './c-labels'
 import adsActivity from './ads-activity'
 import recActivity from './rec-activity'
+import recPoint from './rec-point'
 import titleBar from './title-bar'
 
 const tpls = {
@@ -23,8 +26,11 @@ const tpls = {
   sub_button: category,
   ads,
   ads_tofu: adsTofu,
+  'c-tofu': cTofu,
+  'c-labels': cLabels,
   ads_activity: adsActivity,
   rec_pin_activites: recActivity,
+  rec_point_sku: recPoint,
   title_bar: titleBar,
   // ads_vertical: adsVertical,
 }
@@ -106,6 +112,5 @@ export default {
 </script>
 
 <style lang="stylus" scope>
-
 
 </style>

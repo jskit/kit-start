@@ -64,9 +64,7 @@ export default {
   },
 
   filters: {
-    ratio(value) {
-      return value.length > 1 ? 1 / value : 1
-    },
+
   },
 
   computed: {
@@ -74,27 +72,27 @@ export default {
       const { width, height = 0 } = this.$props.data
       return width ? height / width : 0
     },
-  }
+  },
 }
 </script>
 
 
 <style lang="stylus" scoped>
-$border-color = #ddd;
+@import '../../style/var';
 
 .vue-ads-tofu {
   overflow hidden
 
   .ads-tofu-inner {
     margin-top -1px
-    border-top 1px solid $border-color
+    border-top 1px solid $color-border
     float left
     width 50%
     padding-top 50%;
     background #fff
 
     &:nth-of-type(2n+1) {
-      border-right 1px solid $border-color
+      border-right 1px solid $color-border
     }
 
     .item {
@@ -108,7 +106,7 @@ $border-color = #ddd;
         height 50%
       }
       &.item-idx-0.item-len-2 {
-        border-bottom 1px solid $border-color
+        border-bottom 1px solid $color-border
       }
       &.hor.item-len-2 {
         width 50%
@@ -116,7 +114,7 @@ $border-color = #ddd;
       }
       &.hor.item-idx-0.item-len-2 {
         border-bottom none
-        border-right 1px solid $border-color
+        border-right 1px solid $color-border
       }
     }
 

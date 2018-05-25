@@ -64,13 +64,13 @@ export default {
       const { width, height = 0 } = this.$props.data
       return width ? height / width : 0
     },
-  }
+  },
 }
 </script>
 
 
 <style lang="stylus" scoped>
-$border-color = #ddd;
+@import '../../style/var';
 
 .vue-ads-tofu {
   .item {
@@ -78,10 +78,10 @@ $border-color = #ddd;
     width 50%
     background #fff
 
-    &.item0 {height: 100%; border-right: 1px solid $border-color; }
+    &.item0 {height: 100%; border-right: 1px solid $color-border; }
     &.item1,
     &.item2 {height: 50%; }
-    &.item1 {height: 50%; border-bottom: 1px solid $border-color; }
+    &.item1 {height: 50%; border-bottom: 1px solid $color-border; }
 
     .image {
       width 100%

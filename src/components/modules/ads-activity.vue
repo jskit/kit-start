@@ -85,22 +85,24 @@ export default {
 </script>
 
 <style lang="stylus" scope>
+@import '../../style/var';
+
 .vue-activity {
   .item {
-    background #fff
+    background: #fff;
 
     & + .item {
-      margin-top 5px
+      margin-top: 5px;
     }
   }
 
   .text {
     padding: 8px 10px 12px 16px;
-    font-size 15px
+    font-size: 15px;
   }
 
   .image {
-    width 100%
+    width: 100%;
   }
 }
 </style>

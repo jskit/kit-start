@@ -7,8 +7,11 @@ module.exports = {
     "sourceType": "module"
   },
   "extends": [
+    // "webpack",
     "airbnb-base",
-    // "vue"
+    // 'airbnb',
+    // 'prettier',
+    // "vue",
     // "eslint-config-vue": "^2.0.2",
     // "plugin:vue-libs/recommended",
   ],
@@ -24,6 +27,7 @@ module.exports = {
     "node": true,
     "es6": true,
   },
+  // true代表允许重写、false代表不允许重写
   "globals": {
     "window": false,
     "expect": true,
@@ -31,10 +35,12 @@ module.exports = {
     "Blob": false,
     "URL": false,
     "isNaN": false,
-    "__DEV__": false,
-    "__PROD__": false,
-    "__TEST__": false,
-    "__WEEX__": true
+    "__DEV__": true,
+    "__PROD__": true,
+    "__TEST__": true,
+    "__ADMIN__": false,
+    "__APP__": false,
+    "__WEEX__": false,
   },
 
   // check if imports actually resolve
@@ -62,8 +68,13 @@ module.exports = {
     }],
     "arrow-body-style": [0],
     "class-methods-use-this": [0],
-    // "comma-dangle": ["error", "always-multiline"],
-    "comma-dangle": [0],
+    'comma-dangle': ['error', {
+      arrays: 'always-multiline',
+      objects: 'always-multiline',
+      imports: 'always-multiline',
+      exports: 'always-multiline',
+      functions: 'ignore',
+    }],
     "consistent-return": [0],
     "generator-star-spacing": [0],
     "global-require": [0],
@@ -132,7 +143,7 @@ module.exports = {
       "avoidEscape": true,
       "allowTemplateLiterals": true,
     }],
-    "require-yield": 1,
+    "require-yield": [1],
     "semi": [0, "never"],
     "space-before-function-paren": ["error", {
       "anonymous": "always",

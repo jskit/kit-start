@@ -1,13 +1,13 @@
 <template>
   <vue-tpl
-  v-if="$props.data.list.length"
-  :data-type="$props.data.type"
+  v-if="data.list.length"
+  :data-type="data.type"
   :ratio="ratio"
   >
     <section class="vue-title-bar">
       <div
       class="item"
-      v-for="(item, index) in $props.data.list"
+      v-for="(item, index) in data.list"
       :key="index"
       >
         <img class="image" width="100%" v-lazy="item.image.url" :preload="item.image.h/item.image.w" />
@@ -56,16 +56,18 @@ export default {
 
   computed: {
     ratio() {
-      const { width, height = 0 } = this.$props.data
+      const { width, height = 0 } = this.data
       return width ? height / width : 0
     },
-  }
+  },
 }
 </script>
 
 
 <style lang="stylus" scoped>
-.vue-xxx {
+@import '../../style/var';
 
+.vue-title-bar {
+  border-bottom: 1px solid $color-border;
 }
 </style>

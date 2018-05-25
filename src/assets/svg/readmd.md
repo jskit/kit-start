@@ -11,15 +11,18 @@
 
 ## 图标名称
 
-- home 首页
-- todaynew 今日新品
-- goods 批发
-- sort 分类
-- mine 我的
-- profile 个人中心
-- unpaid 代付款
-- delivery 待收货
-- comment 待评价
-- refund 售后
 - cart 购物车
+- comment 待评价
+- community 圈子
+- delivery 待收货
+- goods 批发
+- home 首页
+- link 外链
+- message 客服消息
+- mine 我的 profile 个人中心
+- refund 售后
+- search 搜索
 - service 客服
+- sort 分类
+- todaynew 今日新品
+- unpaid 代付款

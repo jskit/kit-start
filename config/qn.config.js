@@ -1,7 +1,7 @@
 'use strict'
 
 // AccessKey/SecretKey
-const config = require('./qn.private').hsq
+const config = require('./qn.private').hsq || {}
 
 const curASKey = {}
 

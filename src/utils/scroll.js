@@ -4,8 +4,8 @@ const isServer = false
 
 // [debounce 和 throttle](https://www.cnblogs.com/wilber2013/p/5893426.html)
 
-const docE = document.documentElement
-const docBody = document.body
+// const docE = document.documentElement
+// const docBody = document.body
 
 /**
  * 触发高度
@@ -20,23 +20,23 @@ export default {
    *
    * @returns object
    */
-  getPageScrollPos(a = docE, b = docBody) {
-    const top = Math.max(a.scrollTop, b.scrollTop)
-    const left = Math.max(a.scrollLeft, b.scrollLeft)
-    const width = Math.min(a.clientWidth, b.clientWidth)
-    const height = Math.min(a.clientHeight, b.clientHeight)
-    const pageWidth = Math.max(a.scrollWidth, b.scrollWidth)
-    const pageHeight = Math.max(a.scrollHeight, b.scrollHeight)
+  // getPageScrollPos(a = docE, b = docBody) {
+  //   const top = Math.max(a.scrollTop, b.scrollTop)
+  //   const left = Math.max(a.scrollLeft, b.scrollLeft)
+  //   const width = Math.min(a.clientWidth, b.clientWidth)
+  //   const height = Math.min(a.clientHeight, b.clientHeight)
+  //   const pageWidth = Math.max(a.scrollWidth, b.scrollWidth)
+  //   const pageHeight = Math.max(a.scrollHeight, b.scrollHeight)
 
-    return {
-      top,
-      left,
-      height,
-      width,
-      pageWidth,
-      pageHeight,
-    }
-  },
+  //   return {
+  //     top,
+  //     left,
+  //     height,
+  //     width,
+  //     pageWidth,
+  //     pageHeight,
+  //   }
+  // },
   /* 找到最近的触发滚动事件的元素
    * @param {Element} element
    * @param {Element} rootElement
@@ -95,5 +95,5 @@ export default {
     return element === window ? element.innerHeight : element.getBoundingClientRect().height
   },
 
-  getComputedStyle: !isServer && document.defaultView.getComputedStyle.bind(document.defaultView)
+  getComputedStyle: !isServer && document.defaultView.getComputedStyle.bind(document.defaultView),
 }

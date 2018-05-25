@@ -9,19 +9,23 @@
       <div class="image">
         <img class="img" v-lazy="data.image" preload="1" />
         <img class="icon" v-if="data.icon" v-lazy="data.icon" />
+        <div class="img-badge soldout" v-if="data.soldout" />
       </div>
       <div class="cd-times" v-if="data.countdown">{{ data.countdown }}</div>
     </div>
-    <div class="info flex-ver">
+    <div class="info">
       <div class="intro">
         <h4 class="title max-line-2"><span class="tag"></span>{{ data.title }}</h4>
       </div>
       <div class="extend">
-        <!-- <span class="tags" v-if="data.tags && data.tags[0].text">{{data.tags[0].text}}</span> -->
-        <vue-price :data="data.price" :size="16" style="color: rgb(237, 0, 0)"></vue-price>
-        <del class="del-price">¥{{ data.marketPrice | formatDel }}</del>
+        <span class="tags"
+        v-if="data.tags && data.tags.text"
+        :style="{ backgroundColor: data.tags.background }"
+        >{{data.tags.text}}</span>
+        <vue-price :price="data.price" :size="16" style="color: rgb(237, 0, 0)"></vue-price>
+        <del class="del-price">{{ data.marketPrice | formatDel }}</del>
       </div>
-      <slot></slot>
+      <p v-if="data.isShowDelivery" class="tip">该地区不支持配送</p>
     </div>
   </div>
 </template>
@@ -43,8 +47,8 @@ export default {
   methods: {
     goNext(e) {
       const { id } = e.currentTarget.dataset
-      debugger
-      this.forward('detail', { id })
+      // debugger
+      this.$forward('couple_detail', { id })
     },
   },
 
@@ -57,7 +61,8 @@ export default {
 .item {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   flex-shrink: 0;
   // 此处使用border-bottom实现，渲染时部分边线不显示
@@ -74,9 +79,9 @@ export default {
     border-right: 1px solid #fff;
   }
 
-  .flex-ver {
-    justify-content: space-between;
-  }
+  // .flex-v {
+  //   justify-content: space-between;
+  // }
 
   .media {
     position: relative;
@@ -111,34 +116,50 @@ export default {
 
   .info {
     width: 100%;
-    // margin-top -8px
     padding: 8px 16px 4px;
+    // margin-top -8px
     flex-shrink: 1;
     flex-grow: 1;
-    min-height: 60px
+    min-height: 60px;
+  }
+
+  .intro {
+    min-height: 36px;
   }
 
   .title {
-    margin-bottom: 8px;
-    font-weight: 400
-    line-height: 20px
-    font-size: 14px
+    margin-bottom: 4px;
+    line-height: 18px
+    max-height: 36px;
+    font-weight: 400;
+    font-size: 12px;
   }
 
   .tags {
-    height: 18px;
+    position: relative;
+    top: -2px;
+    min-width: 36px;
+    height: 16px;
+    line-height: 16px;
     background: $rgb237
-    color: #fff;
     padding: 0px 4px;
-    border-radius 2px
+    border-radius: 4px
     margin-right: 4px;
     white-space: nowrap;
-    display inline-flex
+    display inline-block;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+  }
+
+  .del-price {
+    margin-left: 4px;
   }
 
   .tip {
-    line-height 1
-    color: $rgb237
+    align-self: flex-start;
+    // line-height 1
+    color: $rgb237;
   }
 }
 

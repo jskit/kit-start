@@ -1,5 +1,5 @@
 // https://github.com/michael-ciniawsky/postcss-load-config
-var colourPalette = require('colour-palette')
+// var colourPalette = require('colour-palette')
 
 module.exports = (ctx) => ({
   // parser: false,
@@ -7,9 +7,11 @@ module.exports = (ctx) => ({
   "plugins": {
     // to edit target browsers: use "browserlist" field in package.json
     // "autoprefixer": {},
-    "postcss-cssnext": {}, // 已包含 autoprefixer
-    // position: absolute 0 * 0 0
-    // "postcss-short-position": {},
+    // 已包含 autoprefixer
+    "postcss-cssnext": {},
+    // TODO: styl 文件放到.vue 文件中引用，不然 position: fixed auto 0 0 0; 不起效
+    // 目前 position: absolute 0 * 0 0 仍然报错
+    "postcss-short-position": {},
     "postcss-normalize-positions": {}, // background-position: bottom right
     "postcss-size": {},
     "postcss-pxtorem": {
@@ -34,12 +36,12 @@ module.exports = (ctx) => ({
     //   orange : '#f56a00',
     //   yellow : '#ffbf00',
     // }
-    "postcss-functions": {
-      functions: {
-        colorIndex: function(color, index) {
-          return colourPalette(color, index)
-        },
-      }
-    },
+    // "postcss-functions": {
+    //   functions: {
+    //     colorIndex: function(color, index) {
+    //       return colourPalette(color, index)
+    //     },
+    //   }
+    // },
   }
 })

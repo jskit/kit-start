@@ -7,14 +7,21 @@ const webpack = require('webpack')
 const config = require('../config')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
+// const CleanPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const HtmlWebpackPluginInject = require('html-webpack-inject-attributes-plugin')
+// const { SkeletonPlugin } = require('page-skeleton-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const OfflinePlugin = require('offline-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const QiniuPlugin = require('qiniu-webpack-plugin')
 // const QiniuCdnPlugin = require('qiniu-cdn-webpack-plugin')
+// const vConsolePlugin = require('./plugins/vconsole-webpack-plugin')
+const PreloadWebpackPlugin = require('preload-webpack-plugin')
+const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
 const loadMinified = require('./load-minified')
 
 const isTesting = config.env['__TEST__']
@@ -38,6 +45,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
+    // new CleanPlugin(`${config.path.dist}`),
     // 注入变量 base 中统一处理 webpack.DefinePlugin
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     // new webpack.DefinePlugin({
@@ -55,8 +63,17 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     // 也可以使用这个
     // new webpack.optimize.UglifyJsPlugin({
+    //   output: {
+    //     // false 是去掉注释
+    //     comments: false,
+    //   },
     //   compress: {
-    //     warnings: false
+    //     // 忽略警告,要不然会有一大堆的黄色字体出现...
+    //     warnings: false,
+    //   },
+    //   mangle: {
+    //    // 排除不想要压缩的对象名称
+    //    // except: ['$super', '$', 'exports', 'require', 'module', '_']
     //   },
     //   sourceMap: config.build.productionSourceMap,
     // }),
@@ -81,34 +98,75 @@ const webpackConfig = merge(baseWebpackConfig, {
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
+    // https://github.com/blade254353074/multi-vue
+    // 多个 HTML 就配置多个 HtmlWebpackPlugin
     // 如果同时引入了html-loader和html-webpack-plugin，两个插件都设置了minify属性，则会编译生成时报错
     new HtmlWebpackPlugin({
       filename: isTesting
         ? 'index.html'
-        : config.build.index,
-      template: config.template, // 'src/index.tpl'
+        : config.build.index,    // 生成的文件
+      template: config.template, // 'src/index.tpl' 相对于当前这个配置文件的
       favicon: config.favicon,
       inject: true,
       title: 'jskit',
       minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
+        minifyJS: {
+          // TODO: 没效果
+          compress: {
+            warnings: true,
+          },
+          // mangle: true,
+        },
+        removeComments: true,         // 删除 html 中注释
+        collapseWhitespace: true,     // 删除空白行与换行符
+        removeAttributeQuotes: false,  // 去除属性引号
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
+        // minifyJS https://segmentfault.com/a/1190000008995453
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      // 必须通过 CommonsChunkPlugin 的依赖关系自动添加 js，css 等
       chunksSortMode: 'dependency',
-      serviceWorkerLoader: `<script>${loadMinified(path.join(__dirname,
-        './service-worker-prod.js'))}</script>`,
+      serviceWorkerLoader: `<script>${loadMinified(path.join(__dirname, './service-worker-prod.js'))}</script>`,
     }),
+
+    // new vConsolePlugin({
+    //   filter: [],   // 需要过滤的入口文件
+    //   enable: config.debug, // 发布代码前记得改回 false
+    // }),
+
+    // new SkeletonPlugin({
+    //   // 生成名为 shell.html 文件存放地址
+    //   pathname: path.resolve(__dirname, `../src`)
+    // }),
+    // 让静态资源支持 DNS 预解析和预加载
+    // https://www.w3cplus.com/performance/reloading/preload-prefetch-and-priorities-in-chrome.html
+    // 使用 preload-webpack-plugin 替换页面中的手写脚本
+    // <% for (var chunk of webpack.chunks) {
+    // for (var file of chunk.files) {
+    //   if (file.match(/\.(js|css)$/) && file.indexOf('manifest') === -1) { %>
+    //     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
+    new PreloadWebpackPlugin({
+      // rel: 'preload',
+      include: 'initial',
+    }),
+    new PreloadWebpackPlugin({
+      rel: 'prefetch',
+      // include: 'asyncChunks',
+      fileBlacklist: [/\.(map)$/, /manifest/],
+    }),
+
     // keep module.id stable when vender modules does not change
     new webpack.HashedModuleIdsPlugin(),
     // enable scope hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
+      // 将 `manifest` 优先于 libs 进行提取，
+      // 则可以将 webpack runtime 分离到这个块中。
+      // names: ['manifest', 'libs', 'vendor'].reverse(),
       name: 'vendor',
+      // manifest 只是个有意义的名字，也可以改成其他名字。
       minChunks(module, count) {
         // any required modules inside node_modules are extracted to vendor
         return (
@@ -128,6 +186,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       // chunks: ['vendor'],
       minChunks: Infinity,
     }),
+
     // This instance extracts shared chunks from code splitted chunks and bundles them
     // in a separate chunk, similar to the vendor chunk
     // see: https://webpack.js.org/plugins/commons-chunk-plugin/#extra-async-commons-chunk
@@ -135,8 +194,17 @@ const webpackConfig = merge(baseWebpackConfig, {
       name: 'app',
       async: 'vendor-async',
       children: true,
-      minChunks: 3
+      minChunks: 3,
     }),
+
+    // 目前是所有的都加了，包含css以及图片，可以只加js
+    // new HtmlWebpackPluginInject({
+    //   'crossOrigin': 'anonymous',
+    //   // chunks: ['manifest', 'vendor', 'app'],
+    // }),
+
+    // 依赖提取 manifest 功能，manifest.js 实在是太小了，以至于不值得再为一个小 js 增加资源请求数量。
+    new InlineManifestWebpackPlugin(),
 
     // copy custom static assets
     new CopyWebpackPlugin([
@@ -155,14 +223,82 @@ const webpackConfig = merge(baseWebpackConfig, {
     ]),
 
     // service worker caching
+    // webpack needs the trailing slash for output.publicPath
+
+    // https://www.npmjs.com/package/sw-precache-webpack-plugin
+    // https://github.com/GoogleChromeLabs/sw-precache
+    // https://github.com/GoogleChromeLabs/sw-precache/blob/master/service-worker.tmpl
+    // https://zhuanlan.zhihu.com/p/25020938
+    // https://zhuanlan.zhihu.com/p/25800461
+    // https://github.com/GoogleChromeLabs/sw-precache/issues/192
+    // https://developers.google.com/web/fundamentals/app-install-banners/
+    // offline-plugin
     new SWPrecacheWebpackPlugin({
-      cacheId: 'kit-start',
-      filename: 'service-worker.js',
-      staticFileGlobs: [`${config.path.dist}/**/*.{js,html,css}`],
+      // https://googlechrome.github.io/sw-toolbox/api.html
+      cacheId: config.name,
+      filename: 'sw.js',
       minify: true,
-      stripPrefix: `${config.path.dist}/`,
+      dontCacheBustUrlsMatching: /./,
+      // dontCacheBustUrlsMatching: /\.\w{20}\./,
+      // stripPrefix: 'static/',
+      // replacePrefix: qnConfig.domain ? `${qnConfig.domain}${qnConfig.prefix}/` : `/v2/`,
+      // navigateFallback: '/v2/' + 'index.html',  // PUBLIC_PATH + 'index.html'
+      // use this to ignore sourcemap files
+      // staticFileGlobsIgnorePatterns: [/\.map$/],
+      staticFileGlobsIgnorePatterns: [/\.map$/, /manifest\.json$/, /manifest\.\w{20}\.js$/],
+      // staticFileGlobsIgnorePatterns: [/\.map$/, /manifest\.\w{20}\.js$/],
+      // if you don't set this to true, you won't see any webpack-emitted assets in your serviceworker config
+      // mergeStaticsConfig: true,
+      // stripPrefixMulti is also supported
+      // stripPrefix: qnConfig.domain ? `${qnConfig.domain}${qnConfig.prefix}/` : `${config.path.dist}/`,
+      // stripPrefix: `${config.path.dist}/`,
+      // staticFileGlobs: [
+      //   `*.{html}`,
+      //   `${config.path.dist}/**/*.{js,html,css}`,
+      // ],
+      runtimeCaching: [
+        {
+          urlPattern: '/(.*)',
+          handler: 'networkFirst',
+        },
+        {
+          urlPattern: '/(.*)',
+          // urlPattern: '/bookmark/tag?page=1&tag=SVG',
+          handler: 'networkFirst',
+          options: {
+            origin: 'https://m.api.haoshiqi.net',
+          },
+        },
+      ],
     }),
 
+    // 该离线化插件最好放在最后一个 保证前面对资源文件的各种构建完毕
+    // new OfflinePlugin({
+    //   publicPath: '',
+    //   relativePaths: true,
+    //   AppCache: false,
+    //   ServiceWorker: {
+    //     events: true,
+    //   },
+    //   externals: [
+    //     'https://res.wx.qq.com/open/js/jweixin-1.2.0.js',
+    //   ],
+    //   rewrites: function (asset) {
+    //     // rewrite builded CDN files，exclude external CDN files
+    //     if (asset.indexOf('//awp-assets') !== 0 && asset.indexOf('.js') > -1 || asset.indexOf('.css') > -1) {
+    //       console.log(asset);
+    //       return config.build.assetsPublicPath + asset;
+    //     } else if (asset.indexOf('.html') > -1) {
+    //       return './' + asset;
+    //     }
+    //     return asset;
+    //   }
+    // }),
+  ]
+})
+
+if (qnConfig.domain) {
+  webpackConfig.plugins.push(
     // 七牛
     new QiniuPlugin({
       prefix: qnConfig.prefix,
@@ -182,8 +318,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     //   clean: false,
     //   // cleanExclude: /c\.js/
     // }),
-  ]
-})
+  )
+}
 
 if (config.build.productionGzip) {
   const CompressionWebpackPlugin = require('compression-webpack-plugin')

@@ -4,14 +4,22 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+const devip = require('dev-ip')
 const qnConfig = require('./qn.config')
-// import { argv } from 'yargs'
+// 接收运行参数
+const argv = require('yargs')
+    .describe('debug', 'debug 环境') // use 'webpack --debug'
+    .argv;
+
+console.log('argv:', argv)
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
 const env = process.env.NODE_ENV || 'dev'
+const HOST = process.env.HOST
+const PORT = process.env.PORT && Number(process.env.PORT)
 const constMaps = {
   __DEV__: ['dev', 'development'],
   __PROD__: ['prod', 'production'],
@@ -20,6 +28,10 @@ const constMaps = {
 const injectConst = {}
 for (const key in constMaps) {
   injectConst[key] = constMaps[key].indexOf(env) > -1
+  // if (injectConst[key]) {
+  //   env = constMaps[key][1]
+  //   process.env.NODE_ENV = env
+  // }
 }
 
 // 这里还有些好点的东西，使用下
@@ -31,6 +43,7 @@ const envConst = {
     NODE_ENV: JSON.stringify(env)
   },
   'NODE_ENV': env,
+  '__ADMIN__': false,
   '__DEBUG__': injectConst['__DEV__'], //&& !argv.no_debug,
   ...injectConst,
 }
@@ -39,7 +52,12 @@ console.log('injectConst: ', envConst);
 
 
 function pathConfig(src = 'src', dist = 'dist', test = 'test'){
+  // if (envConst['__DEV__']) {
+  //   dist = 'dist/v2'
+  //   console.log(`开发环境使用 ${dist}`)
+  // }
   return {
+    name: 'hsq',
     src: `${src}`,   // 资源根目录
     dist: `${dist}`, // 打包文件
     distdll: `${dist}/vendors`,  // dll打包文件
@@ -62,12 +80,14 @@ const paths = pathConfig('src', 'dist')
 let cookie
 module.exports = {
   qnConfig,
+  debug: true, // !!argv.debug,
+  name: paths.name,
   path: paths,
   template: `${paths.src}/index.tpl`,
-  // 不应该使用 static 下的内容，不做 md5处理，以后就面临 cdn 缓存的问题
-  favicon: resolve(`/static/img/logo.png`),
-  logo: resolve(`/static/img/logo.png`),
   env: envConst,
+  // 不应该使用 static 下的内容，不做 md5处理，以后就面临 cdn 缓存的问题
+  favicon: resolve(`/src/assets/img/logo.png`),
+  logo: resolve(`/src/assets/img/logo.png`),
   vendors: [ // 添加依赖
     'vue/dist/vue.esm.js'
   ],
@@ -87,11 +107,11 @@ module.exports = {
     // you can set by youself according to actual condition
     // 这里可以设置 cdn，不使用 cdn，设为 './'
     // assetsPublicPath: 'https://cdn.xxx.cn/' + project.dir,
-    // assetsPublicPath: './',
-    assetsPublicPath: `${qnConfig.domain}${qnConfig.prefix}`, // 'https://x.com/dir/'
+    // example: 'https://x.com/dir/'
+    assetsPublicPath: qnConfig.domain ? `${qnConfig.domain}${qnConfig.prefix}` : './',
 
     // Source Maps 是否生成用于生产构建的源映射
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
@@ -112,8 +132,9 @@ module.exports = {
   dev: {
     env: require('./dev.env'),
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    host: HOST || devip()[0] || 'localhost',
+    // host: '0.0.0.0', // can be overwritten by process.env.HOST
+    port: PORT || 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     // 增加错误提示
     errorOverlay: true,
@@ -126,7 +147,8 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    // 使用子目录，就留空，不要设置 assetsPublicPath 为 '/'
+    assetsPublicPath: '',
 
     // https://vuejs-templates.github.io/webpack/proxy.html
     // https://github.com/chimurai/http-proxy-middleware
@@ -134,7 +156,7 @@ module.exports = {
       // 如果把 cookie 设置为HttpOnly，则可能无法通过代理传递 cookie
       // proxy all requests starting with /api to jsonplaceholder
       '/proxy': {
-        target: 'http://m.devapi.haoshiqi.net',
+        target: 'https://m.api.haoshiqi.net',
         changeOrigin: true,
         // true/false, if you want to verify the SSL Certs
         // secure: false,

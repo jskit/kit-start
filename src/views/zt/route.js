@@ -21,6 +21,9 @@ export default [{
   path: '/zt',
   component: lazyLoad('_tpl'),
   children: [
+    // 为了统计更精准，是否不应该使用子路由的 '/'，使用 redirect
+    //  { path: '/a', redirect: '/b' }
+    //  { path: '/a', redirect: { name: 'foo' }}
     {
       path: '/',
       alias: '/index',

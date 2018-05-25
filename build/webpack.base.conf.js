@@ -35,11 +35,28 @@ module.exports = {
   // mode: 'production', // 'development'
   // context: path.resolve(__dirname, "../"),
   entry: {
+    // libs: [
+    //   'es6-promise/auto',
+    //   'whatwg-fetch',
+    //   'vue',
+    //   'vue-router',
+    //   'vuex',
+    // ],
+    // vendor: [
+    //   // vendor 中均是非 npm 模块，用 resolve.alias 修改路径，避免冗长的相对路径。
+    //   'vue-lazyload',
+
+    //   // 'assets/libs/fastclick',
+    //   // 'components/request',
+    //   // 'components/ui',
+    //   // 'components/bootstrap' // 初始化脚本
+    // ],
     // vendor: ['vue', 'vue-router'],
     // 如需多页面，需要处理 entry
     app: resolve(config.path.src, '/main.js'), // './src/main.js',
   },
   output: {
+    crossOriginLoading: 'anonymous', // false anonymous use-credentials
     path: config.build.assetsRoot,
     filename: '[name].js',
     publicPath: isProduction
@@ -104,7 +121,7 @@ module.exports = {
         // loader: 'eslint-loader',
         use: ['happypack/loader?id=ESLint'],
         enforce: 'pre',
-        // exclude: /(libs|node_modules)/,
+        exclude: /(libs|node_modules|vendor)/,
         include: [
           resolve(config.path.src),
           resolve(config.path.test),
@@ -117,7 +134,7 @@ module.exports = {
         test: /\.js$/,
         // loader: 'babel-loader',
         use: ['happypack/loader?id=Js'],
-        // exclude: /node_modules/,
+        exclude: /(libs|node_modules|vendor)/,
         include: [
           resolve(config.path.src),
           resolve(config.path.test),
@@ -215,18 +232,18 @@ module.exports = {
       },
     ]
   },
-  node: {
-    // prevent webpack from injecting useless setImmediate polyfill because Vue
-    // source contains it (although only uses it if it's native).
-    setImmediate: false,
-    // prevent webpack from injecting mocks to Node native modules
-    // that does not make sense for the client
-    dgram: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    child_process: 'empty'
-  },
+  // node: {
+  //   // prevent webpack from injecting useless setImmediate polyfill because Vue
+  //   // source contains it (although only uses it if it's native).
+  //   setImmediate: false,
+  //   // prevent webpack from injecting mocks to Node native modules
+  //   // that does not make sense for the client
+  //   dgram: 'empty',
+  //   fs: 'empty',
+  //   net: 'empty',
+  //   tls: 'empty',
+  //   child_process: 'empty'
+  // },
 }
 
 // 不是测试环境，则添加Dll依赖

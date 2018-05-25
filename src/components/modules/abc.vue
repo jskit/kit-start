@@ -1,14 +1,14 @@
 <template>
   <vue-tpl
-  v-if="$props.data.list.length"
-  :data-type="$props.data.type"
-  :bg="$props.data.bg.url"
+  v-if="data.list.length"
+  :data-type="data.type"
+  :bg="data.bg.url"
   :ratio="ratio"
   >
     <section class="vue-xxx">
       <div
       class="item"
-      v-for="(item, index) in $props.data.list"
+      v-for="(item, index) in data.list"
       :key="index"
       >
         <img class="image" v-lazy="item.image.url" :preload="item.image.h/item.image.w" />
@@ -59,15 +59,17 @@ export default {
   computed: {
     // 最外层不需要固定宽高比时，不需要此处，以及 vue-tpl
     ratio() {
-      const { width, height = 0 } = this.$props.data
+      const { width, height = 0 } = this.data
       return width ? height / width : 0
     },
-  }
+  },
 }
 </script>
 
 
 <style lang="stylus" scoped>
+@import '../../style/var';
+
 .vue-xxx {
 
 }

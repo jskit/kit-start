@@ -22,7 +22,16 @@ function getQueryString(url, name) { // 获取URL参数
   return null
 }
 
+function urlfix(url, paramsUrl = '') {
+  let fixUrl = url;
+  if (paramsUrl) {
+    fixUrl = url + (url.indexOf('?') === -1 ? '?' : '&') + paramsUrl;
+  }
+  return fixUrl;
+}
+
 const mini = {
+  urlfix,
   stringify,
   getQueryString,
 }

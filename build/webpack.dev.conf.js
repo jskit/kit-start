@@ -8,15 +8,13 @@ const config = require('../config')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { SkeletonPlugin } = require('page-skeleton-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
-
-const HOST = process.env.HOST
-const PORT = process.env.PORT && Number(process.env.PORT)
 
 module.exports = merge(baseWebpackConfig, {
   module: {
@@ -27,12 +25,14 @@ module.exports = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+    // contentBase: 'v2',
     clientLogLevel: 'warning',
     historyApiFallback: true,
     hot: true,
+    inline: true,
     compress: true,
-    host: HOST || config.dev.host,
-    port: PORT || config.dev.port,
+    host: config.dev.host,
+    port: config.dev.port,
     open: config.dev.autoOpenBrowser,
     overlay: config.dev.errorOverlay
       ? { warnings: false, errors: true }
@@ -40,9 +40,12 @@ module.exports = merge(baseWebpackConfig, {
     publicPath: config.dev.assetsPublicPath,
     proxy: config.dev.proxyTable,
     quiet: true, // necessary for FriendlyErrorsPlugin
+    // headers: { "X-Custom-Header": "yes" },
     watchOptions: {
       poll: config.dev.poll,
-    }
+    },
+    // disableHostCheck: true,
+    // public: '192.168.1.107'
   },
 
   plugins: [
@@ -56,7 +59,7 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: 'new.html',
+      filename: 'index.html',
       template: config.template,
       inject: true,
       favicon: config.favicon,
@@ -64,6 +67,10 @@ module.exports = merge(baseWebpackConfig, {
       serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname,
         './service-worker-dev.js'), 'utf-8')}</script>`
     }),
+    // new SkeletonPlugin({
+    //   // 生成名为 shell.html 文件存放地址
+    //   pathname: path.resolve(__dirname, `../src`)
+    // }),
     new FriendlyErrorsPlugin(),
   ]
 })

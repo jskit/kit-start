@@ -97,7 +97,7 @@ export default {
     // handleClick(e) {
     //   e.preventDefault()
     //   const { link } = e.currentTarget.dataset
-    //   this.forward(link)
+    //   this.$forward(link)
     //   // const dom = this.$el
     //   // dom.style.height = `${dom.offsetHeight}px`
     //   // this.closing = false;
@@ -108,6 +108,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '../../style/var';
+
 .vue-category {
   width: 100%;
   display: flex;

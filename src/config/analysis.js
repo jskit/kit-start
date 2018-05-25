@@ -1,21 +1,35 @@
 
 /* eslint no-var: 0 no-underscore-dangle: 0 */
-var _hmt = _hmt || [];
-(function baidu() {
-  window._hmt = window._hmt || _hmt
-  const hm = document.createElement('script')
-  hm.src = 'https://hm.baidu.com/hm.js?97185224affb9782323dfcb8c919d612'
-  const s = document.getElementsByTagName('script')[0]
-  s.parentNode.insertBefore(hm, s)
-  if (window.location.origin !== 'https://devnode.cn') {
-    _hmt.push(['_setAutoPageview', false])
-  }
-}())
 
-export default {
-  googleAnalyticsId: 'UA-XXXXX-X',
-  baiduAnalyticsId: 'UA-XXXXX-X',
-}
+!function(){
+  var d = document;
+  var s = d.getElementsByTagName('script')[0];
+
+  // 百度
+  window._hmt = window._hmt || [];
+  _hmt.push(['_setAutoPageview', false]);
+  const s1 = document.createElement('script');
+  s1.async = true;
+  s1.defer = true;
+  s1.src = 'https://hm.baidu.com/hm.js?498ed47e9a8bacaea9f8ec61836110b7';
+  s.parentNode.insertBefore(s1, s);
+
+  // piwik 统计代码
+  // https://developer.piwik.org/guides/tracking-javascript-guide
+  window._paq = window._paq || [];
+  _paq.push(["setCookieDomain", "*.haoshiqi.net"]);
+  _paq.push(['enableLinkTracking']);
+  _paq.push(['setTrackerUrl', 'https://tongji.haoshiqi.net/piwik.php']);
+  _paq.push(['setSiteId', '1']);
+  const s2 = document.createElement('script');
+  s2.src = 'https://img1.haoshiqi.net/piwik.js';
+  s.parentNode.insertBefore(s2, s);
+}();
+
+// export default {
+//   // googleAnalyticsId: 'UA-XXXXX-X',
+//   baiduAnalyticsId: 'UA-XXXXX-X',
+// }
 
 // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
