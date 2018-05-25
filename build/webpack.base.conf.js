@@ -221,13 +221,11 @@ module.exports = {
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        use: {
-          loader: 'url-loader',
-          query: {
-            limit: 10000,
-            // publicPath: `../../`, // 修复引用文字字体路劲错误
-            name: assetsPath('fonts/[name].[hash:7].[ext]')
-          }
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          // publicPath: `../../`, // 修复引用文字字体路劲错误
+          name: assetsPath('fonts/[name].[hash:7].[ext]')
         }
       },
     ]
