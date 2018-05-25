@@ -9,6 +9,8 @@ module.exports = (ctx) => ({
     // "autoprefixer": {},
     // 已包含 autoprefixer
     "postcss-cssnext": {},
+    // "postcss-import": {},
+    // "postcss-url": {},
     // TODO: styl 文件放到.vue 文件中引用，不然 position: fixed auto 0 0 0; 不起效
     // 目前 position: absolute 0 * 0 0 仍然报错
     "postcss-short-position": {},
