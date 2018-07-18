@@ -17,7 +17,7 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const env = process.env.NODE_ENV || 'dev'
+const env = process.env.NODE_ENV || 'development'
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 const constMaps = {
@@ -33,6 +33,10 @@ for (const key in constMaps) {
   //   process.env.NODE_ENV = env
   // }
 }
+
+// cross-env NODE_ENV=development env_config=dev
+// cross-env NODE_ENV=production env_config=prod
+// const envConfig = require(`./config/${process.env.env_config}.env`)
 
 // 这里还有些好点的东西，使用下
 // https://github.com/kenberkeley/vue2-scaffold
@@ -141,6 +145,10 @@ module.exports = {
     notifyOnErrors: false,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
+    // Use Eslint Loader?
+    // If true, your code will be linted during bundling and
+    // linting errors and warnings will be shown in the console.
+    useEslint: true,
     // If true, eslint errors and warnings will also be shown in the error overlay
     // in the browser.
     showEslintErrorsInOverlay: false,
@@ -152,42 +160,43 @@ module.exports = {
 
     // https://vuejs-templates.github.io/webpack/proxy.html
     // https://github.com/chimurai/http-proxy-middleware
-    proxyTable: {
-      // 如果把 cookie 设置为HttpOnly，则可能无法通过代理传递 cookie
-      // proxy all requests starting with /api to jsonplaceholder
-      '/proxy': {
-        target: 'https://m.api.haoshiqi.net',
-        changeOrigin: true,
-        // true/false, if you want to verify the SSL Certs
-        // secure: false,
-        pathRewrite: {
-          '^/proxy': '',
-        },
-        logLevel: 'debug',
-        proxyReqOptDecorator: function(proxyReqOpts, srcReq) {
-          // you can update headers
-          // proxyReqOpts.headers['Content-Type'] = 'text/html';
-          // you can change the method
-          // proxyReqOpts.method = 'GET';
-          // proxyReqOpts.headers['Access-Control-Allow-Origin'] = 'true';
-          return proxyReqOpts;
-        },
-        // onProxyReq: function relayRequestHeaders(proxyReq, req) {
-        //   // console.log(proxyReq.headers)
-        //   if (cookie) {
-        //     proxyReq.setHeader('cookie', cookie)
-        //   }
-        //   // proxyReq.setHeader('Access-Control-Allow-Credentials', 'true')
-        // },
-        // onProxyRes: function relayResponseHeaders(proxyRes, req, res) {
-        //   // console.log(proxyRes.headers)
-        //   var proxyCookie = proxyRes.headers['set-cookie']
-        //   if (proxyCookie) {
-        //     cookie = proxyCookie
-        //   }
-        // },
-      },
-    },
+    // proxyTable: {
+    //   // 如果把 cookie 设置为HttpOnly，则可能无法通过代理传递 cookie
+    //   // proxy all requests starting with /api to jsonplaceholder
+    //   '/proxy': {
+    //     target: 'https://m.api.haoshiqi.net',
+    //     changeOrigin: true,
+    //     // true/false, if you want to verify the SSL Certs
+    //     // secure: false,
+    //     pathRewrite: {
+    //       '^/proxy': '',
+    //     },
+    //     logLevel: 'debug',
+    //     proxyReqOptDecorator: function(proxyReqOpts, srcReq) {
+    //       // you can update headers
+    //       // proxyReqOpts.headers['Content-Type'] = 'text/html';
+    //       // you can change the method
+    //       // proxyReqOpts.method = 'GET';
+    //       // proxyReqOpts.headers['Access-Control-Allow-Origin'] = 'true';
+    //       return proxyReqOpts;
+    //     },
+    //     // onProxyReq: function relayRequestHeaders(proxyReq, req) {
+    //     //   // console.log(proxyReq.headers)
+    //     //   if (cookie) {
+    //     //     proxyReq.setHeader('cookie', cookie)
+    //     //   }
+    //     //   // proxyReq.setHeader('Access-Control-Allow-Credentials', 'true')
+    //     // },
+    //     // onProxyRes: function relayResponseHeaders(proxyRes, req, res) {
+    //     //   // console.log(proxyRes.headers)
+    //     //   var proxyCookie = proxyRes.headers['set-cookie']
+    //     //   if (proxyCookie) {
+    //     //     cookie = proxyCookie
+    //     //   }
+    //     // },
+    //   },
+    // },
+    proxyTable: {},
     // https://webpack.js.org/configuration/devtool/#development
     // cheap-module-eval-source-map is faster for development
     // devtool: '#cheap-module-eval-source-map',

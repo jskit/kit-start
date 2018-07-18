@@ -12,7 +12,7 @@
 <!--[if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif]-->
 <!-- Add to home screen for Android and modern mobile browsers -->
 <!-- <link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>static/manifest.json"> -->
-<link rel="manifest" href="/v2/static/manifest.json">
+<link rel="manifest" href="/static/manifest.json">
 <meta name="theme-color" content="#4DBA87">
 
 <!-- Add to home screen for Safari on iOS -->

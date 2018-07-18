@@ -211,15 +211,15 @@ const webpackConfig = merge(baseWebpackConfig, {
       {
         from: utils.resolve(config.path.static),
         to: config.build.assetsSubDirectory,
-        ignore: ['.*']
+        ignore: ['.*', 'CNAME']
       },
       // webpack中JS手动引入的图片问题(按照约定，assets内全为需要编译的图片，不需要的放在 static 下)
       // webpack是万物皆模块，但也就是说，不通过require引入的就不会算成模块了(插件中的另算，那是处理过的)。所以，在JS中手动引入图片时会遇到问题就是对应的图片并不会被打包，导致之后找不到路径。
-      //{
-      //  from: 'src/assets',
-      //  to: config.build.assetsSubDirectory,
-      //  ignore: ['.*']
-      //}
+      {
+        from: utils.resolve(config.path.static + '/CNAME'),
+        //  to: './',
+        ignore: ['.*'],
+      },
     ]),
 
     // service worker caching
