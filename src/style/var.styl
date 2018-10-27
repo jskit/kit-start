@@ -1,0 +1,109 @@
+
+@import './function';
+
+$ns = null;
+
+$black = #000;
+$white = #fff;
+
+// Disabled cursor for form controls and buttons.
+// 禁用状态 可自定义鼠标图标
+$cursor-disabled = not-allowed;
+
+// 尽量使用十六进制颜色，更一致、性能优于rgb
+// http://prd.devnode.cn/设计资源/设计规范/01标准色.png
+
+// important
+// 强调色 价格、按钮背景色、特别强调的文字
+$rgb237 = #ed0000; // rgb(237, 0, 0);
+// 主题色 icon、tab等
+$rgb253 = #fdf187; // rgb(253, 241, 135);
+// 黄色背景按钮文字 logo文字
+$rgb145 = #914e07; // rgb(145, 78, 7);
+
+// 灰度色值
+// 重要 商品标题
+$rgb33  = #212121; // rgb(33, 33, 33);
+// 辅助 描述、商品评论
+$rgb102 = #666666; // rgb(102, 102, 102);
+// 弱化 原价、查看更多
+$rgb153 = #999999; // rgb(153, 153, 153);
+// 边框色 分割线、按钮禁用状态
+$rgb226 = #e2e2e2; // rgb(226, 226, 226);
+// 背景色
+$rgb250 = #fafaf8; // rgb(250, 250, 248);
+
+// 超链接
+$link = rgb(0, 122, 255); // #007aff
+
+// global
+$color-link  = $link;
+$color-body  = $rgb33;
+$color-title = $rgb33;
+$color-text  = $rgb102;
+$color-bg    = $rgb250;
+$color-border = $rgb226
+$color-price = $rgb237;
+
+// sidebar
+$logoColor = #189f92;
+$menuBg    = #304156;
+$subMenuBg = #1f2d3d;
+$menuHover = #001528;
+
+// index
+$rgb234 = rgb(234, 89, 76);
+
+// Diffirent border-radius styles
+$global-radius  = 4px;
+$global-round   = 1600px;
+$shapes = {
+  radius: $global-radius,
+  dot: $global-round,
+  circle: $global-round,
+  round: $global-round,
+  square: initial,
+};
+$colors = {
+  blue   : '#108ee9',
+  purple : '#7265e6',
+  cyan   : '#00a2ae',
+  green  : '#00a854',
+  pink   : '#f5317f',
+  red    : '#f04134',
+  orange : '#f56a00',
+  yellow : '#ffbf00',
+};
+
+$blue-6     = #108ee9;
+$purple-6   = #7265e6;
+$cyan-6     = #00a2ae;
+$green-6    = #00a854;
+$pink-6     = #f5317f;
+$red-6      = #f04134;
+$orange-6   = #f56a00;
+$yellow-6   = #ffbf00;
+
+$color-primary      = $blue-6;    // #2db7f5;  // #0e90d2
+$color-sub          = lighten($color-primary, 15%);
+$color-info         = $blue-6;    // #5bc0de;
+$color-success      = $green-6;   // #5cb85c;
+$color-warning      = $yellow-6;  // #F37B1D;
+$color-danger       = $red-6;     // #f04134;
+$color-error        = $red-6;     // #f04134;
+$color-highlight    = $red-6;     // #f04134;
+$color-gray         = lighten($black, 87.5%);
+$color-dark         = #393939;
+$color-normal       = #d9d9d9;
+$disabled-color     = #d9d9d9;
+
+$theme-colors = {
+  primary:   $color-primary,
+  sub:       $color-sub,
+  info:      $color-info,
+  success:   $color-success,
+  warning:   $color-warning,
+  danger:    $color-danger,
+  alert:     $color-danger,
+  dark:      $color-dark,
+};

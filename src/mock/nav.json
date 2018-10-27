@@ -1,0 +1,455 @@
+{
+  "data": {
+    "menuList": [{
+      "children": [{
+        "children": [],
+        "icon": "admin",
+        "id": "0000000064cbe1af0164cbe25fa4000e",
+        "link": "account",
+        "name": "管理员列表",
+        "parentId": "0000000064cbe1af0164cbe25f6b0001",
+        "position": 0,
+        "state": 0,
+        "type": "1"
+      }, {
+        "children": [],
+        "icon": "role",
+        "id": "0000000064cbe1af0164cbe25f760002",
+        "link": "role",
+        "name": "角色管理",
+        "parentId": "0000000064cbe1af0164cbe25f6b0001",
+        "position": 1,
+        "state": 0,
+        "type": "1"
+      }, {
+        "children": [],
+        "icon": "menu",
+        "id": "0000000064cbe1af0164cbe25f8d0009",
+        "link": "menu",
+        "name": "菜单管理",
+        "parentId": "0000000064cbe1af0164cbe25f6b0001",
+        "position": 1,
+        "state": 0,
+        "type": "1"
+      }, {
+        "children": [],
+        "icon": "task",
+        "id": "0000000064cbe1af0164cbe25fcb0019",
+        "link": "job",
+        "name": "定时任务",
+        "parentId": "0000000064cbe1af0164cbe25f6b0001",
+        "position": 3,
+        "state": 0,
+        "type": "1"
+      }, {
+        "children": [],
+        "icon": "dict",
+        "id": "0000000064cbe1af0164cbe25fbb0014",
+        "link": "dict",
+        "name": "数据字典",
+        "parentId": "0000000064cbe1af0164cbe25f6b0001",
+        "position": 4,
+        "state": 0,
+        "type": "1"
+      }],
+      "icon": "system1",
+      "id": "0000000064cbe1af0164cbe25f6b0001",
+      "name": "系统管理",
+      "parentId": "0000000064cbe1af0164cbe25f100000",
+      "position": 0,
+      "state": 0,
+      "type": "0"
+    }, {
+      "children": [{
+        "children": [],
+        "icon": "depart",
+        "id": "0000000064cbe1af0164cbe26139004c",
+        "link": "org/dept",
+        "name": "部门管理",
+        "parentId": "0000000064cbe1af0164cbe26137004b",
+        "position": 0,
+        "state": 0,
+        "type": "1"
+      }, {
+        "children": [],
+        "icon": "group",
+        "id": "0000000064cbe1af0164cbe261460051",
+        "link": "org/personal",
+        "name": "员工管理",
+        "parentId": "0000000064cbe1af0164cbe26137004b",
+        "position": 1,
+        "state": 0,
+        "type": "1"
+      }, {
+        "children": [],
+        "icon": "cert3",
+        "id": "0000000064cbe1af0164cbe261550056",
+        "link": "org/personal/resource",
+        "name": "证书管理",
+        "parentId": "0000000064cbe1af0164cbe26137004b",
+        "position": 2,
+        "state": 0,
+        "type": "1"
+      }],
+      "icon": "org1",
+      "id": "0000000064cbe1af0164cbe26137004b",
+      "name": "组织架构",
+      "parentId": "0000000064cbe1af0164cbe25f100000",
+      "position": 1,
+      "state": 0,
+      "type": "0"
+    }, {
+      "children": [{
+        "children": [],
+        "id": "0000000064cbe1af0164cbe25fe80021",
+        "link": "log",
+        "name": "系统日志",
+        "parentId": "0000000064cbe1af0164cbe25fe50020",
+        "position": 0,
+        "state": 0,
+        "type": "1"
+      }],
+      "id": "0000000064cbe1af0164cbe25fe50020",
+      "name": "系统监控",
+      "parentId": "0000000064cbe1af0164cbe25f100000",
+      "position": 1,
+      "state": 0,
+      "type": "0"
+    }, {
+      "children": [{
+        "children": [{
+          "children": [{
+            "children": [],
+            "id": "0000000064cbe1af0164cbe2617f0063",
+            "link": "project/business/legal",
+            "name": "法人资格",
+            "parentId": "0000000064cbe1af0164cbe261790062",
+            "position": 0,
+            "state": 0,
+            "type": "1"
+          }, {
+            "children": [],
+            "id": "0000000064cbe1af0164cbe261850065",
+            "link": "project/business/performance",
+            "name": "项目业绩",
+            "parentId": "0000000064cbe1af0164cbe261790062",
+            "position": 0,
+            "state": 0,
+            "type": "1"
+          }, {
+            "children": [],
+            "id": "0000000064cbe1af0164cbe261810064",
+            "link": "project/business/human",
+            "name": "人力资源",
+            "parentId": "0000000064cbe1af0164cbe261790062",
+            "position": 0,
+            "state": 0,
+            "type": "1"
+          }],
+          "id": "0000000064cbe1af0164cbe261790062",
+          "link": "project/business",
+          "name": "商务管理",
+          "parentId": "0000000064cbe1af0164cbe261760061",
+          "position": 0,
+          "state": 0,
+          "type": "1"
+        }, {
+          "children": [{
+            "children": [],
+            "id": "0000000064cbe1af0164cbe2618e0067",
+            "link": "project/tender/tech/basic",
+            "name": "基础知识",
+            "parentId": "0000000064cbe1af0164cbe261860066",
+            "position": 0,
+            "state": 0,
+            "type": "1"
+          }, {
+            "children": [],
+            "id": "0000000064cbe1af0164cbe261900068",
+            "link": "project/tender/tech/docs",
+            "name": "技术文件编制",
+            "parentId": "0000000064cbe1af0164cbe261860066",
+            "position": 0,
+            "state": 0,
+            "type": "1"
+          }],
+          "id": "0000000064cbe1af0164cbe261860066",
+          "link": "project/tender/tech",
+          "name": "技术管理",
+          "parentId": "0000000064cbe1af0164cbe261760061",
+          "position": 0,
+          "state": 0,
+          "type": "1"
+        }, {
+          "children": [{
+            "children": [],
+            "id": "0000000064cbe1af0164cbe26194006a",
+            "link": "project/tender/quote/basic",
+            "name": "基础知识",
+            "parentId": "0000000064cbe1af0164cbe261920069",
+            "position": 0,
+            "state": 0,
+            "type": "1"
+          }, {
+            "children": [],
+            "id": "0000000064cbe1af0164cbe2619e006b",
+            "link": "project/tender/quote/budget",
+            "name": "预算清单",
+            "parentId": "0000000064cbe1af0164cbe261920069",
+            "position": 0,
+            "state": 0,
+            "type": "1"
+          }],
+          "id": "0000000064cbe1af0164cbe261920069",
+          "link": "project/tender/quote",
+          "name": "报价管理",
+          "parentId": "0000000064cbe1af0164cbe261760061",
+          "position": 0,
+          "state": 0,
+          "type": "1"
+        }],
+        "id": "0000000064cbe1af0164cbe261760061",
+        "link": "project/tender",
+        "name": "投标管理",
+        "parentId": "0000000064cbe1af0164cbe2615f005b",
+        "position": 0,
+        "state": 0,
+        "type": "1"
+      }, {
+        "children": [{
+          "children": [],
+          "id": "0000000064cbe1af0164cbe261a8006e",
+          "link": "project/assessment",
+          "name": "绩效考核",
+          "parentId": "0000000064cbe1af0164cbe261a1006c",
+          "position": 0,
+          "state": 0,
+          "type": "1"
+        }, {
+          "children": [],
+          "id": "0000000064cbe1af0164cbe261a6006d",
+          "link": "project/es",
+          "name": "工程统计",
+          "parentId": "0000000064cbe1af0164cbe261a1006c",
+          "position": 0,
+          "state": 0,
+          "type": "1"
+        }],
+        "id": "0000000064cbe1af0164cbe261a1006c",
+        "link": "project/statistics",
+        "name": "统计管理",
+        "parentId": "0000000064cbe1af0164cbe2615f005b",
+        "position": 0,
+        "state": 0,
+        "type": "1"
+      }, {
+        "children": [{
+          "children": [],
+          "id": "0000000064cbe1af0164cbe26166005d",
+          "link": "project/plan/criterion",
+          "name": "管理制度",
+          "parentId": "0000000064cbe1af0164cbe26163005c",
+          "position": 0,
+          "state": 0,
+          "type": "1"
+        }, {
+          "children": [],
+          "id": "0000000064cbe1af0164cbe26169005e",
+          "link": "project/plan/business",
+          "name": "企业计划",
+          "parentId": "0000000064cbe1af0164cbe26163005c",
+          "position": 1,
+          "state": 0,
+          "type": "1"
+        }, {
+          "children": [],
+          "id": "0000000064cbe1af0164cbe2616e005f",
+          "link": "project/plan/engineering",
+          "name": "工程计划",
+          "parentId": "0000000064cbe1af0164cbe26163005c",
+          "position": 2,
+          "state": 0,
+          "type": "1"
+        }],
+        "id": "0000000064cbe1af0164cbe26163005c",
+        "link": "project/plan",
+        "name": "计划管理",
+        "parentId": "0000000064cbe1af0164cbe2615f005b",
+        "position": 0,
+        "state": 0,
+        "type": "1"
+      }, {
+        "children": [],
+        "id": "0000000064cbe1af0164cbe261720060",
+        "link": "project/tracking",
+        "name": "项目跟踪",
+        "parentId": "0000000064cbe1af0164cbe2615f005b",
+        "position": 1,
+        "state": 0,
+        "type": "1"
+      }],
+      "icon": "gc2",
+      "id": "0000000064cbe1af0164cbe2615f005b",
+      "name": "项目管理",
+      "parentId": "0000000064cbe1af0164cbe25f100000",
+      "position": 3,
+      "state": 0,
+      "type": "0"
+    }],
+    "permissionList": ["sys:role:reset", "sys:role:save", "sys:role:delete", "sys:role:view", "sys:role:update", "sys:role:lock", "sys:permission:view", "sys:permission:update", "sys:permission:save", "sys:permission:delete", "sys:user:save", "sys:user:delete", "sys:user:view", "sys:user:update", "sys:user:roleUpdate", "sys:dict:save", "sys:dict:delete", "sys:dict:view", "sys:dict:update", "sys:scheduleJob:view", "sys:scheduleJob:update", "sys:scheduleJob:start", "sys:scheduleJob:save", "sys:scheduleJob:delete", "sys:scheduleJob:pause", "monitor:log:view", "monitor:log:export", "org:dept:view", "org:dept:update", "org:dept:save", "org:dept:delete", "org:personal:save", "org:personal:delete", "org:personal:view", "org:personal:update", "org:personal:resource:view", "org:personal:resource:update", "org:personal:resource:save", "org:personal:resource:delete"]
+  },
+  "message": "success",
+  "statusCode": 0,
+  "elapsedTime": 3,
+  "timestamp": 1533441217487
+}
+
+
+{
+  "msg": "success",
+  "menuList": [{
+    "menuId": 1,
+    "parentId": 0,
+    "parentName": null,
+    "name": "系统管理",
+    "url": null,
+    "perms": null,
+    "type": 0,
+    "icon": "system",
+    "orderNum": 0,
+    "open": null,
+    "list": [{
+      "menuId": 2,
+      "parentId": 1,
+      "parentName": null,
+      "name": "管理员列表",
+      "url": "sys/user",
+      "perms": null,
+      "type": 1,
+      "icon": "admin",
+      "orderNum": 1,
+      "open": null,
+      "list": null
+    }, {
+      "menuId": 3,
+      "parentId": 1,
+      "parentName": null,
+      "name": "角色管理",
+      "url": "sys/role",
+      "perms": null,
+      "type": 1,
+      "icon": "role",
+      "orderNum": 2,
+      "open": null,
+      "list": null
+    }, {
+      "menuId": 4,
+      "parentId": 1,
+      "parentName": null,
+      "name": "菜单管理",
+      "url": "sys/menu",
+      "perms": null,
+      "type": 1,
+      "icon": "menu",
+      "orderNum": 3,
+      "open": null,
+      "list": null
+    }, {
+      "menuId": 5,
+      "parentId": 1,
+      "parentName": null,
+      "name": "SQL监控",
+      "url": "http://localhost:8080/renren-fast/druid/sql.html",
+      "perms": null,
+      "type": 1,
+      "icon": "sql",
+      "orderNum": 4,
+      "open": null,
+      "list": null
+    }, {
+      "menuId": 6,
+      "parentId": 1,
+      "parentName": null,
+      "name": "定时任务",
+      "url": "job/schedule",
+      "perms": null,
+      "type": 1,
+      "icon": "job",
+      "orderNum": 5,
+      "open": null,
+      "list": null
+    }, {
+      "menuId": 27,
+      "parentId": 1,
+      "parentName": null,
+      "name": "参数管理",
+      "url": "sys/config",
+      "perms": "sys:config:list,sys:config:info,sys:config:save,sys:config:update,sys:config:delete",
+      "type": 1,
+      "icon": "config",
+      "orderNum": 6,
+      "open": null,
+      "list": null
+    }, {
+      "menuId": 30,
+      "parentId": 1,
+      "parentName": null,
+      "name": "文件上传",
+      "url": "oss/oss",
+      "perms": "sys:oss:all",
+      "type": 1,
+      "icon": "oss",
+      "orderNum": 6,
+      "open": null,
+      "list": null
+    }, {
+      "menuId": 29,
+      "parentId": 1,
+      "parentName": null,
+      "name": "系统日志",
+      "url": "sys/log",
+      "perms": "sys:log:list",
+      "type": 1,
+      "icon": "log",
+      "orderNum": 7,
+      "open": null,
+      "list": null
+    }]
+  }],
+  "code": 0,
+  "permissions": [
+    "sys:schedule:info",
+    "sys:menu:update",
+    "sys:menu:delete",
+    "sys:config:info",
+    "sys:menu:list",
+    "sys:config:save",
+    "sys:config:update",
+    "sys:schedule:resume",
+    "sys:user:delete",
+    "sys:config:list",
+    "sys:user:update",
+    "sys:role:list",
+    "sys:menu:info",
+    "sys:menu:select",
+    "sys:schedule:update",
+    "sys:schedule:save",
+    "sys:role:select",
+    "sys:user:list",
+    "sys:menu:save",
+    "sys:role:save",
+    "sys:schedule:log",
+    "sys:role:info",
+    "sys:schedule:delete",
+    "sys:role:update",
+    "sys:schedule:list",
+    "sys:user:info",
+    "sys:schedule:run",
+    "sys:config:delete",
+    "sys:role:delete",
+    "sys:user:save",
+    "sys:schedule:pause",
+    "sys:log:list",
+    "sys:oss:all"
+  ]
+}

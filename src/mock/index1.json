@@ -1,0 +1,636 @@
+{
+  "errno": 0,
+  "errmsg": "success",
+  "data": {
+    "list": [
+      {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 790,
+        "height": 411,
+        "type": "banner",
+        "list": [
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/mae9bc6cda6118bd0b43202b3389ba35ba.jpg",
+              "w": 790,
+              "h": 411
+            },
+            "link": "https://m.haoshiqi.net/#zt_template?topic_code=592bc49fab45ad70fdf99603c6365ff9",
+            "id": 628
+          },
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/mae5ac6e7e36e2003a9db5d05706d7293c.jpg",
+              "w": 750,
+              "h": 411
+            },
+            "link": "https://m.haoshiqi.net/#zt_template?topic_code=4590c4ed400aa85e1b3ab05d0bb9815b",
+            "id": 625
+          },
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma980c8583c9fc0151f55f7eb8c9f2eaca.jpg",
+              "w": 750,
+              "h": 411
+            },
+            "link": "https://m.haoshiqi.net/#zt_template?topic_code=0bc0908ff2a17b18b0efb14f35997946",
+            "id": 626
+          },
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma10db5a7fd6d2d5ef3914f31b85274af6.jpg",
+              "w": 750,
+              "h": 411
+            },
+            "link": "https://m.haoshiqi.net/#zt_template?topic_code=6ff7ed463c5257a86c44955d9f98802c",
+            "id": 627
+          }
+        ],
+        "comment": "顶部导航"
+      },
+      {
+        "type": "c-labels",
+        "list": [
+          { "icon": "https://img1.haoshiqi.net/baoyou.png", "text": "全场包邮" },
+          { "icon": "https://img1.haoshiqi.net/zhengpin.png", "text": "正品保证" },
+          { "icon": "https://img1.haoshiqi.net/picc.png", "text": "PICC承保" },
+          { "icon": "https://img1.haoshiqi.net/shouhou.png", "text": "售后无忧" }
+        ]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 0,
+        "height": 0,
+        "type": "sub_button",
+        "bg": {
+          "url": "http://img2.haoshiqi.net/maaaf289d57d385987c60ddedaf037caf8.jpg",
+          "w": 750,
+          "h": 150
+        },
+        "comment": "小按钮导航",
+        "column": 5,
+        "list": [
+          {
+            "id": 262,
+            "source_type": 1,
+            "type": 1,
+            "loc": 0,
+            "icon": "http://img2.haoshiqi.net/maa946942640d3fd7c86246fd60de5c77b.jpg",
+            "label": "新人礼",
+            "jump_type": 2,
+            "jump_url": "https://m.haoshiqi.net/#zt_template?topic_code=f8791ad162528d96b76201c963e85604",
+            "client_type": 8,
+            "has_tag": 0,
+            "tag_icon": "",
+            "priority": 0,
+            "enabled": 1,
+            "expired_time": 2147483647,
+            "updated_at": 1523496391,
+            "version": "1.0",
+            "last_update": "2018-04-12 09:26:34",
+            "sub_data": {
+              "w": 451,
+              "h": 450
+            }
+          },
+          {
+            "id": 264,
+            "source_type": 1,
+            "type": 1,
+            "loc": 0,
+            "icon": "http://img2.haoshiqi.net/maba4499fec5bdee02b99ca97817aa89eb.jpg",
+            "label": "9.9包邮",
+            "jump_type": 2,
+            "jump_url": "https://m.haoshiqi.net/#zt_template?topic_code=6495ab8cc8d15adbb1987e5ab7723cd6",
+            "client_type": 8,
+            "has_tag": 0,
+            "tag_icon": "",
+            "priority": 0,
+            "enabled": 1,
+            "expired_time": 2147483647,
+            "updated_at": 1523496384,
+            "version": "1.0",
+            "last_update": "2018-04-12 09:26:27",
+            "sub_data": {
+              "w": 451,
+              "h": 450
+            }
+          },
+          {
+            "id": 265,
+            "source_type": 1,
+            "type": 1,
+            "loc": 0,
+            "icon": "http://img2.haoshiqi.net/mabab8382d62228bd4711239832b0c964d.jpg",
+            "label": "1分钱包邮",
+            "jump_type": 3,
+            "jump_url": "haoshiqi://com.doweidu/lotteryactivitylist",
+            "client_type": 8,
+            "has_tag": 0,
+            "tag_icon": "",
+            "priority": 0,
+            "enabled": 1,
+            "expired_time": 2147483647,
+            "updated_at": 1523496496,
+            "version": "1.0",
+            "last_update": "2018-04-12 09:28:20",
+            "sub_data": {
+              "w": 108,
+              "h": 108
+            }
+          },
+          {
+            "id": 266,
+            "source_type": 1,
+            "type": 1,
+            "loc": 0,
+            "icon": "http://img2.haoshiqi.net/mace25938835848fd64aa5fc2c17b7d6a2.jpg",
+            "label": "大牌购",
+            "jump_type": 2,
+            "jump_url": "https://m.haoshiqi.net/#zt_template?topic_code=644ea34276c25f061df7c225a86fa089",
+            "client_type": 8,
+            "has_tag": 0,
+            "tag_icon": "",
+            "priority": 0,
+            "enabled": 1,
+            "expired_time": 2147483647,
+            "updated_at": 1523514731,
+            "version": "1.0",
+            "last_update": "2018-04-12 14:32:15",
+            "sub_data": {
+              "w": 451,
+              "h": 450
+            }
+          },
+          {
+            "id": 267,
+            "source_type": 1,
+            "type": 1,
+            "loc": 0,
+            "icon": "http://img2.haoshiqi.net/ma09f34ec5b0ffc9e7c412624a7424dfeb.jpg",
+            "label": "新品力荐",
+            "jump_type": 2,
+            "jump_url": "https://m.haoshiqi.net/#zt_template?topic_code=de006d91a4dcd5656c77e70c390d11b1",
+            "client_type": 8,
+            "has_tag": 0,
+            "tag_icon": "",
+            "priority": 0,
+            "enabled": 1,
+            "expired_time": 2147483647,
+            "updated_at": 1523496501,
+            "version": "1.0",
+            "last_update": "2018-04-12 09:28:24",
+            "sub_data": {
+              "w": 450,
+              "h": 450
+            }
+          }
+        ]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 10,
+        "width": 750,
+        "height": 190,
+        "type": "ads",
+        "comment": "水平滑动广告",
+        "list": [
+          {
+            "id": 6,
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma914eb8857a18190b16e976661b6bde6a.jpg",
+              "w": 750,
+              "h": 190
+            },
+            "link": "https://m.haoshiqi.net/#zt_template?topic_code=592bc49fab45ad70fdf99603c6365ff9"
+          }
+        ]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 10,
+        "width": 2,
+        "height": 1,
+        "type": "ads_tofu",
+        "comment": "豆腐块广告",
+        "list": [
+          [
+            {
+              "id": 261,
+              "image": {
+                "url": "http://img2.haoshiqi.net/ma88f1285ddc94bc0c0449f52db00e14b5.jpg",
+                "w": 540,
+                "h": 540
+              },
+              "link": "https://m.haoshiqi.net/#zt_template?topic_code=9b7071dcbe6bf142260b62c3f277665a"
+            }
+          ],
+          [
+            {
+              "id": 275,
+              "image": {
+                "url": "http://img2.haoshiqi.net/ma229e7424d4db622cf19a4470b5fe0fa9.jpg",
+                "w": 540,
+                "h": 270
+              },
+              "link": "https://m.haoshiqi.net/#zt_template?topic_code=078b00e1afbe3d65dc827695921f906b"
+            },
+            {
+              "id": 274,
+              "image": {
+                "url": "http://img2.haoshiqi.net/mac1e97ab6350baaa534c425fdc8ab4dd9.jpg",
+                "w": 375,
+                "h": 187
+              },
+              "link": "https://m.haoshiqi.net/#zt_template?topic_code=4ae804ff2eaaf5a0595eace064bcc472"
+            }
+          ]
+        ]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 10,
+        "width": 5,
+        "height": 3,
+        "type": "c-tofu",
+        "layout": "1-2-2",
+        "comment": "新豆腐块广告",
+        "list": [
+          {
+            "id": 261,
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma88f1285ddc94bc0c0449f52db00e14b5.jpg",
+              "w": 540,
+              "h": 540
+            },
+            "link": "https://m.haoshiqi.net/#zt_template?topic_code=9b7071dcbe6bf142260b62c3f277665a"
+          },
+          {
+            "id": 275,
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma229e7424d4db622cf19a4470b5fe0fa9.jpg",
+              "w": 540,
+              "h": 270
+            },
+            "link": "https://m.haoshiqi.net/#zt_template?topic_code=078b00e1afbe3d65dc827695921f906b"
+          },
+          {
+            "id": 275,
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma229e7424d4db622cf19a4470b5fe0fa9.jpg",
+              "w": 540,
+              "h": 270
+            },
+            "link": "https://m.haoshiqi.net/#zt_template?topic_code=078b00e1afbe3d65dc827695921f906b"
+          },
+          {
+            "id": 275,
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma229e7424d4db622cf19a4470b5fe0fa9.jpg",
+              "w": 540,
+              "h": 270
+            },
+            "link": "https://m.haoshiqi.net/#zt_template?topic_code=078b00e1afbe3d65dc827695921f906b"
+          },
+          {
+            "id": 275,
+            "image": {
+              "url": "http://img2.haoshiqi.net/ma229e7424d4db622cf19a4470b5fe0fa9.jpg",
+              "w": 540,
+              "h": 270
+            },
+            "link": "https://m.haoshiqi.net/#zt_template?topic_code=078b00e1afbe3d65dc827695921f906b"
+          },
+          {
+            "id": 274,
+            "image": {
+              "url": "http://img2.haoshiqi.net/mac1e97ab6350baaa534c425fdc8ab4dd9.jpg",
+              "w": 375,
+              "h": 187
+            },
+            "link": "https://m.haoshiqi.net/#zt_template?topic_code=4ae804ff2eaaf5a0595eace064bcc472"
+          }
+        ]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 750,
+        "height": 88,
+        "type": "title_bar",
+        "list": [
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/mab5c3eaa68386f5da1bcec49805eb6e9e.jpg",
+              "w": 750,
+              "h": 88
+            }
+          }
+        ],
+        "comment": "标题栏广告"
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 10,
+        "width": 0,
+        "height": 0,
+        "type": "rec_pin_activites",
+        "comment": "新品推荐",
+        "list": [
+          {
+            "id": 182,
+            "sku_id": 28801,
+            "pin_activities_id": 11958,
+            "couple_price": 1990,
+            "couple_title": "【周年庆】伊利全脂纯牛奶250ml*12盒（散装）",
+            "sub_image": "http://img2.haoshiqi.net/ma426c57c722fecd51b520138af971409e.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/mab8ec5eddb9a5e00f6ac5401de4a37fad.jpg",
+            "can_bought": true,
+            "end_time": 1523949162,
+            "start_time": 1523603559,
+            "count_limit": 2,
+            "sub_title": "",
+            "sort": 15,
+            "expired_date": 1527955200,
+            "market_price": 4800,
+            "left_stock": 964
+          },
+          {
+            "id": 179,
+            "sku_id": 28195,
+            "pin_activities_id": 11379,
+            "couple_price": 2160,
+            "couple_title": "【周年庆】伊利果粒优酸乳245ml*12盒",
+            "sub_image": "http://img2.haoshiqi.net/mae5ff89376b5897f1acb0640b20ffbec1.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/ma977c16237bfbff9fe4d96c4a34b79967.jpg",
+            "can_bought": true,
+            "end_time": 1523931962,
+            "start_time": 1523586360,
+            "count_limit": 2,
+            "sub_title": "底价特卖，口味随机",
+            "sort": 14,
+            "expired_date": 1527782400,
+            "market_price": 6900,
+            "left_stock": 52
+          },
+          {
+            "id": 170,
+            "sku_id": 28486,
+            "pin_activities_id": 11689,
+            "couple_price": 890,
+            "couple_title": "【周年庆】西域美农新疆枣 500g*2包",
+            "sub_image": "http://img2.haoshiqi.net/ma94fb40f74b324d13ecece5a9f74fae85.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/ma75b32fe21a821f710972b7649ff79d36.jpg",
+            "can_bought": true,
+            "end_time": 1523930816,
+            "start_time": 1523498814,
+            "count_limit": 2,
+            "sub_title": "超值2斤装",
+            "sort": 12,
+            "expired_date": 1543593600,
+            "market_price": 2490,
+            "left_stock": 3309
+          },
+          {
+            "id": 169,
+            "sku_id": 28597,
+            "pin_activities_id": 11769,
+            "couple_price": 2150,
+            "couple_title": "【周年庆】蒙牛营养酸酸乳250ml*20盒",
+            "sub_image": "http://img2.haoshiqi.net/maabe68ce019dddb61f62eb7329f5b5bd5.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/ma1b0a4d958e002264935ed9345ae3fae4.jpg",
+            "can_bought": true,
+            "end_time": 1523930602,
+            "start_time": 1523498601,
+            "count_limit": 2,
+            "sub_title": "仅1元1盒 包邮",
+            "sort": 11,
+            "expired_date": 1526400000,
+            "market_price": 3200,
+            "left_stock": 574
+          },
+          {
+            "id": 159,
+            "sku_id": 28397,
+            "pin_activities_id": 11587,
+            "couple_price": 890,
+            "couple_title": "【周年庆】豆本豆豆奶组合250ml/盒*6",
+            "sub_image": "http://img2.haoshiqi.net/ma8b4b82cff38ce4c6e605e93df4b5ed4c.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/mabaeb921113b29cad048262405603d6cd.jpg",
+            "can_bought": true,
+            "end_time": 1523928741,
+            "start_time": 1523496738,
+            "count_limit": 2,
+            "sub_title": "仅¥1.48/盒",
+            "sort": 10,
+            "expired_date": 1527696000,
+            "market_price": 6800,
+            "left_stock": 9265
+          },
+          {
+            "id": 160,
+            "sku_id": 28454,
+            "pin_activities_id": 11664,
+            "couple_price": 890,
+            "couple_title": "【周年庆】盼盼涂层小蛋糕56g*4盒",
+            "sub_image": "http://img2.haoshiqi.net/mab63bd758b539dbbde6df8b920cdab702.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/maff62a1f26f75fc0fbef40cb9a9208d56.jpg",
+            "can_bought": true,
+            "end_time": 1523928907,
+            "start_time": 1523496905,
+            "count_limit": 2,
+            "sub_title": "松软可口8只装",
+            "sort": 9,
+            "expired_date": 1533052800,
+            "market_price": 3960,
+            "left_stock": 29582
+          },
+          {
+            "id": 161,
+            "sku_id": 28439,
+            "pin_activities_id": 11641,
+            "couple_price": 1690,
+            "couple_title": "【周年庆】蒙牛营养早餐奶250ml*12盒",
+            "sub_image": "http://img2.haoshiqi.net/maf20a0e8474820a0ab5dd719919abdf95.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/mad7134786608e88655fc2b8cc46decb29.jpg",
+            "can_bought": true,
+            "end_time": 1523929129,
+            "start_time": 1523497127,
+            "count_limit": 2,
+            "sub_title": "最后1天，仅¥1.4/盒",
+            "sort": 8,
+            "expired_date": 1526227200,
+            "market_price": 4480,
+            "left_stock": 260
+          },
+          {
+            "id": 162,
+            "sku_id": 28474,
+            "pin_activities_id": 11679,
+            "couple_price": 690,
+            "couple_title": "【周年庆】水果味威化饼干",
+            "sub_image": "http://img2.haoshiqi.net/mac66cecc2f16005a7b0e394c3496d153e.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/ma816bcf7db774d91fcf8d26494a5d758b.jpg",
+            "can_bought": true,
+            "end_time": 1523929220,
+            "start_time": 1523497218,
+            "count_limit": 2,
+            "sub_title": "300g 多口味组合",
+            "sort": 7,
+            "expired_date": 1534521600,
+            "market_price": 2990,
+            "left_stock": 842
+          },
+          {
+            "id": 163,
+            "sku_id": 28427,
+            "pin_activities_id": 11618,
+            "couple_price": 2590,
+            "couple_title": "【周年庆】雀巢纤跃V酸奶 200m*15瓶",
+            "sub_image": "http://img2.haoshiqi.net/ma1366bcdb24b3c01d58234d49c5724eca.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/ma223a88851e4c10bb05c8c36c99371ddf.jpg",
+            "can_bought": true,
+            "end_time": 1523929389,
+            "start_time": 1523497388,
+            "count_limit": 2,
+            "sub_title": "厂家直销，亏本3折特卖",
+            "sort": 6,
+            "expired_date": 1530892800,
+            "market_price": 10950,
+            "left_stock": 3614
+          },
+          {
+            "id": 164,
+            "sku_id": 28388,
+            "pin_activities_id": 11577,
+            "couple_price": 2500,
+            "couple_title": "【周年庆】雪糯芝蛋糕2斤",
+            "sub_image": "http://img2.haoshiqi.net/ma638a5bfe9bfa9214f7a29e57eee81cfc.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/ma55d21deab0f4638d675072a1acdd13e7.jpg",
+            "can_bought": true,
+            "end_time": 1523929533,
+            "start_time": 1523497531,
+            "count_limit": 2,
+            "sub_title": "网红蛋糕-芒果味",
+            "sort": 5,
+            "expired_date": 1532620800,
+            "market_price": 5900,
+            "left_stock": 441
+          },
+          {
+            "id": 165,
+            "sku_id": 27575,
+            "pin_activities_id": 10694,
+            "couple_price": 850,
+            "couple_title": "【周年庆】卫龙亲嘴烧",
+            "sub_image": "http://img2.haoshiqi.net/ma20a13b55a93998e79564ac5a6faeef14.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/ma7e614da706194eb8faab1ab41a1cf566.jpg",
+            "can_bought": true,
+            "end_time": 1523929611,
+            "start_time": 1523497609,
+            "count_limit": 2,
+            "sub_title": "30包净重300g",
+            "sort": 4,
+            "expired_date": 1527782400,
+            "market_price": 1990,
+            "left_stock": 5926
+          },
+          {
+            "id": 166,
+            "sku_id": 28364,
+            "pin_activities_id": 11558,
+            "couple_price": 2990,
+            "couple_title": "【周年庆】莫斯利安酸牛奶200g×12盒",
+            "sub_image": "http://img2.haoshiqi.net/ma77d3d19347cd8677a97ca1a4bacbd8ff.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/ma01223767cf9d75f0be30ebb0e8901793.jpg",
+            "can_bought": true,
+            "end_time": 1523929873,
+            "start_time": 1523497871,
+            "count_limit": 2,
+            "sub_title": "新品1折尝鲜",
+            "sort": 3,
+            "expired_date": 1527177600,
+            "market_price": 7200,
+            "left_stock": 9308
+          },
+          {
+            "id": 167,
+            "sku_id": 28357,
+            "pin_activities_id": 11543,
+            "couple_price": 1590,
+            "couple_title": "【周年庆】红谷林每日坚果25g*7袋组合装",
+            "sub_image": "http://img2.haoshiqi.net/madb30228d782b39f39f317e385e97477a.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/ma653321a3d4b9fe779ebf2c1a9a755be9.jpg",
+            "can_bought": true,
+            "end_time": 1523930017,
+            "start_time": 1523498014,
+            "count_limit": 2,
+            "sub_title": "",
+            "sort": 2,
+            "expired_date": 1536681600,
+            "market_price": 5980,
+            "left_stock": 4937
+          },
+          {
+            "id": 177,
+            "sku_id": 28329,
+            "pin_activities_id": 11517,
+            "couple_price": 1590,
+            "couple_title": "【周年庆】南方芝麻黑黑乳248ml*8支",
+            "sub_image": "http://img2.haoshiqi.net/mab71773ea2fecb31c89a184761fd63314.jpg",
+            "sku_pic": "http://img2.haoshiqi.net/mafd454943834d8b7666c33546d2dc7441.jpg",
+            "can_bought": true,
+            "end_time": 1523931237,
+            "start_time": 1523585633,
+            "count_limit": 2,
+            "sub_title": "轻脂乳品，仅1.9/支",
+            "sort": 1,
+            "expired_date": 1536249600,
+            "market_price": 5300,
+            "left_stock": 948
+          }
+        ]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 10,
+        "width": 750,
+        "height": 190,
+        "type": "ads",
+        "comment": "水平滑动广告",
+        "list": [
+          {
+            "id": 5,
+            "image": {
+              "url": "http://img2.haoshiqi.net/maf0c5f7d360b4ecb92c31f9b5a9c69e8d.jpg",
+              "w": 750,
+              "h": 190
+            },
+            "link": "https://m.haoshiqi.net/#zt_template?topic_code=6495ab8cc8d15adbb1987e5ab7723cd6"
+          }
+        ]
+      },
+      {
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "width": 750,
+        "height": 88,
+        "type": "title_bar",
+        "list": [
+          {
+            "image": {
+              "url": "http://img2.haoshiqi.net/mac5452306c33a043f7259ed5e2ce83d16.jpg",
+              "w": 750,
+              "h": 88
+            }
+          }
+        ],
+        "comment": "标题栏广告"
+      }
+    ]
+  },
+  "timestamp": 1523612339,
+  "serverlogid": "c511bc0d56ec874c4287445fed02c595"
+}

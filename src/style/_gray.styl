@@ -1,0 +1,117 @@
+// 考虑文本在不同颜色背景下的呈现，我们选择了『White #FFFFFF』和『Black #000000』并配以透明度来区分文本的等级层次。详情请查看 [字体颜色](https://ant.design/docs/spec/font-cn#字体颜色)。
+
+$grey-1 = #fbfbfb
+$grey-2 = #f7f7f7
+$grey-3 = #f5f5f5
+$grey-4 = #e9e9e9
+$grey-5 = #d9d9d9
+$grey-6 = #bfbfbf
+$grey-7 = #919191
+$grey-8 = #5a5a5a
+$grey-9 = #404040
+$grey-10 = #222222
+
+// 生成灰度等级 20个级别 or 10个级别
+// 计算灰度色调，有好几种方式，如不用等差变换，就直接用现成设定固定值
+// 此处设计上的选值，可以参考 antd 项目
+// @see http://codepen.io/airen/pen/xwveK
+// @see http://www.w3cplus.com/preprocessor/sass-color-function.html
+
+// silver	#C0C0C0	192,192,192
+// gray	  #808080	128,128,128
+
+$black = #000;
+$white = #fff;
+
+// Color
+
+// 混入黑白色
+// @see http://www.w3cplus.com/preprocessor/sass-color-function.html
+// @see https://segmentfault.com/q/1010000002795066
+// @test http://www.sassmeister.com/
+morelight($color, $percent) {
+  mix(white, $color, $percent);
+}
+moredark($color, $percent) {
+  mix(black, $color, $percent);
+}
+
+// white            ...            #808080;         ...          black;
+// $gray-light9 ... $gray-light1  $gray-base  $gray-dark1 ... $gray-dark9
+
+// #f3f3f3 #e6e6e6 #d9d9d9 #cdcdcd silver  #b3b3b3 #a6a6a6 #9a9a9a #8d8d8d gray
+// #737373 #676767 #5a5a5a #4d4d4d #404040 #343434 #272727 #1a1a1a #0d0d0d black
+
+$gray-light9 = #f3f3f3;  //$btn-default-background
+$gray-light8 = #e6e6e6;  //$color-border-split
+$gray-light7 = #d9d9d9;  //$color-border-base $btn-ghost-border
+$gray-light6 = #cdcdcd;
+$gray-light5 = #c0c0c0;
+$gray-silver = silver;   //#c0c0c0
+$gray-light4 = #b3b3b3;
+$gray-light3 = #a6a6a6;
+$gray-light2 = #9a9a9a;
+$gray-light1 = #8d8d8d;
+
+$gray-base = gray;  //#808080
+
+$gray-dark1 = #737373;
+$gray-dark2 = #676767;  //#666
+$gray-dark3 = #5a5a5a;
+$gray-dark4 = #4d4d4d;
+$gray-dark5 = #404040;
+$gray-dark6 = #343434;
+$gray-dark7 = #272727;  //最后几个已经很黑了
+$gray-dark8 = #1a1a1a;
+$gray-dark9 = #0d0d0d;
+
+
+//如上数据，对 dark 的值使用要求不多，对 light 的值，也许会多一点
+//如不必要，可选用几个用别名，如 darker，lighter
+//效果调试效果可以使用 http://codepen.io/anon/pen/oLzyEx
+
+//选用的灰度值有 212121
+$gray-darker   = lighten($black, 13.5%); // #222
+$gray-dark     = lighten($black, 20%);   // #333
+$gray          = lighten($black, 33.5%); // #555
+// $gray-light    = lighten($black, 46.7%); // #777
+$gray-light    = lighten($black, 53.3%); // #888
+$gray-lighter  = lighten($black, 87.5%); // #dfdfdf //#efeff4
+$gray-lightest = lighten($black, 93.5%); // #eee
+
+// lighten的算法怎么算的？
+
+
+
+// TODO：不能直接生成变量，怎么办
+//
+
+// swatchesDarken($color) {
+//   for $i from 1 through 10 {
+//     {$gray-prefix}{$i+10}: darken($color, $i*5);
+//   }
+// }
+// swatchesLighten($color) {
+//   for $i from 1 through 10 {
+//     {$gray-prefix}{11-$i}: lighten($color, $i*5);
+//   }
+// }
+//
+// swatchesDarken($gray-color);
+// swatchesLighten($gray-color);
+
+
+
+
+
+
+
+
+
+/*
+
+示例
+http://codepen.io/anon/pen/oLzyEx
+
+
+**/

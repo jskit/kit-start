@@ -1,0 +1,32 @@
+{
+  "message": "success",
+  "data": {
+    "total": 2,
+    "page": 1,
+    "list": [{
+      "deptId": 2,
+      "deptName": "技术部",
+      "education": "xx",
+      "email": "sss@ss.com",
+      "gender": 1,
+      "id": 1,
+      "mobile": "13817234234",
+      "remark": "xx",
+      "state": 0,
+      "username": "xx"
+    }, {
+      "deptId": 3,
+      "deptName": "产品部",
+      "education": "x",
+      "email": "we@qw.com",
+      "gender": 2,
+      "id": 2,
+      "mobile": "13345643423",
+      "state": 1,
+      "username": "sx"
+    }]
+  },
+  "statusCode": 0,
+  "elapsedTime": 15,
+  "timestamp": 1540027975763
+}

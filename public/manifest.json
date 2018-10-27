@@ -1,14 +1,14 @@
 {
-  "name": "kit-start",
-  "short_name": "start",
+  "name": "觅食蜂",
+  "short_name": "觅食蜂",
   "icons": [
     {
-      "src": "/static/img/icons/android-chrome-192x192.png",
+      "src": "/img/icons/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/static/img/icons/android-chrome-512x512.png",
+      "src": "/img/icons/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

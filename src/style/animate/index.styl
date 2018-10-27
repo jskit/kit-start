@@ -1,0 +1,66 @@
+@import '../var';
+
+.animate {
+  transition: all .3s cubic-bezier(.55,0,.1,1);
+}
+
+// 动画 Spin
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-enter-active {
+  transition: all .4s;
+}
+.fade-enter {
+  opacity: 0;
+  transform: translate3d(0%, 8%, 0);
+}
+
+.zoom-enter-active, .zoom-leave-active {
+  transition: transform .5s, opacity .5s;
+}
+.zoom-enter, .zoom-leave-to {
+  transform: scale(0);
+  opacity: 0
+}
+
+.slideup-enter-active, .slideup-leave-active {
+  transition: transform .5s
+}
+.slideup-enter, .slideup-leave-to {
+  transform: translate3d(0%, 100%, 0)
+}
+
+
+/**********页面切换动画***********/
+.slideleft-enter {
+  transform: translate3d(100%, 0%, 0)
+}
+.slideleft-enter-active {
+  transition: transform .5s;
+}
+.fade-enter, .fade-enter-active, .slideleft-enter, .slideleft-enter-active, .slideright-leave, .slideright-leave-active{
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  background: $color-bg;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+.slideleft-leave-active {
+  transition: opacity 0s .5s;
+}
+.slideleft-leave-to {
+  opacity: 1;
+}
+
+.slideright-leave-active {
+  transition: transform .5s;
+}
+.slideright-leave-to {
+  transform: translate3d(100%, 0%, 0)
+}
