@@ -7,10 +7,16 @@ import {
   session,
 } from '@/utils/storage';
 
-const _import = require('./_import_' + process.env.NODE_ENV);
+// const _import = require('./_import_' + process.env.NODE_ENV);
+const _import = // env.isMode('prod')
+  process.env.NODE_ENV === 'production'
+    ? file => () =>
+        import(/* webpackChunkName: "x-[index]" */ '@/views/' + file + '.vue')
+    : file => require('@/views/' + file + '.vue').default;
 // 使用下面的方法，编译速度很慢
+// 使用env.isMode('prod') 以及开发环境使用import 都会导致慢了
 // function _import(page) {
-//   if (env.isMode('prod')) {
+//   if (process.env.NODE_ENV === 'production') {
 //     return () => import(/* webpackChunkName: "x-[index]" */ `@/views/${page}`);
 //   }
 //   return () => require(`@/views/${page}.vue`).default;

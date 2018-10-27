@@ -11,6 +11,7 @@ let params = {};
 let reqHeaders = {};
 
 // api 列表
+// TODO: 可提升性能，可以书写配置文件，但编译后（prod模式）直接为结果而无需再次计算得出
 // https://dapi.cloudai.net/swagger-ui.html
 export const modelApis = {
   // 初始化配置
