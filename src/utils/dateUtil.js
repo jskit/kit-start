@@ -8,7 +8,7 @@
 
 // http://jsben.ch/ZAaku
 function formatNum(n) {
-  if (n > 10) return '0' + n
+  if (n < 10) return '0' + n
   return n
   // return n > 10 ? n : ('0' + n)
 }

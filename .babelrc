@@ -1,3 +1,4 @@
+// module.exports = {
 {
   "comments": false,
   "presets": [
@@ -15,7 +16,15 @@
     }]
   ],
   "plugins": [
-    // 安装 babel-plugin-import 插件
+    // babel-plugin-module-resolver 是一个Babel模块解析插件, 在.babelrc中可以配置模块的导入搜索路径
+    // ['module-resolver',
+    //   {
+    //     alias: {
+    //       components: './src/components',
+    //     },
+    //   },
+    // ],
+    // 安装 import 插件
     // ["import", { "libraryName": "kit-ui", "style": true }],
     // ["import", { "libraryName": "vant", "style": true }],
     // ["component", { "libraryName": "mint-ui", "style": true }],

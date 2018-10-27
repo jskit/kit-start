@@ -1,9 +1,12 @@
 import { stringify } from 'qs'
-import _request from '@/utils/request'
+import _request from '@/utils/request/xhr'
 import mini from '@/utils/mini'
 import env from '@/config/env'
 // import { modelApis, commonParams } from './model'
 // import { version } from '../package.json'
+
+const type = 'xhr';
+// const type = 'fetch';
 
 let apiBaseUrl
 apiBaseUrl = `${env.apiBaseUrl}`
@@ -24,6 +27,16 @@ function compact(obj) {
 
 function request(url, options, success, fail) {
   const originUrl = regHttp.test(url) ? url : `${apiBaseUrl}${url}`
+
+  const { method = 'GET' } = options;
+  if (method === 'GET') {
+    return request({
+      url: originUrl,
+      method: 'get',
+      params: { token },
+    })
+  }
+  if (options.)
   return _request(originUrl, compact(options), success, fail)
 }
 
@@ -36,81 +49,69 @@ function request(url, options, success, fail) {
  */
 
 // api 列表
+// https://dapi.cloudai.net/swagger-ui.html
 const modelApis = {
   // 初始化配置
   test: 'https://easy-mock.com/mock/5aa79bf26701e17a67bde1d7/',
   getConfig: '/common/initconfig',
   getWxSign: '/common/getwxsign',
-  // 积分兑换
-  getPointIndex: '/point/index',
-  getPointList: '/point/skulist',
-  getPointDetail: '/point/iteminfo',
-  getPointDetaiMore: '/product/productdetail',
-  getRList: '/point/recommenditems',
-  // 专题
-  getPointTopicInfo: '/point/topicinfo',
-  getPointTopicList: '/point/topicbuskulist',
-  // 主站专题
-  getTopicInfo: '/product/topicskusinfo',
-  getTopicList: '/product/topicskulist',
-  // 个人中心
-  getProfile: '/user/usercenter',
-  // 拼团相关
-  getCoupleList: '/product/coupleskulist',
-  getCoupleDetail: '/product/coupleskudetail',
-  getMerchantList: '/merchant/coupleskulist',
-  coupleOrderInit: 'POST /order/coupleorderinit',
-  coupleOrderList: '/user/usercouplelist',
-  coupleOrderDetail: '/user/usercoupleorderdetail',
-  coupleUserList: '/market/pinactivitiesuserlist', // 分享页拼团头像列表
-  coupleShareDetail: '/user/coupleactivitiedetail', // 分享详情
 
-  // 首页
-  getIndex: '/common/index',
-  getIndexNew: '/common/index_v1',
-  getHotSearch: '/common/hotsearchsug',
-
-  // 主流程
-  orderInit: 'POST /order/orderinit',
-  orderSubmit: 'POST /order/submitorder',
-  orderPay: 'POST /order/orderpay',
-  orderPayConfirm: '/order/orderpayconfirm', // 确认支付状态
-  getUserOrders: '/order/getuserorders', // 订单列表
-  getNeedCommentOrders: '/order/waitcommentlist', // 待评论
-  getUserRefundorders: '/order/userrefundorder', // 退款
-  getUserServiceOrders: '/order/userserviceorders', // 售后
-  orderCancel: 'POST /order/cancelorder', // 取消订单
-  orderDetail: '/order/orderdetail',
-  confirmReceived: 'POST /order/userorderconfirm', // 确认收货
-  orderComplaint: 'POST /refund/complaint', // 订单申诉
-  // 积分订单相关
-  pointOrderInit: 'POST /tradecenter/pointorderpreview',
-  pointOrderSubmit: 'POST /tradecenter/pointordersubmit',
-  pointOrderCancel: 'POST /tradecenter/ordercancel',
-  pointOrderList: '/tradecenter/orderlist',
-  pointOrderDetail: '/tradecenter/orderinfo',
-  pointOrderSuccess: '/tradecenter/ordersuccess',
-
-  // 退款相关
-  refundInit: '/refund/init',
-  refundDetail: '/refund/detail',
-  refundApply: 'POST /refund/apply',
-  // 登录注销
-  login: 'POST /user/login',
-  logout: 'POST /user/logout',
-  // 地址管理
-  addressList: '/user/addresslist',
-  addAddress: 'POST /user/addaddress',
-  updateAddress: 'POST /user/updateaddress',
-  setDefaultAddress: 'POST /user/setdefaultaddress',
-  deleteAddress: 'POST /user/deleteaddress',
-  provinceList: '/nation/provincelist',
-  cityList: '/nation/citylist',
-  districtList: '/nation/districtlist',
-  // 查看物流
-  getDelivery: '/order/deliverymessage',
   // 获取七牛 token
   getQiniuToken: '/common/qiniutoken',
+
+  loginByUsername: 'POST /user/login',
+  logout: 'POST /user/logout',
+  getUserInfo: '/user/info',
+  getTableList: '/table/list',
+
+  // 系统管理
+  login: 'POST /admin/login',
+  // login: 'POST /login/login',
+  logout: 'POST /admin/logout',
+  adminCheck: '/admin/check',
+  menu: '/admin/menu',
+
+  // 用户管理
+  userList: '/sys/user/list',
+  userRoleList: '/sys/user/role/list',
+  saveUser: 'POST /sys/user/save',
+  updateUser: 'POST /sys/user/update',
+  updateUserPwd: 'POST /sys/user/updatePwd',
+  updateUserRole: 'POST /sys/user/role/update',
+  delUser: 'POST /sys/user/delete',
+
+  // 权限管理
+  savePower: 'POST /sys/permission/save',
+  delPower: 'POST /sys/permission/delete',
+  updatePower: 'POST /sys/permission/update',
+
+  // 角色管理
+  getRoleList: '/sys/role/permission/list',
+  saveRole: '/sys/role/save',
+  delRole: '/sys/role/delete',
+  updateRole: '/sys/role/update',
+  updateRolePower: '/sys/role/permission/update',
+
+  // 人员管理
+  getPersonalList: '/org/personal/list',
+  savePersonal: 'POST /org/personal/save',
+  delPersonal: '/org/personal/delete',
+  updatePersonal: 'POST /org/personal/update',
+  searchPersonal: '/org/personal/save',
+
+  // 人员证书管理
+  getResList: '/personal/resource/list',
+  saveRes: '/personal/resource/save',
+  delRes: '/personal/resource/delete',
+  uploadRes: '/personal/resource/upload',
+  searchRes: '/personal/resource/search',
+
+  // 部门管理
+  getDeptList: '/org/dept/list',
+  saveDept: '/org/dept/save',
+  delDept: '/org/dept/delete',
+  uploadDept: '/org/dept/upload',
+  searchDept: '/org/dept/search',
 }
 
 // 仅限本地调试支持
@@ -137,7 +138,6 @@ const commonParams = {
   udid: '', // 设备唯一标志
   device: '', // 设备
   net: '', // 网络
-  uid: '',
   token: '',
   timestamp: '', // 时间
   channel: 'h5', // 渠道

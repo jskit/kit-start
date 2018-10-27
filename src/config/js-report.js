@@ -23,6 +23,7 @@ if (__PROD__ && !env.console && env.isEnv(['prod', 'beta'])) {
   jsTracking.releasestage = env.stage;
   jsTracking.appversion = env.version;
   jsTracking.filters = filters;
+  // jsTracking.sampleRate = 0.3;
   console.log(jsTracking)
   debugReport = (debugString) => {
     if (!caches[debugString]) {
