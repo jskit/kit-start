@@ -1,5 +1,7 @@
 # kit-start
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jskit/kit-start.svg)](https://greenkeeper.io/)
+
 > A Vue.js project start
 > - 适用于单页与多页应用.
 
